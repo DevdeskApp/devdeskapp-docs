@@ -1,0 +1,26 @@
+{
+  "name": "devdeskapp-docs",
+  "version": "1.0.0",
+  "description": "Official documentation for DevDeskApp and n8n-nodes-devdeskapp",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev --port 5173 --host",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "keywords": [
+    "devdeskapp",
+    "n8n",
+    "documentation",
+    "vitepress",
+    "developer-tools"
+  ],
+  "author": "DevDeskApp Community",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.6.3"
+  },
+  "dependencies": {
+    "medium-zoom": "^1.1.0"
+  }
+}
