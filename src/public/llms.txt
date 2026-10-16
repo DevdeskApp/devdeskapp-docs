@@ -1,0 +1,35 @@
+# DevDeskApp Documentation
+
+> Official developer documentation for DevDeskApp, 330+ client-side utilities, and the `n8n-nodes-devdeskapp` community node.
+
+DevDeskApp provides sub-millisecond, in-memory execution of developer utilities, formatters, and financial calculation engines directly inside n8n workflows and AI Agent function calling pipelines with zero external cloud API data leaks.
+
+## Core Capabilities
+- **330+ Client-Side Tools**: Online developer utilities running entirely in the browser at https://www.devdeskapp.com.
+- **n8n Community Node**: Published on NPM as `n8n-nodes-devdeskapp` (v0.1.4+).
+- **Official n8n Workflow Template**: Template #21017 on n8n.io ("Format JSON & Secure HR Payloads with DevDeskApp").
+- **AI Agent Function Calling**: Zero-latency deterministic tools for OpenAI, Anthropic Claude, Google Gemini, and Ollama inside n8n.
+- **Zero-Latency In-Memory Execution**: Operations execute in < 0.2ms using local Node.js CPU cycles.
+- **Privacy-First Zero Cloud Leak**: Payloads never leave local host memory.
+
+## Documentation Index
+- [Getting Started](https://docs.devdeskapp.com/n8n/): Architecture overview, benefits, and execution model.
+- [Installation Guide](https://docs.devdeskapp.com/n8n/installation): Setup via n8n Community Nodes UI, Docker, or npm.
+- [Operations Reference](https://docs.devdeskapp.com/n8n/operations): Schema specifications for all 10 native operations.
+- [Workflow Templates](https://docs.devdeskapp.com/n8n/workflow-templates): Official template #21017 details and sample execution data.
+- [AI Agents & LLM Function Calling](https://docs.devdeskapp.com/solutions/ai-agents): Connecting DevDeskApp to n8n AI Agents and LangChain models.
+- [Enterprise Architecture](https://docs.devdeskapp.com/solutions/): Performance benchmarks comparing in-memory Node vs external REST APIs.
+- [Production Best Practices](https://docs.devdeskapp.com/solutions/best-practices): Concurrency limits, memory management, and error handling.
+- [Platform Architecture](https://docs.devdeskapp.com/about/architecture): Zero-leak security guarantee and cryptographic guarantees.
+
+## Operations Summary
+1. `jsonPrettifier`: Minify or format JSON with customizable indentation.
+2. `hashGenerator`: Compute SHA-256, SHA-512, MD5, and SHA-1 cryptographic digests.
+3. `ctcCalculator`: Indian payroll engine calculating basic, HRA, PF, and net take-home salary.
+4. `slugGenerator`: SEO-friendly URL slug generator with multi-language transliteration.
+5. `base64Converter`: Encode and decode UTF-8 strings to Base64.
+6. `urlEncoder`: Percent-encode or decode query parameters safely.
+7. `uuidGenerator`: Generate RFC4122 Version 4 UUIDs.
+8. `caseConverter`: Convert strings to camelCase, snake_case, kebab-case, and PascalCase.
+9. `markdownToHtml`: Render Markdown to sanitized HTML.
+10. `jwtDecoder`: Decode and inspect JWT headers and claims without signature verification.

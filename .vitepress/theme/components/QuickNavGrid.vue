@@ -54,10 +54,21 @@ const cards: NavCard[] = [
     highlight: true
   },
   {
+    title: 'AI Agents & LLMs',
+    category: 'Function Calling & Tools',
+    badge: 'LangChain & OpenAI',
+    badgeType: 'purple',
+    description: 'Wire DevDeskApp into n8n AI Agents as zero-latency deterministic tools for payroll, hashing, and JSON compression.',
+    link: '/solutions/ai-agents',
+    linkText: 'AI Agent Guide',
+    icon: '🤖',
+    highlight: true
+  },
+  {
     title: 'Enterprise Architecture',
     category: 'Security & Benchmarks',
     badge: 'Zero-Leak Audit',
-    badgeType: 'purple',
+    badgeType: 'indigo',
     description: 'Deep-dive security benchmarks comparing local native Node execution vs external cloud REST APIs.',
     link: '/solutions/',
     linkText: 'Architecture & Solutions',

@@ -35,10 +35,27 @@ export default defineConfig({
       { type: 'application/ld+json' },
       JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        name: 'DevDeskApp Documentation',
-        url: 'https://docs.devdeskapp.com',
-        description: 'Official documentation for DevDeskApp developer utilities, tools, and n8n-nodes-devdeskapp community node.'
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            name: 'DevDeskApp Documentation',
+            url: 'https://docs.devdeskapp.com',
+            description: 'Official documentation for DevDeskApp developer utilities, tools, and n8n-nodes-devdeskapp community node.'
+          },
+          {
+            '@type': 'SoftwareApplication',
+            name: 'DevDeskApp n8n Community Node',
+            applicationCategory: 'DeveloperApplication, AutomationTool, AIAgentTool',
+            operatingSystem: 'Cross-platform, Node.js, Docker, Linux, macOS, Windows',
+            description: 'In-memory deterministic utility suite and AI Agent function calling tool for n8n workflows.',
+            url: 'https://docs.devdeskapp.com',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD'
+            }
+          }
+        ]
       })
     ]
   ],
@@ -51,6 +68,7 @@ export default defineConfig({
     nav: [
       { text: 'DevDeskApp Suite', link: '/about/' },
       { text: 'n8n Node Guide', link: '/n8n/' },
+      { text: '🤖 AI Agents & LLMs', link: '/solutions/ai-agents' },
       { text: 'Operations Reference', link: '/n8n/operations' },
       { text: 'Workflow Templates', link: '/n8n/workflow-templates' },
       { text: 'Architecture', link: '/solutions/' },
@@ -87,8 +105,9 @@ export default defineConfig({
       ],
       '/solutions/': [
         {
-          text: 'Solutions & Production',
+          text: 'Solutions & AI',
           items: [
+            { text: '🤖 AI Agents & LLM Calling', link: '/solutions/ai-agents' },
             { text: 'Local Node vs Cloud APIs', link: '/solutions/' },
             { text: 'Production Best Practices', link: '/solutions/best-practices' }
           ]

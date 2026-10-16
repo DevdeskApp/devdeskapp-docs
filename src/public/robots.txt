@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
 
+# AI Crawlers & LLM Indexers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemaps & Machine-Readable LLM Index
 Sitemap: https://docs.devdeskapp.com/sitemap.xml
+# LLM Index: https://docs.devdeskapp.com/llms.txt
