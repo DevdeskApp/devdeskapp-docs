@@ -69,16 +69,16 @@ export default defineConfig({
       { text: 'DevDeskApp Suite', link: '/about/' },
       { text: 'n8n Node Guide', link: '/n8n/' },
       { text: '🤖 AI Agents & LLMs', link: '/solutions/ai-agents' },
-      { text: 'Operations Reference', link: '/n8n/operations' },
-      { text: 'Workflow Templates', link: '/n8n/workflow-templates' },
-      { text: 'Architecture', link: '/solutions/' },
       {
-        text: 'v0.1.4 (Latest)',
+        text: 'More',
         items: [
-          { text: 'NPM Package', link: 'https://www.npmjs.com/package/n8n-nodes-devdeskapp' },
-          { text: 'n8n Template #21017', link: 'https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities' },
-          { text: 'Node GitHub Repo', link: 'https://github.com/DevdeskApp/n8n-nodes-devdeskapp' },
-          { text: 'DevDeskApp Web App', link: 'https://www.devdeskapp.com' }
+          { text: '⚙️ Operations Reference', link: '/n8n/operations' },
+          { text: '📋 Workflow Templates', link: '/n8n/workflow-templates' },
+          { text: '🏛️ Architecture & Solutions', link: '/solutions/' },
+          { text: '📦 NPM Package (v0.1.4)', link: 'https://www.npmjs.com/package/n8n-nodes-devdeskapp' },
+          { text: '🌟 n8n Template #21017', link: 'https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities' },
+          { text: '🐙 Node GitHub Repo', link: 'https://github.com/DevdeskApp/n8n-nodes-devdeskapp' },
+          { text: '🌐 DevDeskApp Web App', link: 'https://www.devdeskapp.com' }
         ]
       }
     ],
