@@ -1,54 +1,45 @@
-# 📖 DevDeskApp Official Documentation
+# 📖 DevDeskApp Docs
 
-> Modern Automation & High-Performance Developer Suite • Zero Cloud Data Leaks • 330+ Tools & Official n8n Community Node.
+> Official Documentation Portal for DevDeskApp & `n8n-nodes-devdeskapp` Community Node.
 
-[![Live Docs](https://img.shields.io/badge/docs-docs.devdeskapp.com-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://docs.devdeskapp.com)
-[![n8n Community Node](https://img.shields.io/badge/n8n-n8n--nodes--devdeskapp-ea4b71?style=for-the-badge&logo=n8n&logoColor=white)](https://www.npmjs.com/package/n8n-nodes-devdeskapp)
-[![Official Template](https://img.shields.io/badge/n8n.io-Template_%2321017-10b981?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
-
----
-
-## 🌟 Overview
-
-This repository powers the official documentation portal at **[docs.devdeskapp.com](https://docs.devdeskapp.com)**.
-
-DevDeskApp provides 330+ client-side developer utilities and an official community node (`n8n-nodes-devdeskapp`) that runs formatters, financial calculation engines, and cryptographic algorithms natively in-memory inside n8n workflows with:
-- **Sub-millisecond execution** (< 0.2ms)
-- **Zero cloud API data leaks** (100% in-process Node.js execution)
-- **Zero API keys or external quotas required**
+[![Live Docs](https://img.shields.io/badge/docs-docs.devdeskapp.com-6366f1?style=flat-square&logo=googlechrome&logoColor=white)](https://docs.devdeskapp.com)
+[![NPM](https://img.shields.io/npm/v/n8n-nodes-devdeskapp?color=ea4b71&style=flat-square&logo=npm)](https://www.npmjs.com/package/n8n-nodes-devdeskapp)
+[![Template #21017](https://img.shields.io/badge/n8n.io-Template_%2321017-10b981?style=flat-square&logo=n8n&logoColor=white)](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 ---
 
-## 🚀 Quick Links
+## ⚡ Quick Install
 
-- 🌐 **Documentation Portal**: [https://docs.devdeskapp.com](https://docs.devdeskapp.com)
-- 📦 **NPM Package**: [`n8n-nodes-devdeskapp`](https://www.npmjs.com/package/n8n-nodes-devdeskapp)
-- 🌟 **n8n Official Template #21017**: [Format JSON & Secure HR Payloads with DevDeskApp](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
-- 💻 **Main Web App**: [https://www.devdeskapp.com](https://www.devdeskapp.com)
+### n8n Community Node (UI)
+In n8n: **Settings** &rarr; **Community Nodes** &rarr; **Install**:
+```text
+n8n-nodes-devdeskapp
+```
+
+### Docker / CLI
+```bash
+npm install n8n-nodes-devdeskapp
+```
 
 ---
 
-## 🛠️ Local Development
+## 🛠️ Run Docs Locally
 
-### 1. Install Dependencies
 ```bash
 npm install
+npm run docs:dev     # http://localhost:5173
 ```
 
-### 2. Start Development Server
-```bash
-npm run docs:dev
-```
-Local preview will be available at `http://localhost:5173/`.
+---
 
-### 3. Build for Production
-```bash
-npm run docs:build
-```
+## 🔗 Links
+
+- **Documentation**: [https://docs.devdeskapp.com](https://docs.devdeskapp.com)
+- **Official n8n Template #21017**: [https://n8n.io/workflows/21017](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
+- **Web App**: [https://www.devdeskapp.com](https://www.devdeskapp.com)
 
 ---
 
 ## 📄 License
-
-Released under the [MIT License](LICENSE). Copyright © 2026 DevDeskApp Community.
+MIT © 2026 DevDeskApp Community
