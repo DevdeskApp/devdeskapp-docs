@@ -1,6 +1,7 @@
 # DevDeskApp Documentation
 
 > Official developer documentation for DevDeskApp, 330+ client-side utilities, and the `n8n-nodes-devdeskapp` community node.
+> Full comprehensive context: https://docs.devdeskapp.com/llms-full.txt
 
 DevDeskApp provides sub-millisecond, in-memory execution of developer utilities, formatters, and financial calculation engines directly inside n8n workflows and AI Agent function calling pipelines with zero external cloud API data leaks.
 

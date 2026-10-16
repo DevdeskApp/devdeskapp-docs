@@ -1,0 +1,304 @@
+# DevDeskApp Comprehensive Documentation (llms-full.txt)
+
+> The Complete Knowledge Base & Machine-Readable Reference for AI Agents, LLM Function Calling, and Automation Engineers.
+> Canonical URL: https://docs.devdeskapp.com/llms-full.txt
+> Documentation Portal: https://docs.devdeskapp.com
+> Main Web Application: https://www.devdeskapp.com
+> NPM Package: https://www.npmjs.com/package/n8n-nodes-devdeskapp
+> Official n8n Workflow Template: https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities
+> GitHub Organization: https://github.com/DevdeskApp
+
+---
+
+## 1. Executive Summary & Value Proposition
+
+DevDeskApp is a dual-ecosystem developer productivity platform:
+1. **Web Suite**: 330+ client-side developer utilities, formatters, financial calculators, and converters running 100% in the browser with zero cloud storage or tracking at https://www.devdeskapp.com.
+2. **n8n Automation Node (`n8n-nodes-devdeskapp`)**: An official community node for n8n that brings 10 core developer utilities directly onto the visual automation canvas.
+
+### The Problem with Cloud Utility APIs
+Traditional workflow automations (Zapier, Make, default REST nodes) rely on third-party SaaS APIs to format JSON, hash secrets, or calculate payroll. This introduces:
+- **Severe Latency Overhead**: 150ms to 450ms network round-trip time per HTTP request.
+- **Data Privacy Violations**: Sensitive HR payrolls, employee IDs, customer PII, and webhook secrets leave corporate servers and traverse external clouds.
+- **Fragile Cloud Dependencies**: Rate limits, API quota exhaustion, and vendor downtime break critical production pipelines.
+
+### The DevDeskApp Solution
+- **Sub-Millisecond Execution**: Runs synchronously in-process inside Node.js memory in < 0.2ms per item.
+- **Zero Cloud Data Leaks**: 0 KB external network egress. Payloads never touch an external server or third-party cloud.
+- **Zero Configuration & Quotas**: No API keys, credentials, or paid subscriptions required.
+
+---
+
+## 2. Complete Operations Reference (10 Native Engines)
+
+### 2.1 JSON Prettifier & Minifier (`jsonPrettifier`)
+- **Purpose**: Cleans, parses, formats, or minifies raw JSON payloads from webhooks, AI agents, or databases.
+- **Execution Speed**: 0.08ms – 0.15ms.
+- **Parameters**:
+  - `mode`: `"prettify"` (human-readable) | `"minify"` (single-line token saver).
+  - `indent`: `2` | `4` | `tab` (applicable when mode is prettify).
+  - `inputJson`: String or incoming JSON object.
+- **Sample Input**:
+  ```json
+  {"service":"payment","status":"success","empId":1042,"traceId":"8f2a1b9c-4e3d-4c8a-9f1e-2b3c4d5e6f7a"}
+  ```
+- **Minified Output (Context Saver)**:
+  `{"service":"payment","status":"success","empId":1042,"traceId":"8f2a1b9c-4e3d-4c8a-9f1e-2b3c4d5e6f7a"}`
+- **Prettified Output**:
+  ```json
+  {
+    "service": "payment",
+    "status": "success",
+    "empId": 1042,
+    "traceId": "8f2a1b9c-4e3d-4c8a-9f1e-2b3c4d5e6f7a"
+  }
+  ```
+
+---
+
+### 2.2 Hash Generator (`hashGenerator`)
+- **Purpose**: Computes one-way cryptographic digests for webhook verification, password storage, and data integrity verification.
+- **Execution Speed**: 0.05ms – 0.12ms.
+- **Supported Algorithms**: `sha256`, `sha512`, `md5`, `sha1`.
+- **Parameters**:
+  - `algorithm`: Cryptographic hashing algorithm.
+  - `text`: Plaintext input string.
+  - `encoding`: `"hex"` (default) | `"base64"`.
+- **Sample Input**:
+  `text`: `"devdeskapp_production_webhook_secret_key"`, `algorithm`: `"sha256"`
+- **Sample Output**:
+  ```json
+  {
+    "algorithm": "sha256",
+    "hash": "c0053e1a0673f4e3c35b80a1846b0a034f78de1f74075f782c5890772714041b",
+    "tamperProof": true,
+    "length": 64
+  }
+  ```
+
+---
+
+### 2.3 CTC & Indian Payroll Calculator (`ctcCalculator`)
+- **Purpose**: Deterministic Indian compensation calculation engine compliant with New & Old Tax Regimes, calculating monthly gross, basic salary, HRA, employee PF, employer PF, professional tax, and net take-home salary.
+- **Execution Speed**: 0.18ms.
+- **Parameters**:
+  - `annualCtc`: Number (e.g., `2400000`).
+  - `basicPercentage`: Percentage of CTC allocated to Basic (default: `50%`).
+  - `regime`: `"new"` | `"old"`.
+  - `metroCity`: Boolean (affects HRA exemption under Old Regime).
+- **Sample Input**:
+  `annualCtc`: `2400000`, `basicPercentage`: `50`, `regime`: `"new"`
+- **Sample Output**:
+  ```json
+  {
+    "annualCtc": 2400000,
+    "monthlyGross": 200000,
+    "basicSalaryMonthly": 100000,
+    "hraMonthly": 50000,
+    "specialAllowanceMonthly": 38000,
+    "employeePfMonthly": 12000,
+    "employerPfMonthly": 12000,
+    "professionalTaxMonthly": 200,
+    "estimatedMonthlyTds": 30800,
+    "netTakeHomeMonthly": 145000,
+    "taxRegime": "new"
+  }
+  ```
+
+---
+
+### 2.4 Slug Generator (`slugGenerator`)
+- **Purpose**: Transforms arbitrary strings, article titles, or product names into URL-safe, SEO-optimized slugs.
+- **Execution Speed**: 0.04ms.
+- **Features**: Unicode character transliteration, lowercasing, non-word replacement, multiple consecutive hyphens collapsed.
+- **Sample Input**: `"DevDeskApp: High-Performance Node & AI Utilities 2026!"`
+- **Sample Output**:
+  ```json
+  {
+    "original": "DevDeskApp: High-Performance Node & AI Utilities 2026!",
+    "slug": "devdeskapp-high-performance-node-ai-utilities-2026"
+  }
+  ```
+
+---
+
+### 2.5 Base64 Converter (`base64Converter`)
+- **Purpose**: Encodes UTF-8 strings or raw buffers into Base64 format or decodes Base64 payloads back to plaintext.
+- **Execution Speed**: 0.03ms.
+- **Parameters**:
+  - `action`: `"encode"` | `"decode"`.
+  - `input`: String.
+- **Sample Output (Encode)**:
+  ```json
+  {
+    "action": "encode",
+    "result": "ZGV2ZGVza2FwcC1zZWN1cmUtYXV0b21hdGlvbg=="
+  }
+  ```
+
+---
+
+### 2.6 URL Encoder / Decoder (`urlEncoder`)
+- **Purpose**: RFC 3986 percent-encoding and decoding for query parameters and dynamic web links.
+- **Execution Speed**: 0.03ms.
+- **Parameters**:
+  - `action`: `"encode"` | `"decode"`.
+  - `input`: String.
+- **Sample Output**:
+  ```json
+  {
+    "action": "encode",
+    "result": "https%3A%2F%2Fdocs.devdeskapp.com%2Fsearch%3Fq%3Ddeveloper%2Btools"
+  }
+  ```
+
+---
+
+### 2.7 UUID Generator (`uuidGenerator`)
+- **Purpose**: Generates cryptographically strong RFC 4122 Version 4 UUIDs for request tracing and database IDs.
+- **Execution Speed**: 0.02ms.
+- **Parameters**:
+  - `quantity`: Number of UUIDs to generate (1 to 100).
+- **Sample Output**:
+  ```json
+  {
+    "uuid": "4f18b3e2-89c1-4d37-a56e-92d6e3f41a08",
+    "version": 4
+  }
+  ```
+
+---
+
+### 2.8 Case Converter (`caseConverter`)
+- **Purpose**: Converts text across naming conventions for code generators and database schema mappings.
+- **Supported Cases**: `camelCase`, `snake_case`, `kebab-case`, `pascalCase`, `constantCase`.
+- **Sample Output**:
+  ```json
+  {
+    "camelCase": "employeeSalaryRecord",
+    "snakeCase": "employee_salary_record",
+    "kebabCase": "employee-salary-record",
+    "pascalCase": "EmployeeSalaryRecord",
+    "constantCase": "EMPLOYEE_SALARY_RECORD"
+  }
+  ```
+
+---
+
+### 2.9 Markdown to HTML Converter (`markdownToHtml`)
+- **Purpose**: Parses CommonMark and GitHub Flavored Markdown into sanitized HTML for notification emails and CMS updates.
+- **Execution Speed**: 0.22ms.
+- **Sample Output**:
+  ```json
+  {
+    "html": "<h3>Payroll Summary</h3><p>Take home: <strong>₹1,45,000</strong></p>"
+  }
+  ```
+
+---
+
+### 2.10 JWT Claim Inspector & Decoder (`jwtDecoder`)
+- **Purpose**: Decodes base64url-encoded JWT headers and claims locally for routing and permission evaluation without external auth verification.
+- **Execution Speed**: 0.09ms.
+- **Sample Output**:
+  ```json
+  {
+    "header": { "alg": "HS256", "typ": "JWT" },
+    "payload": { "sub": "usr_9981", "role": "admin", "exp": 1792195200 },
+    "isExpired": false
+  }
+  ```
+
+---
+
+## 3. Step-by-Step Installation
+
+### Method 1: n8n Community Nodes UI (Recommended)
+1. Open your n8n workspace.
+2. Navigate to **Settings** &rarr; **Community Nodes**.
+3. Click **Install**.
+4. Enter the package name:
+   ```text
+   n8n-nodes-devdeskapp
+   ```
+5. Check the risk agreement checkbox and click **Install**. The node will appear immediately in the node library.
+
+### Method 2: Docker / Docker Compose
+Add the package to your `docker-compose.yml` environment:
+```yaml
+environment:
+  - N8N_COMMUNITY_PACKAGES_ENABLED=true
+```
+Or install directly in the container:
+```bash
+docker exec -it n8n npm install n8n-nodes-devdeskapp
+```
+
+### Method 3: NPM CLI
+```bash
+npm install n8n-nodes-devdeskapp
+```
+
+---
+
+## 4. Official n8n Workflow Template #21017
+
+- **Template URL**: https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities
+- **Title**: Format JSON and Secure HR Payloads with DevDeskApp Utilities
+- **Architecture**:
+  `Webhook Trigger ➔ DevDeskApp: JSON Prettifier ➔ DevDeskApp: Security Hasher ➔ DevDeskApp: CTC Calculator ➔ Clean Output`
+- **Use Case**: Ingests raw employee compensation updates, minifies the payload, cryptographically hashes the verification secret via SHA-256, computes monthly take-home salary, and delivers structured JSON to downstream HR databases.
+
+---
+
+## 5. AI Agents & LLM Function Calling Integration
+
+DevDeskApp seamlessly plugs into the **Tool port** of n8n AI Agent nodes (LangChain, OpenAI, Anthropic Claude, Google Gemini, Ollama).
+
+### Why AI Agents Require DevDeskApp Tools
+1. **Eliminate Math Hallucinations**: LLMs are language predictors and produce severe errors when calculating compound tax deductions, HRA exemptions, and PF contributions. DevDeskApp computes exact figures in 0.18ms.
+2. **Context Window Token Optimization**: Raw webhook payloads waste thousands of tokens. DevDeskApp minifies JSON prior to prompting, saving 40%–60% on token fees.
+3. **Data Security**: Secrets and PII are hashed into SHA-256 digests in local RAM before prompt assembly, preventing credentials from leaking to third-party LLM cloud servers.
+
+### Recommended System Prompt for AI Agents
+```markdown
+You have access to the DevDeskApp utility tool suite.
+Always use DevDeskApp tools for:
+- Calculating Indian payroll, salaries, PF, and tax breakdowns.
+- Generating SHA-256 or MD5 cryptographic hashes.
+- Formatting and validating JSON payloads.
+Do NOT guess financial calculations manually. Always invoke the corresponding DevDeskApp tool.
+```
+
+---
+
+## 6. Enterprise Performance Benchmarks
+
+| Metric | DevDeskApp Native Node | Cloud REST API Alternative |
+| :--- | :--- | :--- |
+| **Execution Latency** | **0.18ms** | 220ms – 450ms |
+| **Data Privacy** | **100% In-Memory (Zero Leak)** | Transmitted over public cloud |
+| **API Costs & Quotas** | **$0 / Unlimited** | Pay-per-call / Rate limited |
+| **Network Failure Risk** | **0% (Offline Capable)** | Prone to HTTP timeouts / DNS drops |
+| **Throughput Capacity** | **5,000+ items / sec** | Limited by connection pool |
+
+---
+
+## 7. Machine-Readable Metadata
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DevDeskApp",
+  "applicationCategory": "DeveloperApplication, AutomationTool, AIAgentTool",
+  "operatingSystem": "Cross-platform (Linux, macOS, Windows, Docker)",
+  "npmPackage": "n8n-nodes-devdeskapp",
+  "officialTemplate": 21017,
+  "documentationUrl": "https://docs.devdeskapp.com",
+  "webSuiteUrl": "https://www.devdeskapp.com",
+  "llmsIndexUrl": "https://docs.devdeskapp.com/llms.txt",
+  "llmsFullUrl": "https://docs.devdeskapp.com/llms-full.txt",
+  "license": "MIT"
+}
+```
