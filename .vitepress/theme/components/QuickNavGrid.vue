@@ -45,11 +45,11 @@ const cards: NavCard[] = [
   {
     title: 'Workflow Templates',
     category: 'Official n8n.io Recipes',
-    badge: 'Template #21017',
+    badge: '2 Official Blueprints',
     badgeType: 'emerald',
-    description: 'Explore official template #21017 published on n8n.io with pre-wired sample payloads and validation steps.',
-    link: '/n8n/workflow-templates',
-    linkText: 'Templates Guide',
+    description: 'Explore official blueprints #21017 and #21130 published on n8n.io with pre-wired sample payloads and validation steps.',
+    link: '/templates/',
+    linkText: 'Templates Catalog',
     icon: '🌟',
     highlight: true
   },

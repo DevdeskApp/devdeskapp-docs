@@ -68,15 +68,17 @@ export default defineConfig({
     nav: [
       { text: 'DevDeskApp Suite', link: '/about/' },
       { text: 'n8n Node Guide', link: '/n8n/' },
+      { text: '📋 Templates', link: '/templates/' },
       { text: '🤖 AI Agents & LLMs', link: '/solutions/ai-agents' },
       {
         text: 'More',
         items: [
           { text: '⚙️ Operations Reference', link: '/n8n/operations' },
-          { text: '📋 Workflow Templates', link: '/n8n/workflow-templates' },
+          { text: '📋 Templates Catalog', link: '/templates/' },
           { text: '🏛️ Architecture & Solutions', link: '/solutions/' },
           { text: '📦 NPM Package (v0.1.4)', link: 'https://www.npmjs.com/package/n8n-nodes-devdeskapp' },
           { text: '🌟 n8n Template #21017', link: 'https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities' },
+          { text: '💰 n8n Template #21130', link: 'https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp' },
           { text: '🐙 Node GitHub Repo', link: 'https://github.com/DevdeskApp/n8n-nodes-devdeskapp' },
           { text: '🌐 DevDeskApp Web App', link: 'https://www.devdeskapp.com' }
         ]
@@ -99,7 +101,23 @@ export default defineConfig({
             { text: 'Getting Started', link: '/n8n/' },
             { text: 'Step-by-Step Installation', link: '/n8n/installation' },
             { text: 'Operations Reference', link: '/n8n/operations' },
-            { text: 'Workflow Templates', link: '/n8n/workflow-templates' }
+            { text: 'Workflow Templates Hub', link: '/templates/' }
+          ]
+        }
+      ],
+      '/templates/': [
+        {
+          text: 'Workflow Templates Hub',
+          items: [
+            { text: '📋 All Templates Catalog', link: '/templates/' },
+            { text: '⚡ Quick Import Guide', link: '/templates/how-to-import' }
+          ]
+        },
+        {
+          text: 'Official Blueprints',
+          items: [
+            { text: '🌟 Developer Suite (#21017)', link: '/templates/developer-suite' },
+            { text: '💰 CTC Salary Engine (#21130)', link: '/templates/ctc-salary-engine' }
           ]
         }
       ],

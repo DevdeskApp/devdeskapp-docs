@@ -1,14 +1,16 @@
 # DevDeskApp Documentation
 
-> Official developer documentation for DevDeskApp, 330+ client-side utilities, and the `n8n-nodes-devdeskapp` community node.
+> Official developer documentation for DevDeskApp, 350+ client-side utilities, and the `n8n-nodes-devdeskapp` community node.
 > Full comprehensive context: https://docs.devdeskapp.com/llms-full.txt
 
 DevDeskApp provides sub-millisecond, in-memory execution of developer utilities, formatters, and financial calculation engines directly inside n8n workflows and AI Agent function calling pipelines with zero external cloud API data leaks.
 
 ## Core Capabilities
-- **330+ Client-Side Tools**: Online developer utilities running entirely in the browser at https://www.devdeskapp.com.
+- **350+ Client-Side Tools**: Online developer utilities running entirely in the browser at https://www.devdeskapp.com.
 - **n8n Community Node**: Published on NPM as `n8n-nodes-devdeskapp` (v0.1.4+).
-- **Official n8n Workflow Template**: Template #21017 on n8n.io ("Format JSON & Secure HR Payloads with DevDeskApp").
+- **Official n8n Workflow Templates**:
+  - Template #21017 on n8n.io ("Format JSON & Secure HR Payloads with DevDeskApp").
+  - Template #21130 on n8n.io ("Automate Salary & In-Hand CTC Calculations with DevDeskApp").
 - **AI Agent Function Calling**: Zero-latency deterministic tools for OpenAI, Anthropic Claude, Google Gemini, and Ollama inside n8n.
 - **Zero-Latency In-Memory Execution**: Operations execute in < 0.2ms using local Node.js CPU cycles.
 - **Privacy-First Zero Cloud Leak**: Payloads never leave local host memory.
@@ -17,7 +19,10 @@ DevDeskApp provides sub-millisecond, in-memory execution of developer utilities,
 - [Getting Started](https://docs.devdeskapp.com/n8n/): Architecture overview, benefits, and execution model.
 - [Installation Guide](https://docs.devdeskapp.com/n8n/installation): Setup via n8n Community Nodes UI, Docker, or npm.
 - [Operations Reference](https://docs.devdeskapp.com/n8n/operations): Schema specifications for all 10 native operations.
-- [Workflow Templates](https://docs.devdeskapp.com/n8n/workflow-templates): Official template #21017 details and sample execution data.
+- [Workflow Templates Hub](https://docs.devdeskapp.com/templates/): All verified blueprints and catalog.
+- [Template #21017: Developer Suite](https://docs.devdeskapp.com/templates/developer-suite): JSON prettification, SHA-256, UUID, and slug generation.
+- [Template #21130: CTC Salary Engine](https://docs.devdeskapp.com/templates/ctc-salary-engine): Indian payroll statutory calculation and net take-home salary.
+- [How to Import Templates](https://docs.devdeskapp.com/templates/how-to-import): 1-click clipboard paste guide into n8n canvas.
 - [AI Agents & LLM Function Calling](https://docs.devdeskapp.com/solutions/ai-agents): Connecting DevDeskApp to n8n AI Agents and LangChain models.
 - [Enterprise Architecture](https://docs.devdeskapp.com/solutions/): Performance benchmarks comparing in-memory Node vs external REST APIs.
 - [Production Best Practices](https://docs.devdeskapp.com/solutions/best-practices): Concurrency limits, memory management, and error handling.
