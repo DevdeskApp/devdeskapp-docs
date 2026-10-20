@@ -86,30 +86,6 @@ npm install n8n-nodes-devdeskapp
 
 ---
 
-## 🛠️ Local Development (Running Docs)
-
-This documentation site is powered by **VitePress**:
-
-```bash
-# Clone the repository
-git clone https://github.com/DevdeskApp/devdeskapp-docs.git
-cd devdeskapp-docs
-
-# Install dependencies
-npm install
-
-# Start local dev server (http://localhost:5173)
-npm run docs:dev
-
-# Build for production
-npm run docs:build
-
-# Preview production build locally (http://localhost:4173)
-npm run docs:preview
-```
-
----
-
 ## 🤖 Machine-Readable AI Endpoints
 
 For AI crawlers, LLMs, and autonomous agents, this documentation exposes clean markdown and context endpoints:
