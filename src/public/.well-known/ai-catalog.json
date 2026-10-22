@@ -15,6 +15,7 @@
   },
   "entries": [
     {
+      "identifier": "urn:air:docs.devdeskapp.com:doc:n8n-nodes-devdeskapp",
       "id": "urn:air:docs.devdeskapp.com:doc:n8n-nodes-devdeskapp",
       "displayName": "DevDeskApp n8n Community Node Guide",
       "type": "text/html",
@@ -27,6 +28,7 @@
       ]
     },
     {
+      "identifier": "urn:air:docs.devdeskapp.com:doc:ai-agents",
       "id": "urn:air:docs.devdeskapp.com:doc:ai-agents",
       "displayName": "AI Agent Function Calling Integration",
       "type": "text/html",
@@ -39,6 +41,7 @@
       ]
     },
     {
+      "identifier": "urn:air:docs.devdeskapp.com:template:ctc-salary-engine",
       "id": "urn:air:docs.devdeskapp.com:template:ctc-salary-engine",
       "displayName": "CTC Salary Engine Workflow Blueprint (#21130)",
       "type": "text/html",
@@ -51,6 +54,7 @@
       ]
     },
     {
+      "identifier": "urn:air:docs.devdeskapp.com:template:developer-suite",
       "id": "urn:air:docs.devdeskapp.com:template:developer-suite",
       "displayName": "Developer Suite Workflow Blueprint (#21017)",
       "type": "text/html",
@@ -63,6 +67,7 @@
       ]
     },
     {
+      "identifier": "urn:air:docs.devdeskapp.com:doc:zero-leak-architecture",
       "id": "urn:air:docs.devdeskapp.com:doc:zero-leak-architecture",
       "displayName": "DevDeskApp Zero-Leak Security Architecture",
       "type": "text/html",
