@@ -10,7 +10,7 @@
     "anonymous"
   ],
   "agent_auth": {
-    "skill": "https://docs.devdeskapp.com/.well-known/agent-skills/index.json",
+    "skill": "https://docs.devdeskapp.com/auth.md",
     "register_uri": "https://docs.devdeskapp.com/auth.md",
     "identity_types_supported": [
       "anonymous",
