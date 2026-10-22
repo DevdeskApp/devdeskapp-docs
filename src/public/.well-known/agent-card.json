@@ -1,0 +1,41 @@
+{
+  "$schema": "https://a2a-protocol.org/schemas/agent-card.json",
+  "name": "DevDeskApp Docs Agent",
+  "description": "Autonomous AI Agent for DevDeskApp developer utilities documentation, architecture guidelines, and n8n-nodes-devdeskapp community node integration.",
+  "version": "1.0.0",
+  "url": "https://docs.devdeskapp.com",
+  "documentationUrl": "https://docs.devdeskapp.com",
+  "supportedInterfaces": [
+    {
+      "url": "https://docs.devdeskapp.com/api",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "application/json",
+    "text/markdown",
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "query-docs",
+      "name": "Query Developer Documentation",
+      "description": "Search and retrieve documentation, tutorials, and architecture guides for DevDeskApp and n8n community nodes."
+    },
+    {
+      "id": "format-json",
+      "name": "Format JSON",
+      "description": "Prettify, minify, validate, and convert JSON structures."
+    }
+  ]
+}
