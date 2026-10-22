@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "skills": [
+    {
+      "name": "n8n-node-documentation",
+      "type": "doc",
+      "description": "Integration guides and operations reference for n8n-nodes-devdeskapp.",
+      "url": "https://docs.devdeskapp.com/n8n/operations",
+      "spec": "https://docs.devdeskapp.com/.well-known/ai-catalog.json"
+    },
+    {
+      "name": "ai-agent-integration",
+      "type": "guide",
+      "description": "Deterministic tool calling setup for AI Agents and LangChain models in n8n.",
+      "url": "https://docs.devdeskapp.com/solutions/ai-agents",
+      "spec": "https://docs.devdeskapp.com/.well-known/ai-catalog.json"
+    },
+    {
+      "name": "workflow-templates",
+      "type": "template",
+      "description": "Verified production workflow blueprints for payroll calculations and developer pipelines.",
+      "url": "https://docs.devdeskapp.com/templates/",
+      "spec": "https://docs.devdeskapp.com/.well-known/ai-catalog.json"
+    }
+  ]
+}

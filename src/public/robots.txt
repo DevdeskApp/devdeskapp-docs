@@ -5,6 +5,9 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ClaudeBot
 Allow: /
 
@@ -16,6 +19,12 @@ Allow: /
 
 User-agent: Applebot-Extended
 Allow: /
+
+# Agent & AI Content Signal Policy
+Content-Signal: ai-train=no, search=yes, ai-input=yes
+
+# Agent Resource Discovery
+Agentmap: https://docs.devdeskapp.com/.well-known/ai-catalog.json
 
 # Sitemaps & Machine-Readable LLM Index
 Sitemap: https://docs.devdeskapp.com/sitemap.xml

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.agentcatalog.org/v1/ai-catalog.json",
+  "name": "DevDeskApp Docs Catalog",
+  "description": "Official documentation, n8n community node guide, and automation blueprint catalog for DevDeskApp.",
+  "url": "https://docs.devdeskapp.com",
+  "version": "1.0.0",
+  "provider": {
+    "name": "DevDesk App",
+    "url": "https://www.devdeskapp.com"
+  },
+  "services": [
+    {
+      "id": "n8n-nodes-devdeskapp",
+      "name": "n8n-nodes-devdeskapp Community Node",
+      "description": "In-memory, sub-millisecond deterministic utility node for n8n workflows with zero data leaks.",
+      "url": "https://docs.devdeskapp.com/n8n/",
+      "documentation": "https://docs.devdeskapp.com/n8n/operations",
+      "category": "Workflow Automation"
+    },
+    {
+      "id": "ai-agents-llm-calling",
+      "name": "AI Agent Function Calling Integration",
+      "description": "Connect DevDeskApp utilities as zero-latency deterministic tools for OpenAI, Claude, Gemini, and Ollama agents in n8n.",
+      "url": "https://docs.devdeskapp.com/solutions/ai-agents",
+      "documentation": "https://docs.devdeskapp.com/solutions/ai-agents",
+      "category": "AI & LLM"
+    },
+    {
+      "id": "ctc-salary-engine-template",
+      "name": "CTC Salary Engine Workflow Blueprint (#21130)",
+      "description": "Automated Indian statutory payroll engine computing gross, basic, HRA, EPF, and take-home net salary in n8n.",
+      "url": "https://docs.devdeskapp.com/templates/ctc-salary-engine",
+      "documentation": "https://docs.devdeskapp.com/templates/ctc-salary-engine",
+      "category": "Templates"
+    },
+    {
+      "id": "developer-suite-template",
+      "name": "Developer Suite Workflow Blueprint (#21017)",
+      "description": "Automate JSON formatting, UUIDv4 generation, SHA256 checksums, and URL slugs inside n8n without cloud leaks.",
+      "url": "https://docs.devdeskapp.com/templates/developer-suite",
+      "documentation": "https://docs.devdeskapp.com/templates/developer-suite",
+      "category": "Templates"
+    },
+    {
+      "id": "zero-leak-architecture",
+      "name": "DevDeskApp Zero-Leak Security Architecture",
+      "description": "In-memory sandboxing and privacy guarantee explaining how payloads execute strictly on host CPU cycles.",
+      "url": "https://docs.devdeskapp.com/about/architecture",
+      "documentation": "https://docs.devdeskapp.com/about/architecture",
+      "category": "Architecture"
+    }
+  ]
+}

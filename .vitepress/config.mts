@@ -19,6 +19,11 @@ export default defineConfig({
   },
   head: [
     ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'ai-catalog', href: 'https://docs.devdeskapp.com/.well-known/ai-catalog.json', type: 'application/json' }],
+    ['link', { rel: 'api-catalog', href: 'https://docs.devdeskapp.com/.well-known/api-catalog', type: 'application/linkset+json' }],
+    ['link', { rel: 'service-doc', href: 'https://docs.devdeskapp.com/llms.txt', type: 'text/markdown' }],
+    ['link', { rel: 'mcp-server', href: 'https://docs.devdeskapp.com/.well-known/mcp/server-card.json', type: 'application/json' }],
+    ['link', { rel: 'agent-skills', href: 'https://docs.devdeskapp.com/.well-known/agent-skills/index.json', type: 'application/json' }],
     ['meta', { name: 'theme-color', content: '#6366f1' }],
     ['meta', { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }],
     ['meta', { property: 'og:site_name', content: 'DevDeskApp Docs' }],

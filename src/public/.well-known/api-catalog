@@ -1,0 +1,38 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://docs.devdeskapp.com/",
+      "rel": "service-desc",
+      "href": "https://docs.devdeskapp.com/llms.txt",
+      "type": "text/markdown"
+    },
+    {
+      "anchor": "https://docs.devdeskapp.com/",
+      "rel": "ai-catalog",
+      "href": "https://docs.devdeskapp.com/.well-known/ai-catalog.json",
+      "type": "application/json"
+    },
+    {
+      "anchor": "https://docs.devdeskapp.com/",
+      "rel": "mcp-server",
+      "href": "https://docs.devdeskapp.com/.well-known/mcp/server-card.json",
+      "type": "application/json"
+    },
+    {
+      "anchor": "https://docs.devdeskapp.com/",
+      "rel": "agent-skills",
+      "href": "https://docs.devdeskapp.com/.well-known/agent-skills/index.json",
+      "type": "application/json"
+    },
+    {
+      "anchor": "https://docs.devdeskapp.com/",
+      "rel": "service-doc",
+      "href": "https://docs.devdeskapp.com/n8n/operations"
+    },
+    {
+      "anchor": "https://docs.devdeskapp.com/",
+      "rel": "author",
+      "href": "https://docs.devdeskapp.com/about/"
+    }
+  ]
+}
