@@ -24,6 +24,7 @@ export default defineConfig({
     ['link', { rel: 'service-doc', href: 'https://docs.devdeskapp.com/llms.txt', type: 'text/markdown' }],
     ['link', { rel: 'mcp-server', href: 'https://docs.devdeskapp.com/.well-known/mcp/server-card.json', type: 'application/json' }],
     ['link', { rel: 'agent-skills', href: 'https://docs.devdeskapp.com/.well-known/agent-skills/index.json', type: 'application/json' }],
+    ['script', {}, `(function(){try{const mc=(typeof document!=='undefined'&&document.modelContext)||(typeof navigator!=='undefined'&&navigator.modelContext);if(mc&&typeof mc.registerTool==='function'){mc.registerTool({name:'search_documentation',description:'Search DevDeskApp documentation',inputSchema:{type:'object',properties:{query:{type:'string'}},required:['query']},execute:async(p)=>({result:'Results for '+p.query})});}}catch(e){}})();`],
     ['meta', { name: 'theme-color', content: '#6366f1' }],
     ['meta', { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }],
     ['meta', { property: 'og:site_name', content: 'DevDeskApp Docs' }],

@@ -1,0 +1,19 @@
+{
+  "protocol_version": "1.0",
+  "services": [
+    {
+      "name": "DevDeskApp Documentation & Node Blueprints",
+      "version": "1.0",
+      "endpoint": "https://docs.devdeskapp.com"
+    }
+  ],
+  "capabilities": [
+    "free_tier",
+    "client_side_execution",
+    "zero_telemetry"
+  ],
+  "endpoints": {
+    "catalog": "https://docs.devdeskapp.com/.well-known/ai-catalog.json",
+    "mcp": "https://docs.devdeskapp.com/.well-known/mcp/server-card.json"
+  }
+}

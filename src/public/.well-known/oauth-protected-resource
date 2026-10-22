@@ -1,7 +1,14 @@
 {
   "resource": "https://docs.devdeskapp.com",
-  "authorization_servers": ["https://docs.devdeskapp.com"],
-  "scopes_supported": ["public"],
-  "bearer_methods_supported": [],
+  "authorization_servers": [
+    "https://docs.devdeskapp.com"
+  ],
+  "scopes_supported": [
+    "public",
+    "read"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ],
   "resource_documentation": "https://docs.devdeskapp.com/auth.md"
 }

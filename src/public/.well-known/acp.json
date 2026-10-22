@@ -1,0 +1,18 @@
+{
+  "protocol": {
+    "name": "acp",
+    "version": "1.0"
+  },
+  "api_base_url": "https://docs.devdeskapp.com",
+  "transports": [
+    "https"
+  ],
+  "capabilities": {
+    "services": [
+      {
+        "name": "documentation",
+        "description": "DevDeskApp documentation and n8n community node guides"
+      }
+    ]
+  }
+}

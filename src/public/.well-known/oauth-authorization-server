@@ -2,12 +2,22 @@
   "issuer": "https://docs.devdeskapp.com",
   "authorization_endpoint": "https://docs.devdeskapp.com/auth.md",
   "token_endpoint": "https://docs.devdeskapp.com/auth.md",
-  "response_types_supported": ["none"],
-  "grant_types_supported": ["implicit"],
-  "service_documentation": "https://docs.devdeskapp.com/auth.md",
+  "response_types_supported": [
+    "none"
+  ],
+  "grant_types_supported": [
+    "implicit",
+    "anonymous"
+  ],
   "agent_auth": {
+    "skill": "https://docs.devdeskapp.com/.well-known/agent-skills/index.json",
     "register_uri": "https://docs.devdeskapp.com/auth.md",
-    "supported_identity_types": ["anonymous"],
-    "supported_credential_types": ["none"]
+    "supported_identity_types": [
+      "anonymous",
+      "identity_assertion"
+    ],
+    "supported_credential_types": [
+      "none"
+    ]
   }
 }

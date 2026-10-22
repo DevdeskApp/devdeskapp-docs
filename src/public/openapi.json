@@ -1,0 +1,20 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "DevDeskApp Docs API",
+    "version": "1.0.0",
+    "description": "Public documentation and n8n workflow schemas"
+  },
+  "paths": {
+    "/llms.txt": {
+      "get": {
+        "summary": "Retrieve LLM index",
+        "responses": {
+          "200": {
+            "description": "LLM documentation context"
+          }
+        }
+      }
+    }
+  }
+}
