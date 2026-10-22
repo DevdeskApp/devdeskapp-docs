@@ -12,12 +12,25 @@
   "agent_auth": {
     "skill": "https://docs.devdeskapp.com/.well-known/agent-skills/index.json",
     "register_uri": "https://docs.devdeskapp.com/auth.md",
-    "supported_identity_types": [
+    "identity_types_supported": [
       "anonymous",
       "identity_assertion"
     ],
-    "supported_credential_types": [
-      "none"
-    ]
+    "anonymous": {
+      "credential_types_supported": [
+        "none"
+      ],
+      "claim_uri": "https://docs.devdeskapp.com/auth.md"
+    },
+    "identity_assertion": {
+      "assertion_types_supported": [
+        "urn:ietf:params:oauth:token-type:id-jag",
+        "verified_email"
+      ],
+      "credential_types_supported": [
+        "none"
+      ],
+      "claim_uri": "https://docs.devdeskapp.com/auth.md"
+    }
   }
 }
