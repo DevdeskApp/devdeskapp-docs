@@ -1,5 +1,6 @@
 {
   "$schema": "https://schema.agentcatalog.org/v1/ai-catalog.json",
+  "specVersion": "1.0.0",
   "name": "DevDeskApp Docs Catalog",
   "description": "Official documentation, n8n community node guide, and automation blueprint catalog for DevDeskApp.",
   "url": "https://docs.devdeskapp.com",
@@ -8,6 +9,72 @@
     "name": "DevDesk App",
     "url": "https://www.devdeskapp.com"
   },
+  "host": {
+    "name": "docs.devdeskapp.com",
+    "url": "https://docs.devdeskapp.com"
+  },
+  "entries": [
+    {
+      "id": "urn:air:docs.devdeskapp.com:doc:n8n-nodes-devdeskapp",
+      "displayName": "DevDeskApp n8n Community Node Guide",
+      "type": "text/html",
+      "url": "https://docs.devdeskapp.com/n8n/",
+      "description": "In-memory, sub-millisecond deterministic utility node for n8n workflows with zero data leaks.",
+      "representativeQueries": [
+        "how to install devdeskapp n8n node",
+        "devdeskapp operations reference",
+        "n8n client-side developer utilities"
+      ]
+    },
+    {
+      "id": "urn:air:docs.devdeskapp.com:doc:ai-agents",
+      "displayName": "AI Agent Function Calling Integration",
+      "type": "text/html",
+      "url": "https://docs.devdeskapp.com/solutions/ai-agents",
+      "description": "Connect DevDeskApp utilities as zero-latency deterministic tools for OpenAI, Claude, Gemini, and Ollama agents in n8n.",
+      "representativeQueries": [
+        "n8n ai agent tools",
+        "langchain local utility node",
+        "ai agent deterministic math and hashing"
+      ]
+    },
+    {
+      "id": "urn:air:docs.devdeskapp.com:template:ctc-salary-engine",
+      "displayName": "CTC Salary Engine Workflow Blueprint (#21130)",
+      "type": "text/html",
+      "url": "https://docs.devdeskapp.com/templates/ctc-salary-engine",
+      "description": "Automated Indian statutory payroll engine computing gross, basic, HRA, EPF, and take-home net salary in n8n.",
+      "representativeQueries": [
+        "n8n ctc salary calculator workflow",
+        "calculate in-hand salary in n8n",
+        "indian payroll template 21130"
+      ]
+    },
+    {
+      "id": "urn:air:docs.devdeskapp.com:template:developer-suite",
+      "displayName": "Developer Suite Workflow Blueprint (#21017)",
+      "type": "text/html",
+      "url": "https://docs.devdeskapp.com/templates/developer-suite",
+      "description": "Automate JSON formatting, UUIDv4 generation, SHA256 checksums, and URL slugs inside n8n without cloud leaks.",
+      "representativeQueries": [
+        "n8n json formatter workflow",
+        "secure payload hashing in n8n",
+        "n8n developer suite template 21017"
+      ]
+    },
+    {
+      "id": "urn:air:docs.devdeskapp.com:doc:zero-leak-architecture",
+      "displayName": "DevDeskApp Zero-Leak Security Architecture",
+      "type": "text/html",
+      "url": "https://docs.devdeskapp.com/about/architecture",
+      "description": "In-memory sandboxing and privacy guarantee explaining how payloads execute strictly on host CPU cycles.",
+      "representativeQueries": [
+        "devdeskapp zero leak privacy architecture",
+        "in-memory n8n security",
+        "local developer tools security"
+      ]
+    }
+  ],
   "services": [
     {
       "id": "n8n-nodes-devdeskapp",

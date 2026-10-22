@@ -1,0 +1,9 @@
+{
+  "issuer": "https://docs.devdeskapp.com",
+  "authorization_endpoint": "https://docs.devdeskapp.com/auth.md",
+  "token_endpoint": "https://docs.devdeskapp.com/auth.md",
+  "jwks_uri": "https://docs.devdeskapp.com/.well-known/http-message-signatures-directory",
+  "response_types_supported": ["none"],
+  "subject_types_supported": ["public"],
+  "id_token_signing_alg_values_supported": ["none"]
+}
