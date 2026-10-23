@@ -95,6 +95,37 @@ Explore our published templates below. Each template has a dedicated documentati
       </a>
     </div>
   </div>
+  <!-- Template 3 Card -->
+  <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #f59e0b; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); padding: 2px 8px; border-radius: 9999px;">
+          TEMPLATE #21376
+        </span>
+        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+      </div>
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
+        Payment Webhook Sanitizer & Security Audit
+      </h3>
+      <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
+        Zero-trust gateway for payment webhooks (Stripe, Razorpay, Lemon Squeezy): JSON normalization, SHA-256 cryptographic audit digest, RFC UUID v4 incident trace, and Slack notifications.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Webhook Sanitizer</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">SHA-256 Digest</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">UUID v4 Audit</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Payment Security</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--vp-c-border);">
+      <a href="/templates/payment-webhook-sanitizer" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #f59e0b; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+        View Blueprint →
+      </a>
+      <a href="https://n8n.io/workflows/21376" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+        n8n Portal ↗
+      </a>
+    </div>
+  </div>
 
 </div>
 
