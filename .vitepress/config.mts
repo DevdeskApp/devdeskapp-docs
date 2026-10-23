@@ -85,6 +85,7 @@ export default defineConfig({
           { text: '📦 NPM Package (v0.1.4)', link: 'https://www.npmjs.com/package/n8n-nodes-devdeskapp' },
           { text: '🌟 n8n Template #21017', link: 'https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities' },
           { text: '💰 n8n Template #21130', link: 'https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp' },
+          { text: '🛡️ n8n Template #21376', link: 'https://n8n.io/workflows/21376' },
           { text: '🐙 Node GitHub Repo', link: 'https://github.com/DevdeskApp/n8n-nodes-devdeskapp' },
           { text: '🌐 DevDeskApp Web App', link: 'https://www.devdeskapp.com' }
         ]
@@ -123,7 +124,8 @@ export default defineConfig({
           text: 'Official Blueprints',
           items: [
             { text: '🌟 Developer Suite (#21017)', link: '/templates/developer-suite' },
-            { text: '💰 CTC Salary Engine (#21130)', link: '/templates/ctc-salary-engine' }
+            { text: '💰 CTC Salary Engine (#21130)', link: '/templates/ctc-salary-engine' },
+            { text: '🛡️ Payment Webhook Sanitizer (#21376)', link: '/templates/payment-webhook-sanitizer' }
           ]
         }
       ],
