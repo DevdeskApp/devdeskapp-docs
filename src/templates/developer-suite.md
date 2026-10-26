@@ -1,5 +1,5 @@
 ---
-title: 'Template #21017: Developer Suite & Security Engine'
+title: 'Template #21017: Developer Suite'
 description: 'n8n template #21017: format JSON, compute SHA-256 digests, generate UUID v4 trace IDs and evaluate CTC payloads with n8n-nodes-devdeskapp.'
 ---
 
