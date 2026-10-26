@@ -1,3 +1,7 @@
+---
+title: 'n8n Node Operations Reference'
+description: 'Reference for every n8n-nodes-devdeskapp operation: inputs, options and output fields for JSON, hashing, UUID, encoding and payroll utilities.'
+---
 # Operations Reference
 
 `n8n-nodes-devdeskapp` provides 4 resources with 13 deterministic operations. Every operation executes synchronously in-memory and outputs cleanly formatted JSON objects.

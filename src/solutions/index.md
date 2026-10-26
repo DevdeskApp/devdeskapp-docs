@@ -1,3 +1,7 @@
+---
+title: 'Local n8n Node vs Cloud APIs'
+description: 'Why run utilities in a local n8n node instead of calling cloud APIs: latency, cost, rate limits and keeping sensitive data inside your infrastructure.'
+---
 # Local Node vs Cloud APIs
 
 When architecting data transformation and developer utility pipelines in n8n, engineering teams often evaluate whether to use a local native community node or call an external cloud-hosted microservice/API.

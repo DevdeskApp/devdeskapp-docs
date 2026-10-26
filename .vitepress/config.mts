@@ -2,19 +2,31 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   srcDir: 'src',
+  // Files in src/public are static assets (auth.md, llms.txt...). Without this,
+  // VitePress also renders public/auth.md as an indexable /public/auth page.
+  srcExclude: ['public/**'],
   title: 'DevDeskApp Docs',
   description: 'Official Documentation for DevDeskApp suite, developer utilities, and n8n-nodes-devdeskapp community node.',
   cleanUrls: true,
   sitemap: {
     hostname: 'https://docs.devdeskapp.com'
   },
-  transformHead({ pageData }) {
+  transformHead({ pageData, title, description }) {
+    // The 404 page must not claim a canonical URL and must stay out of the index.
+    if (pageData.isNotFound || pageData.relativePath === '404.md') {
+      return [['meta', { name: 'robots', content: 'noindex, follow' }]]
+    }
     const cleanPath = pageData.relativePath
       .replace(/index\.md$/, '')
       .replace(/\.md$/, '')
     const canonical = cleanPath ? `https://docs.devdeskapp.com/${cleanPath}` : 'https://docs.devdeskapp.com/'
     return [
-      ['link', { rel: 'canonical', href: canonical }]
+      ['link', { rel: 'canonical', href: canonical }],
+      ['meta', { property: 'og:url', content: canonical }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { name: 'twitter:title', content: title }],
+      ['meta', { name: 'twitter:description', content: description }]
     ]
   },
   head: [

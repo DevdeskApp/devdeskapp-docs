@@ -1,6 +1,6 @@
 ---
-title: "Template #21017: Developer Suite & Security Engine | DevDeskApp"
-description: Complete blueprint and operational guide for official n8n template #21017. Format JSON, calculate SHA-256 digests, generate UUID v4 trace tokens, and evaluate CTC payloads.
+title: 'Template #21017: Developer Suite & Security Engine'
+description: 'n8n template #21017: format JSON, compute SHA-256 digests, generate UUID v4 trace IDs and evaluate CTC payloads with n8n-nodes-devdeskapp.'
 ---
 
 # 🌟 Template #21017: Developer Suite & Security Engine

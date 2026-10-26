@@ -1,6 +1,6 @@
 ---
-title: Official n8n Workflow Templates | DevDeskApp
-description: Production-ready, verified n8n workflow blueprints powered by n8n-nodes-devdeskapp. Copy, paste, and automate developer utilities, security hashing, and payroll calculations in <0.2ms.
+title: 'Official n8n Workflow Templates'
+description: 'Catalog of official DevDeskApp n8n templates: developer suite, CTC salary engine and payment webhook sanitizer, each with an import guide.'
 ---
 
 # 📋 Official n8n Workflow Templates

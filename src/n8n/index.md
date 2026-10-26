@@ -1,3 +1,7 @@
+---
+title: 'n8n Community Node: DevDeskApp'
+description: 'Get started with n8n-nodes-devdeskapp: what the community node does, which operations it offers and how it fits into your n8n workflows.'
+---
 # n8n Community Node: DevDeskApp
 
 `n8n-nodes-devdeskapp` is an official community node for [n8n](https://n8n.io) that brings high-performance, zero-latency developer utilities, formatters, and financial calculation engines directly into your automation pipelines.

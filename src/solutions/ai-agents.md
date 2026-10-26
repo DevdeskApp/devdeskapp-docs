@@ -1,6 +1,6 @@
 ---
-title: AI Agents & LLM Function Calling | DevDeskApp
-description: Supercharge n8n AI Agents, LangChain, and LLM models with zero-latency deterministic tools. Clean JSON payloads, hash secrets, and calculate payroll in-memory with zero cloud data leaks.
+title: 'AI Agents & LLM Function Calling'
+description: 'Give n8n AI Agents and LangChain deterministic tools: clean JSON, hash secrets and calculate payroll in memory without sending data to the cloud.'
 ---
 
 # 🤖 AI Agents & LLM Function Calling
