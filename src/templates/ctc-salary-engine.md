@@ -1,5 +1,5 @@
 ---
-title: 'Template #21130: CTC to In-Hand Salary Engine'
+title: 'Template #21130: CTC Salary Engine'
 description: 'n8n template #21130: calculate Indian payroll from CTC, including employee and employer PF, professional tax and net monthly take-home pay.'
 ---
 
