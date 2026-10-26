@@ -1,3 +1,7 @@
+---
+title: 'Install the DevDeskApp n8n Node'
+description: 'Install n8n-nodes-devdeskapp step by step from the n8n Community Nodes panel, or with npm on self-hosted and Docker n8n instances.'
+---
 # Step-by-Step Installation Guide
 
 You can install `n8n-nodes-devdeskapp` into your n8n instance using the graphical Community Nodes manager or via container/npm deployment scripts.

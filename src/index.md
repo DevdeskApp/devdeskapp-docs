@@ -1,5 +1,8 @@
 ---
 layout: page
+titleTemplate: false
+title: 'DevDeskApp Docs: n8n Node & Developer Utilities'
+description: 'Documentation for DevDeskApp and the n8n-nodes-devdeskapp community node: installation, operations, workflow templates and AI agent tool calling.'
 ---
 
 <HeroShowcase />

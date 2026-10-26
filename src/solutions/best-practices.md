@@ -1,3 +1,7 @@
+---
+title: 'Production Best Practices'
+description: 'Best practices for running n8n-nodes-devdeskapp in production: error handling, input validation, secrets, versioning and monitoring workflows.'
+---
 # Production Best Practices
 
 Implementing automated workflows in production requires attention to data integrity, error boundaries, and throughput optimization. This guide outlines recommended practices when deploying `n8n-nodes-devdeskapp` at scale.

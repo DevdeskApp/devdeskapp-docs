@@ -1,3 +1,7 @@
+---
+title: 'About DevDeskApp'
+description: 'What DevDeskApp is: a privacy-first suite of 300+ browser-based developer tools, plus an n8n community node that runs the same utilities in your workflows.'
+---
 # About DevDeskApp
 
 DevDeskApp is an all-in-one developer productivity platform and open-source automation utility suite. It provides modern engineering and operations teams with over 330+ developer utilities, calculators, encoders, and workflow tools designed to run with maximum speed and absolute privacy.

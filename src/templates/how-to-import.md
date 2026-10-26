@@ -1,6 +1,6 @@
 ---
-title: How to Import n8n Templates | DevDeskApp
-description: Step-by-step instructions on importing official DevDeskApp templates into self-hosted n8n, n8n Cloud, and local Docker instances via 1-click clipboard paste.
+title: 'How to Import n8n Templates'
+description: 'Import official DevDeskApp templates into n8n Cloud, self-hosted n8n or Docker by pasting the workflow JSON onto the canvas, step by step.'
 ---
 
 # ⚡ How to Import Templates into n8n

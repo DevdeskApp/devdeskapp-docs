@@ -1,6 +1,6 @@
 ---
-title: "Template #21130: Employee CTC to In-Hand Salary Engine | DevDeskApp"
-description: Complete blueprint and operational guide for official n8n template #21130. Compute Indian payroll components, employee PF, employer PF, professional tax, and net monthly take-home salary.
+title: 'Template #21130: CTC to In-Hand Salary Engine'
+description: 'n8n template #21130: calculate Indian payroll from CTC, including employee and employer PF, professional tax and net monthly take-home pay.'
 ---
 
 # 💰 Template #21130: Employee CTC to In-Hand Salary Engine

@@ -1,6 +1,6 @@
 ---
-title: "Template #21376: Payment Webhook Sanitizer & Security Audit | DevDeskApp"
-description: Complete blueprint and operational guide for official n8n template #21376. Sanitize payment webhooks, calculate cryptographic SHA-256 digests, generate UUID trace tokens, and audit Stripe/Razorpay transactions in <0.2ms.
+title: 'Template #21376: Payment Webhook Sanitizer'
+description: 'n8n template #21376: sanitize Stripe and Razorpay webhooks, compute SHA-256 digests, add UUID trace IDs and keep an audit trail of payments.'
 ---
 
 # 🛡️ Template #21376: Payment Webhook Sanitizer & Security Audit Pipeline

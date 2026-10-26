@@ -1,3 +1,7 @@
+---
+title: 'Architecture & Privacy'
+description: 'How DevDeskApp keeps data private: client-side processing in the browser and in-memory execution inside n8n, with no payloads sent to external servers.'
+---
 # Architecture & Privacy
 
 DevDeskApp is engineered around a strict local-first and privacy-first architectural paradigm. This document explains how the web platform and automation nodes handle memory, security, and execution isolation.
