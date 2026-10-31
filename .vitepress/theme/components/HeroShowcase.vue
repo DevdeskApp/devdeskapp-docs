@@ -1,28 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import NodeVersion from './NodeVersion.vue'
 
 const activeTab = ref<'json' | 'crypto' | 'ctc'>('json')
-const nodeVersion = ref('v0.1.4')
 
 const tabs = [
   { id: 'json', label: '⚡ JSON Prettify', icon: '{ }' },
   { id: 'crypto', label: '🔐 SHA-256 Hash', icon: '#' },
   { id: 'ctc', label: '💼 CTC Calculator', icon: '₹' }
 ]
-
-onMounted(async () => {
-  try {
-    const res = await fetch('https://registry.npmjs.org/n8n-nodes-devdeskapp/latest')
-    if (res.ok) {
-      const data = await res.json()
-      if (data && data.version) {
-        nodeVersion.value = `v${data.version}`
-      }
-    }
-  } catch {
-    // Keep default v0.1.4 on network error or offline
-  }
-})
 </script>
 
 <template>
@@ -45,8 +31,8 @@ onMounted(async () => {
               <span class="pulse-ping-ring"></span>
               <span class="pulse-ping-dot"></span>
             </span>
-            <span class="badge-text-full">⚡ 330+ Tools • Official n8n Community Node • {{ nodeVersion }} Live</span>
-            <span class="badge-text-short">⚡ 330+ Tools • n8n Node {{ nodeVersion }} Live</span>
+            <span class="badge-text-full">⚡ 330+ Tools • Official n8n Community Node • <NodeVersion /> Live</span>
+            <span class="badge-text-short">⚡ 330+ Tools • n8n Node <NodeVersion /> Live</span>
           </div>
 
           <!-- Main Headline with DevDeskApp Gradient Shimmer -->

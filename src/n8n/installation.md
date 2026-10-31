@@ -6,6 +6,8 @@ description: 'Install n8n-nodes-devdeskapp step by step from the n8n Community N
 
 You can install `n8n-nodes-devdeskapp` into your n8n instance using the graphical Community Nodes manager or via container/npm deployment scripts.
 
+**Latest release:** <NodeVersion /> ([all versions on npm](https://www.npmjs.com/package/n8n-nodes-devdeskapp?activeTab=versions)). Installing without a version number always gets the latest one.
+
 ---
 
 ## Option 1: Install via n8n Web UI (Recommended)
