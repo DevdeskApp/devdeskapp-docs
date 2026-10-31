@@ -7,7 +7,7 @@ description: 'Get started with n8n-nodes-devdeskapp: what the community node doe
 `n8n-nodes-devdeskapp` is an official community node for [n8n](https://n8n.io) that brings high-performance, zero-latency developer utilities, formatters, and financial calculation engines directly into your automation pipelines.
 
 <div style="margin: 1.5rem 0; display: flex; gap: 8px; flex-wrap: wrap;">
-  <span class="badge-live">Version v0.1.4 (Latest)</span>
+  <span class="badge-live">Version <NodeVersion /> (Latest)</span>
   <span class="badge-live" style="background: rgba(139, 92, 246, 0.15); color: #c084fc; border-color: rgba(139, 92, 246, 0.3);">Official n8n Template #21017</span>
   <span class="badge-live" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-color: rgba(59, 130, 246, 0.3);">MIT Open Source</span>
 </div>
@@ -56,7 +56,7 @@ Easily switch between resources and operations using intuitive dropdowns and dyn
 
 ---
 
-## 🛠️ Complete Operations Matrix (v0.1.4)
+## 🛠️ Complete Operations Matrix
 
 | Category | Operation | Description |
 | :--- | :--- | :--- |

@@ -1,6 +1,16 @@
-import { defineConfig } from 'vitepress'
+import { type DefaultTheme, defineConfigWithTheme } from 'vitepress'
+import { resolveN8nNodeVersion } from './n8n-node-version'
+import { N8N_NODE_VERSIONS_URL } from './theme/n8n-node'
 
-export default defineConfig({
+// Latest n8n-nodes-devdeskapp release, baked into every page at build time (the
+// <NodeVersion /> component also refreshes it in the browser). The deploy workflow
+// rebuilds daily, so the nav label follows new npm releases without a docs commit.
+const n8nNode = await resolveN8nNodeVersion()
+console.log(`n8n-nodes-devdeskapp version: ${n8nNode.version} (${n8nNode.source})`)
+
+const OG_IMAGE = 'https://docs.devdeskapp.com/og-docs.jpg'
+
+export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: string }>({
   srcDir: 'src',
   // Files in src/public are static assets (auth.md, llms.txt...). Without this,
   // VitePress also renders public/auth.md as an indexable /public/auth page.
@@ -8,6 +18,8 @@ export default defineConfig({
   title: 'DevDeskApp Docs',
   description: 'Official Documentation for DevDeskApp suite, developer utilities, and n8n-nodes-devdeskapp community node.',
   cleanUrls: true,
+  // Git commit time of each page: shown as "Last updated" and emitted as <lastmod> in sitemap.xml.
+  lastUpdated: true,
   sitemap: {
     hostname: 'https://docs.devdeskapp.com'
   },
@@ -42,12 +54,15 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: 'DevDeskApp Docs' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en_US' }],
-    ['meta', { property: 'og:image', content: 'https://docs.devdeskapp.com/logo-dark.jpg' }],
+    // 1200x630 social card (the old logo-dark.jpg was 120x120 but declared 1200x630).
+    ['meta', { property: 'og:image', content: OG_IMAGE }],
     ['meta', { property: 'og:image:width', content: '1200' }],
     ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { property: 'og:image:type', content: 'image/jpeg' }],
+    ['meta', { property: 'og:image:alt', content: 'DevDeskApp Docs: n8n community node and developer utilities' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:site', content: '@devdeskapp' }],
-    ['meta', { name: 'twitter:image', content: 'https://docs.devdeskapp.com/logo-dark.jpg' }],
+    ['meta', { name: 'twitter:image', content: OG_IMAGE }],
     [
       'script',
       { type: 'application/ld+json' },
@@ -78,6 +93,7 @@ export default defineConfig({
     ]
   ],
   themeConfig: {
+    n8nNodeVersion: n8nNode.version,
     logo: {
       light: '/logo-light.jpg',
       dark: '/logo-dark.jpg'
@@ -94,7 +110,7 @@ export default defineConfig({
           { text: '⚙️ Operations Reference', link: '/n8n/operations' },
           { text: '📋 Templates Catalog', link: '/templates/' },
           { text: '🏛️ Architecture & Solutions', link: '/solutions/' },
-          { text: '📦 NPM Package (v0.1.4)', link: 'https://www.npmjs.com/package/n8n-nodes-devdeskapp' },
+          { text: `📦 NPM Package (v${n8nNode.version})`, link: N8N_NODE_VERSIONS_URL },
           { text: '🌟 n8n Template #21017', link: 'https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities' },
           { text: '💰 n8n Template #21130', link: 'https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp' },
           { text: '🛡️ n8n Template #21376', link: 'https://n8n.io/workflows/21376' },
