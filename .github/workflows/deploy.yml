@@ -10,6 +10,10 @@ on:
       - main
       - master
   workflow_dispatch:
+  # Daily rebuild so the n8n-nodes-devdeskapp version baked into the pages follows
+  # new npm releases even when the docs themselves did not change.
+  schedule:
+    - cron: '30 3 * * *'
 
 permissions:
   contents: read
@@ -54,7 +58,8 @@ jobs:
           path: .vitepress/dist
 
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # push / manual run / daily schedule on main (scheduled runs always use the default branch, main).
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
