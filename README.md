@@ -6,8 +6,8 @@
 
 [![Live Documentation](https://img.shields.io/badge/docs-docs.devdeskapp.com-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://docs.devdeskapp.com)
 [![NPM Package](https://img.shields.io/npm/v/n8n-nodes-devdeskapp?color=ea4b71&style=for-the-badge&logo=npm)](https://www.npmjs.com/package/n8n-nodes-devdeskapp)
-[![n8n Template #21017](https://img.shields.io/badge/n8n.io-Template_%2321017-10b981?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
-[![n8n Template #21130](https://img.shields.io/badge/n8n.io-Template_%2321130-3b82f6?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)
+[![n8n Template #21017](https://img.shields.io/badge/n8n.io-Template_%2321017-10b981?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/)
+[![n8n Template #21130](https://img.shields.io/badge/n8n.io-Template_%2321130-3b82f6?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
 </div>
@@ -42,11 +42,11 @@ The documentation portal is built with **VitePress 1.6+** and structured into 5 
 
 We provide verified, production-ready n8n blueprints published directly on the **n8n.io Creator Portal**:
 
-- **🌟 [Template #21017: Developer Suite & Security Engine](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)**
+- **🌟 [Template #21017: Developer Suite & Security Engine](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/)**
   - Sequential pipeline: JSON prettification, SHA-256 cryptographic hashing, RFC 4122 v4 UUID tracing, SEO slug generation, and CTC salary breakdown.
   - [Read Detailed Blueprint Guide →](https://docs.devdeskapp.com/templates/developer-suite)
 
-- **💰 [Template #21130: CTC to In-Hand Salary Engine](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)**
+- **💰 [Template #21130: CTC to In-Hand Salary Engine](https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/)**
   - Automated compensation modeling: Indian statutory PF calculation (12%), Professional Tax (PT), HRA allowance, and take-home salary projections.
   - [Read Detailed Blueprint Guide →](https://docs.devdeskapp.com/templates/ctc-salary-engine)
 
@@ -101,8 +101,8 @@ For AI crawlers, LLMs, and autonomous agents, this documentation exposes clean m
 - **Web Platform**: [https://www.devdeskapp.com](https://www.devdeskapp.com)
 - **Node NPM Package**: [https://www.npmjs.com/package/n8n-nodes-devdeskapp](https://www.npmjs.com/package/n8n-nodes-devdeskapp)
 - **Node Source Code**: [https://github.com/DevdeskApp/n8n-nodes-devdeskapp](https://github.com/DevdeskApp/n8n-nodes-devdeskapp)
-- **Template #21017**: [n8n.io/workflows/21017](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
-- **Template #21130**: [n8n.io/workflows/21130](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)
+- **Template #21017**: [n8n.io/workflows/21017](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/)
+- **Template #21130**: [n8n.io/workflows/21130](https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/)
 
 ---
 

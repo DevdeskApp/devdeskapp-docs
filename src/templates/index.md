@@ -1,6 +1,6 @@
 ---
 title: 'Official n8n Workflow Templates'
-description: 'Catalog of official DevDeskApp n8n templates: developer suite, CTC salary engine and payment webhook sanitizer, each with an import guide.'
+description: 'Catalog of 7 official DevDeskApp n8n templates: AI LLM ingestion, CTC payroll, payment webhook sanitizer, Meta CAPI sync, and Notion CMS publishing.'
 ---
 
 # 📋 Official n8n Workflow Templates
@@ -10,7 +10,7 @@ Discover and deploy production-ready n8n automation blueprints built with **`n8n
 <div class="official-template-card">
   <div class="template-card-left">
     <div class="template-card-header">
-      <span class="template-badge">Verified Blueprints</span>
+      <span class="template-badge">7 Verified Blueprints</span>
       <span class="badge-live">Official n8n Creator Portal</span>
     </div>
     <h3 class="template-card-title">1-Click n8n Canvas Import</h3>
@@ -26,13 +26,13 @@ Discover and deploy production-ready n8n automation blueprints built with **`n8n
 
 ---
 
-## 🌟 Templates Catalog
+## 🌟 Templates Catalog (7 Published Live)
 
 Explore our published templates below. Each template has a dedicated documentation page detailing its architecture, parameter schemas, input/output structures, and real-time execution results.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
-  <!-- Template 1 Card -->
+  <!-- Template 1: Developer Suite -->
   <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
     <div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
@@ -58,13 +58,13 @@ Explore our published templates below. Each template has a dedicated documentati
       <a href="/templates/developer-suite" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #6366f1; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
         View Blueprint →
       </a>
-      <a href="https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+      <a href="https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
         n8n Portal ↗
       </a>
     </div>
   </div>
 
-  <!-- Template 2 Card -->
+  <!-- Template 2: CTC Salary Engine -->
   <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
     <div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
@@ -90,12 +90,13 @@ Explore our published templates below. Each template has a dedicated documentati
       <a href="/templates/ctc-salary-engine" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #10b981; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
         View Blueprint →
       </a>
-      <a href="https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+      <a href="https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
         n8n Portal ↗
       </a>
     </div>
   </div>
-  <!-- Template 3 Card -->
+
+  <!-- Template 3: Payment Webhook Sanitizer -->
   <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
     <div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
@@ -121,13 +122,154 @@ Explore our published templates below. Each template has a dedicated documentati
       <a href="/templates/payment-webhook-sanitizer" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #f59e0b; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
         View Blueprint →
       </a>
-      <a href="https://n8n.io/workflows/21376" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+      <a href="https://n8n.io/workflows/21376-sanitize-and-audit-payment-webhooks-with-devdeskapp-json-and-crypto-tools/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+        n8n Portal ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Template 4: AI LLM JSON Ingestion -->
+  <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #6366f1; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); padding: 2px 8px; border-radius: 9999px;">
+          TEMPLATE #21593
+        </span>
+        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+      </div>
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
+        Sanitize & Ingest AI LLM JSON into Postgres
+      </h3>
+      <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
+        Cleans markdown code fences from raw AI LLM responses (OpenAI, Claude, Gemini, DeepSeek), produces SHA-256 audit digests, generates UUID v4 trace tokens, and safely ingests into PostgreSQL with Slack notifications.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">AI Agent Ingest</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Markdown Stripper</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">PostgreSQL</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Slack Alerts</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--vp-c-border);">
+      <a href="/templates/ai-llm-postgres-ingest" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #6366f1; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+        View Blueprint →
+      </a>
+      <a href="https://n8n.io/workflows/21593-sanitize-and-ingest-ai-llm-json-into-postgres-with-devdeskapp-and-slack/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+        n8n Portal ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Template 5: Indian CTC Offer Letter Generator -->
+  <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #10b981; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 9999px;">
+          TEMPLATE #21594
+        </span>
+        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+      </div>
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
+        Generate Indian CTC Offer Letters with Docs & Gmail
+      </h3>
+      <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
+        Deterministic CTC payroll calculation (Basic 50%, HRA, PF 12%, PT), candidate filename slug generation, automated Google Docs offer creation, PDF export, Gmail dispatch, and Slack onboarding alert.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">HR Automation</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Google Docs</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Gmail</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">PF / PT Breakdown</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--vp-c-border);">
+      <a href="/templates/offer-letter-generator" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #10b981; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+        View Blueprint →
+      </a>
+      <a href="https://n8n.io/workflows/21594-generate-indian-ctc-offer-letters-with-devdeskapp-google-docs-gmail-and-slack/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+        n8n Portal ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Template 6: Meta CAPI Lead Sync -->
+  <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #a855f7; background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 8px; border-radius: 9999px;">
+          TEMPLATE #21595
+        </span>
+        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+      </div>
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
+        Hash & Sync Leads to Meta CAPI with Google Sheets
+      </h3>
+      <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
+        Zero-leak marketing pipeline: normalizes and SHA-256 hashes lead emails and phone numbers per Meta CAPI specifications, adds UUID v4 event deduplication IDs, and posts conversions via Graph API.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Meta CAPI</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">SHA-256 Privacy</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Google Sheets</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Conversion Sync</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--vp-c-border);">
+      <a href="/templates/meta-capi-lead-sync" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #a855f7; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+        View Blueprint →
+      </a>
+      <a href="https://n8n.io/workflows/21595-hash-and-sync-leads-to-meta-capi-with-devdeskapp-google-sheets-and-slack/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+        n8n Portal ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Template 7: Notion to WordPress SEO Publisher -->
+  <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #ec4899; background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(236, 72, 153, 0.3); padding: 2px 8px; border-radius: 9999px;">
+          TEMPLATE #21596
+        </span>
+        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+      </div>
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
+        Publish SEO-Safe Notion Blog Posts to WordPress
+      </h3>
+      <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
+        Converts Notion CMS articles into clean canonical SEO URL permalinks, computes SHA-256 content drift digests, injects UUID v4 revision tokens, and publishes to WordPress REST API with Slack live link.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Notion CMS</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">WordPress API</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">SEO Slugifier</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Slack Alerts</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--vp-c-border);">
+      <a href="/templates/notion-wordpress-publisher" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #ec4899; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+        View Blueprint →
+      </a>
+      <a href="https://n8n.io/workflows/21596-publish-seo-safe-notion-blog-posts-to-wordpress-with-devdeskapp-and-slack/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
         n8n Portal ↗
       </a>
     </div>
   </div>
 
 </div>
+
+---
+
+## ⏳ Upcoming Templates (Under n8n Community Review)
+
+These 4 workflows are currently undergoing human review in the official n8n Creator Portal:
+
+| Template ID | Workflow Name | Key Operations | Target Pipeline |
+| :--- | :--- | :--- | :--- |
+| **#22360** | RSS-based Social Banner Publisher | Slugifier, SHA-256, UUID v4 | LinkedIn, X & Slack automated multi-platform broadcasting |
+| **#22361** | GitHub PR Architecture Diagram Sync | Markdown Parser, Slugifier, SHA-256 | GitHub Pull Requests, Slack alerts & Notion Architecture Hub |
+| **#22362** | CRM Lead Normalizer & Deduplication | Prettifier, SHA-256, UUID v4 | HubSpot, Salesforce, PostgreSQL & Slack pipeline |
+| **#22363** | Real-Time Fraud & Webhook Deduplication | SHA-256, UUID v4, Condition Gate | Stripe/Razorpay anti-replay defense & Slack incident escalation |
 
 ---
 

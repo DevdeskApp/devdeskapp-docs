@@ -11,7 +11,7 @@ description: 'n8n template #21130: calculate Indian payroll from CTC, including 
 </div>
 
 🔗 **Direct n8n Template Link:**  
-[n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)
+[https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/)
 
 <div class="doc-image">
   <img src="/images/screen_ctc_canvas.png" alt="CTC Calculator Canvas" />
@@ -78,7 +78,7 @@ Traditional approaches suffer from major challenges:
 
 ## 📥 How to Import into Your n8n Instance
 
-1. Open the [n8n Creator Portal page](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp).
+1. Open the [n8n Creator Portal page](https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/).
 2. Click **"Use workflow"** or copy the workflow JSON payload.
 3. In your n8n workspace, press **`Ctrl + V`** (or **`Cmd + V`** on Mac).
 4. Connect the node into your HRMS webhook or Slack bot pipeline!

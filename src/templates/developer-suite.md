@@ -11,7 +11,7 @@ description: 'n8n template #21017: format JSON, compute SHA-256 digests, generat
 </div>
 
 🔗 **Direct n8n Template Link:**  
-[n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
+[https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/)
 
 ---
 
@@ -79,7 +79,7 @@ When triggered, all 5 transformations execute instantaneously in **&lt; 0.2ms to
 
 ## 📥 How to Import into Your n8n Instance
 
-1. Open the [n8n Creator Portal page](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities) and click **"Use workflow"** or copy the workflow JSON.
+1. Open the [n8n Creator Portal page](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/) and click **"Use workflow"** or copy the workflow JSON.
 2. In your n8n workspace, navigate to **Workflows → New Workflow**.
 3. Press **`Ctrl + V`** (or **`Cmd + V`** on Mac).
 4. Save and execute the workflow!

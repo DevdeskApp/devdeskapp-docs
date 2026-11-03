@@ -24,7 +24,7 @@ description: 'Documentation for DevDeskApp and the n8n-nodes-devdeskapp communit
     </p>
   </div>
   <a
-    href="https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities"
+    href="https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/"
     target="_blank"
     rel="noopener"
     class="template-card-cta"

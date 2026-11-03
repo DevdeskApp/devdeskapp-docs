@@ -11,7 +11,7 @@ description: 'n8n template #21376: sanitize Stripe and Razorpay webhooks, comput
 </div>
 
 🔗 **Direct n8n Template Link:**  
-[n8n.io/workflows/21376](https://n8n.io/workflows/21376)
+[https://n8n.io/workflows/21376-sanitize-and-audit-payment-webhooks-with-devdeskapp-json-and-crypto-tools/)
 
 ---
 
@@ -140,7 +140,7 @@ When executed, the workflow produces a structured, tamper-proof security record:
 
 ## 📥 How to Import into Your n8n Instance
 
-1. Open the [official template page on n8n.io](https://n8n.io/workflows/21376).
+1. Open the [official template page on n8n.io](https://n8n.io/workflows/21376-sanitize-and-audit-payment-webhooks-with-devdeskapp-json-and-crypto-tools/).
 2. Click **"Use workflow"** or copy the workflow JSON payload.
 3. In your n8n workspace, navigate to **Workflows → New Workflow**.
 4. Press **`Ctrl + V`** (or **`Cmd + V`** on Mac).

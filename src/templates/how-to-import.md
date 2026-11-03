@@ -27,8 +27,8 @@ This is the fastest method and works on all n8n instances (Self-Hosted, Cloud, D
 
 ### Step 1: Open Template on n8n Creator Portal
 Navigate to either of our official templates:
-- **[Template #21017: Developer Suite & Security Engine](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)**
-- **[Template #21130: CTC to In-Hand Salary Engine](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)**
+- **[Template #21017: Developer Suite & Security Engine](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/)**
+- **[Template #21130: CTC to In-Hand Salary Engine](https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/)**
 
 Click the **"Copy workflow to clipboard"** or **"Use workflow"** button.
 
