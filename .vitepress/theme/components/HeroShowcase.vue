@@ -31,8 +31,8 @@ const tabs = [
               <span class="pulse-ping-ring"></span>
               <span class="pulse-ping-dot"></span>
             </span>
-            <span class="badge-text-full">⚡ 330+ Tools • Official n8n Community Node • <NodeVersion /> Live</span>
-            <span class="badge-text-short">⚡ 330+ Tools • n8n Node <NodeVersion /> Live</span>
+            <span class="badge-text-full">⚡ 340+ Web Tools • Official n8n Community Node • <NodeVersion /> Live</span>
+            <span class="badge-text-short">⚡ 340+ Tools • n8n Node <NodeVersion /> Live</span>
           </div>
 
           <!-- Main Headline with DevDeskApp Gradient Shimmer -->
@@ -42,8 +42,8 @@ const tabs = [
 
           <!-- Body Description -->
           <p class="hero-subtitle">
-            Run <strong>330+ developer utilities</strong>, formatters, and financial calculation engines directly inside your
-            <strong>n8n workflows</strong> with <span class="highlight-privacy">zero cloud data leaks</span> and sub-millisecond CPU speed.
+            Use <strong>340+ developer tools</strong> in your browser, and run the core JSON, crypto, text and CTC operations inside your
+            <strong>n8n workflows</strong> with <span class="highlight-privacy">no external API calls</span>, in microseconds per item.
           </p>
 
           <!-- Action Buttons -->
@@ -83,23 +83,23 @@ const tabs = [
           <!-- Metrics Strip -->
           <div class="metrics-strip">
             <div class="metric-box">
-              <span class="metric-number">330+</span>
-              <span class="metric-tag">Client Tools</span>
+              <span class="metric-number">340+</span>
+              <span class="metric-tag">Web Tools</span>
             </div>
             <div class="metric-sep"></div>
             <div class="metric-box">
-              <span class="metric-number">&lt; 0.2ms</span>
-              <span class="metric-tag">Execution Time</span>
+              <span class="metric-number">19</span>
+              <span class="metric-tag">n8n Operations</span>
             </div>
             <div class="metric-sep"></div>
             <div class="metric-box">
-              <span class="metric-number">0 KB</span>
-              <span class="metric-tag">Network Leak</span>
+              <span class="metric-number">7</span>
+              <span class="metric-tag">n8n Templates</span>
             </div>
             <div class="metric-sep"></div>
             <div class="metric-box">
-              <span class="metric-number">100%</span>
-              <span class="metric-tag">In-Memory Node</span>
+              <span class="metric-number">0</span>
+              <span class="metric-tag">External API Calls</span>
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@ const tabs = [
                 <span>n8n Execution Sandbox</span>
               </div>
               <div class="speed-badge">
-                <span class="check-icon">✓</span> 0.18ms
+                <span class="check-icon">✓</span> &lt; 0.01 ms / item
               </div>
             </div>
 
@@ -146,44 +146,46 @@ const tabs = [
                 <pre class="term-code"><code>{
   <span class="c-key">"service"</span>: <span class="c-str">"payment"</span>,
   <span class="c-key">"status"</span>: <span class="c-str">"success"</span>,
-  <span class="c-key">"empId"</span>: <span class="c-num">1042</span>,
-  <span class="c-key">"traceId"</span>: <span class="c-cyan">"8f2a1b9c-4e3d-4c8a-9f1e-2b3c4d5e6f7a"</span>
+  <span class="c-key">"empId"</span>: <span class="c-num">1042</span>
 }</code></pre>
               </div>
 
               <!-- Tab 2: Crypto -->
               <div v-if="activeTab === 'crypto'" class="tab-content">
-                <div class="term-comment">// Payload: Secret Verification Token</div>
+                <div class="term-comment">// Input: text to fingerprint</div>
                 <div class="term-input">devdeskapp_production_webhook_secret_key</div>
                 <div class="term-divider">
                   <span>🔐 DevDeskApp: SHA-256 Digest</span>
                 </div>
                 <pre class="term-code"><code>{
   <span class="c-key">"algorithm"</span>: <span class="c-str">"sha256"</span>,
-  <span class="c-key">"hash"</span>: <span class="c-cyan">"c0053e1a0673f4e3c35b80a1846b0a034f78de1f74075f782c5890772714041b"</span>,
-  <span class="c-key">"tamperProof"</span>: <span class="c-num">true</span>
+  <span class="c-key">"input"</span>: <span class="c-str">"devdeskapp_production_webhook_secret_key"</span>,
+  <span class="c-key">"hash"</span>: <span class="c-cyan">"7ac4c84d335afd794bde94eb049d2259cc348357a96538929f263f7c5911a686"</span>
 }</code></pre>
               </div>
 
               <!-- Tab 3: CTC Calculator -->
               <div v-if="activeTab === 'ctc'" class="tab-content">
-                <div class="term-comment">// Input: Annual Compensation Breakdown</div>
+                <div class="term-comment">// Input: annual CTC</div>
                 <div class="term-input">annualCtc: ₹24,00,000 | basic: 50%</div>
                 <div class="term-divider">
                   <span>💼 DevDeskApp: Indian Payroll Engine</span>
                 </div>
                 <pre class="term-code"><code>{
-  <span class="c-key">"monthlyGross"</span>: <span class="c-num">₹2,00,000</span>,
-  <span class="c-key">"takeHomeInHand"</span>: <span class="c-cyan">₹1,45,000</span>,
-  <span class="c-key">"employeePf"</span>: <span class="c-num">₹12,000</span>,
-  <span class="c-key">"professionalTax"</span>: <span class="c-num">₹200</span>
+  <span class="c-key">"monthlyGross"</span>: <span class="c-num">198200</span>,
+  <span class="c-key">"monthlyInHand"</span>: <span class="c-cyan">163075</span>,
+  <span class="c-key">"breakdown"</span>: {
+    <span class="c-key">"employeePf"</span>: <span class="c-num">1800</span>,
+    <span class="c-key">"professionalTax"</span>: <span class="c-num">200</span>,
+    <span class="c-key">"estimatedMonthlyTds"</span>: <span class="c-num">33125</span>
+  }
 }</code></pre>
               </div>
             </div>
 
             <!-- Terminal Bottom Bar -->
             <div class="terminal-bottombar">
-              <span class="status-live">● Synchronous Native Execution</span>
+              <span class="status-live">● Real node output (v0.1.6)</span>
               <span class="status-sec">Zero External Network Calls</span>
             </div>
           </div>

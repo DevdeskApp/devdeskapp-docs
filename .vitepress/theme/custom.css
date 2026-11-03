@@ -140,7 +140,8 @@ html, body {
   border: 1px solid var(--vp-c-border);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  background: #141e30;
+  /* Figures use the light DevDeskApp theme (devdeskapp.com), so frame them on the light surface. */
+  background: #f8fafc;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
   max-width: 100%;
 }
@@ -380,3 +381,37 @@ html, body {
     margin: -4px 0;
   }
 }
+
+/* Status badges used across template pages (previously referenced but never defined) */
+.badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 3px 10px;
+  border-radius: 999px;
+  color: #047857;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  white-space: nowrap;
+}
+
+.dark .badge-live {
+  color: #34d399;
+}
+
+.badge-live.badge-indigo { color: #4338ca; background: rgba(99, 102, 241, 0.12); border-color: rgba(99, 102, 241, 0.35); }
+.badge-live.badge-green { color: #047857; background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.35); }
+.badge-live.badge-purple { color: #7e22ce; background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.35); }
+.badge-live.badge-blue { color: #1d4ed8; background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.35); }
+.badge-live.badge-amber { color: #b45309; background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); }
+.badge-live.badge-pink { color: #be185d; background: rgba(236, 72, 153, 0.12); border-color: rgba(236, 72, 153, 0.35); }
+
+.dark .badge-live.badge-indigo { color: #a5b4fc; }
+.dark .badge-live.badge-green { color: #34d399; }
+.dark .badge-live.badge-purple { color: #d8b4fe; }
+.dark .badge-live.badge-blue { color: #93c5fd; }
+.dark .badge-live.badge-amber { color: #fcd34d; }
+.dark .badge-live.badge-pink { color: #f9a8d4; }

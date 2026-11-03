@@ -5,7 +5,7 @@ description: 'Catalog of 7 official DevDeskApp n8n templates: AI LLM ingestion, 
 
 # 📋 Official n8n Workflow Templates
 
-Discover and deploy production-ready n8n automation blueprints built with **`n8n-nodes-devdeskapp`**. Every template runs entirely in-memory using local Node.js cycles—delivering sub-millisecond execution and **zero cloud data leaks**.
+Discover and deploy production-ready n8n automation blueprints built with **`n8n-nodes-devdeskapp`**. The DevDeskApp nodes in every template run inside your n8n process and make no external API calls, so the data they format, hash or calculate stays on your instance.
 
 <div class="official-template-card">
   <div class="template-card-left">
@@ -28,7 +28,7 @@ Discover and deploy production-ready n8n automation blueprints built with **`n8n
 
 ## 🌟 Templates Catalog (7 Published Live)
 
-Explore our published templates below. Each template has a dedicated documentation page detailing its architecture, parameter schemas, input/output structures, and real-time execution results.
+Each template has its own page with the node order, parameters and a real execution result. Templates marked **Fix after import** need one small change, listed on their page.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
@@ -77,7 +77,7 @@ Explore our published templates below. Each template has a dedicated documentati
         Employee CTC to In-Hand Salary Engine
       </h3>
       <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
-        Automate compensation modeling from offer letters: Indian statutory PF calculation, Professional Tax (PT), HRA allowance, and take-home salary projections.
+        Turns an annual CTC into monthly gross, basic, employee and employer PF (capped at ₹1,800), professional tax, a new-regime TDS estimate and in-hand pay.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
         <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Payroll Automation</span>
@@ -109,7 +109,7 @@ Explore our published templates below. Each template has a dedicated documentati
         Payment Webhook Sanitizer & Security Audit
       </h3>
       <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
-        Zero-trust gateway for payment webhooks (Stripe, Razorpay, Lemon Squeezy): JSON normalization, SHA-256 cryptographic audit digest, RFC UUID v4 incident trace, and Slack notifications.
+        Audit pipeline for payment webhooks: parses and formats the JSON body, records a SHA-256 checksum, a UUID v4 trace ID and a slug, and alerts Slack through an If gate.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
         <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Webhook Sanitizer</span>
@@ -135,17 +135,17 @@ Explore our published templates below. Each template has a dedicated documentati
         <span style="font-size: 0.75rem; font-weight: 700; color: #6366f1; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); padding: 2px 8px; border-radius: 9999px;">
           TEMPLATE #21593
         </span>
-        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+        <span class="badge-live badge-amber" style="font-size: 0.7rem;">Fix after import</span>
       </div>
       <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
         Sanitize & Ingest AI LLM JSON into Postgres
       </h3>
       <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
-        Cleans markdown code fences from raw AI LLM responses (OpenAI, Claude, Gemini, DeepSeek), produces SHA-256 audit digests, generates UUID v4 trace tokens, and safely ingests into PostgreSQL with Slack notifications.
+        A Code node strips markdown fences from LLM output, then DevDeskApp formats the JSON, adds a UUID v4 trace ID and a SHA-256 checksum before the PostgreSQL insert and Slack log.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
         <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">AI Agent Ingest</span>
-        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Markdown Stripper</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Markdown fences</span>
         <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">PostgreSQL</span>
         <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Slack Alerts</span>
       </div>
@@ -167,13 +167,13 @@ Explore our published templates below. Each template has a dedicated documentati
         <span style="font-size: 0.75rem; font-weight: 700; color: #10b981; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 9999px;">
           TEMPLATE #21594
         </span>
-        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+        <span class="badge-live badge-amber" style="font-size: 0.7rem;">Fix after import</span>
       </div>
       <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
         Generate Indian CTC Offer Letters with Docs & Gmail
       </h3>
       <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
-        Deterministic CTC payroll calculation (Basic 50%, HRA, PF 12%, PT), candidate filename slug generation, automated Google Docs offer creation, PDF export, Gmail dispatch, and Slack onboarding alert.
+        CTC to in-hand breakdown (basic, PF, PT, TDS), an offer UUID, a candidate slug and a compensation checksum, then a Google Docs letter, Gmail delivery and a Slack HR alert.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
         <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">HR Automation</span>
@@ -199,13 +199,13 @@ Explore our published templates below. Each template has a dedicated documentati
         <span style="font-size: 0.75rem; font-weight: 700; color: #a855f7; background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 8px; border-radius: 9999px;">
           TEMPLATE #21595
         </span>
-        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+        <span class="badge-live badge-amber" style="font-size: 0.7rem;">Fix after import</span>
       </div>
       <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
         Hash & Sync Leads to Meta CAPI with Google Sheets
       </h3>
       <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
-        Zero-leak marketing pipeline: normalizes and SHA-256 hashes lead emails and phone numbers per Meta CAPI specifications, adds UUID v4 event deduplication IDs, and posts conversions via Graph API.
+        Lowercases and SHA-256 hashes the lead email for Meta CAPI, adds a UUID v4 event_id and campaign slug, and posts opted-in leads to the Graph API with a Google Sheets log.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
         <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Meta CAPI</span>
@@ -231,13 +231,13 @@ Explore our published templates below. Each template has a dedicated documentati
         <span style="font-size: 0.75rem; font-weight: 700; color: #ec4899; background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(236, 72, 153, 0.3); padding: 2px 8px; border-radius: 9999px;">
           TEMPLATE #21596
         </span>
-        <span class="badge-live" style="font-size: 0.7rem;">Live on n8n.io</span>
+        <span class="badge-live badge-amber" style="font-size: 0.7rem;">Fix after import</span>
       </div>
       <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
         Publish SEO-Safe Notion Blog Posts to WordPress
       </h3>
       <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
-        Converts Notion CMS articles into clean canonical SEO URL permalinks, computes SHA-256 content drift digests, injects UUID v4 revision tokens, and publishes to WordPress REST API with Slack live link.
+        Builds an SEO slug from the article title, fingerprints the HTML with SHA-256, adds a UUID v4 publication ID and publishes approved posts through the WordPress node with a Slack alert.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
         <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Notion CMS</span>
@@ -262,12 +262,12 @@ Explore our published templates below. Each template has a dedicated documentati
 
 ## ⏳ Upcoming Templates (Under n8n Community Review)
 
-These 4 workflows are currently undergoing human review in the official n8n Creator Portal:
+These 4 workflows are submitted to the n8n Creator Portal and waiting for review:
 
 | Template ID | Workflow Name | Key Operations | Target Pipeline |
 | :--- | :--- | :--- | :--- |
 | **#22360** | RSS-based Social Banner Publisher | Slugifier, SHA-256, UUID v4 | LinkedIn, X & Slack automated multi-platform broadcasting |
-| **#22361** | GitHub PR Architecture Diagram Sync | Markdown Parser, Slugifier, SHA-256 | GitHub Pull Requests, Slack alerts & Notion Architecture Hub |
+| **#22361** | GitHub PR Architecture Diagram Sync | Slugifier, SHA-256 | GitHub Pull Requests, Slack alerts & Notion Architecture Hub |
 | **#22362** | CRM Lead Normalizer & Deduplication | Prettifier, SHA-256, UUID v4 | HubSpot, Salesforce, PostgreSQL & Slack pipeline |
 | **#22363** | Real-Time Fraud & Webhook Deduplication | SHA-256, UUID v4, Condition Gate | Stripe/Razorpay anti-replay defense & Slack incident escalation |
 
@@ -278,8 +278,8 @@ These 4 workflows are currently undergoing human review in the official n8n Crea
 Importing any DevDeskApp workflow into your n8n workspace requires only 3 simple steps:
 
 1. **Install Node:** Ensure `n8n-nodes-devdeskapp` is installed in your n8n instance ([Installation Guide](/n8n/installation)).
-2. **Copy Blueprint:** Open any template page (or copy JSON snippet from the Creator Portal).
-3. **Paste in Canvas:** Open your n8n canvas and press **`Ctrl + V`** (or **`Cmd + V`**). All nodes, parameters, and connections will render instantly.
+2. **Copy the template:** Open it on n8n.io and click **Use for free**, or copy the workflow JSON.
+3. **Paste in Canvas:** Open your n8n canvas and press **`Ctrl + V`** (or **`Cmd + V`**). All nodes, parameters and connections appear on the canvas.
 
 Detailed step-by-step instructions with troubleshooting can be found in our [Import Guide](/templates/how-to-import).
 

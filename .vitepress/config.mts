@@ -18,6 +18,15 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
   title: 'DevDeskApp Docs',
   description: 'Official Documentation for DevDeskApp suite, developer utilities, and n8n-nodes-devdeskapp community node.',
   cleanUrls: true,
+  markdown: {
+    // n8n expressions such as `{{ $json.formatted }}` appear in inline code.
+    // Mark inline code v-pre so Vue does not try to evaluate them as template interpolation.
+    config(md) {
+      const renderInline = md.renderer.rules.code_inline!
+      md.renderer.rules.code_inline = (...args) =>
+        renderInline(...args).replace(/^<code/, '<code v-pre')
+    },
+  },
   // Git commit time of each page: shown as "Last updated" and emitted as <lastmod> in sitemap.xml.
   lastUpdated: true,
   sitemap: {

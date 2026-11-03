@@ -1,135 +1,103 @@
 ---
 title: 'Template #21594: Indian CTC Offer Letter Generator'
-description: 'n8n template #21594: calculate in-hand salary and statutory Indian PF/PT from annual CTC, generate Google Docs offer letters, email candidates, and alert Slack.'
+description: 'n8n template #21594: estimate in-hand salary, PF and PT from annual CTC with DevDeskApp, create a Google Docs offer letter, email it with Gmail and alert HR on Slack.'
 ---
 
 # 📄 Template #21594: Generate Indian CTC Offer Letters with DevDeskApp, Google Docs, Gmail and Slack
 
 <div style="margin: 1rem 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-  <span class="badge-live">Published on n8n.io Creator Portal</span>
-  <span class="badge-live" style="background: rgba(16, 185, 129, 0.12); color: #10b981; border-color: rgba(16, 185, 129, 0.3);">Template ID: 21594</span>
+  <span class="badge-live">Published on n8n.io</span>
+  <span class="badge-live badge-green">Template ID: 21594</span>
 </div>
 
-🔗 **Direct n8n Template Link:**  
-[https://n8n.io/workflows/21594-generate-indian-ctc-offer-letters-with-devdeskapp-google-docs-gmail-and-slack/)
+🔗 **Template on n8n.io:** [n8n.io/workflows/21594](https://n8n.io/workflows/21594-generate-indian-ctc-offer-letters-with-devdeskapp-google-docs-gmail-and-slack/)
 
 <div class="doc-image">
-  <img src="/images/screen_offer_letter_canvas.png" alt="CTC Offer Letter Canvas" />
+  <img src="/images/fig-canvas-21594.png" alt="Template 21594 CTC offer letter workflow on the n8n canvas" />
 </div>
-<div class="doc-caption">Figure 1: Automated Indian CTC offer letter generation, PDF dispatch, and HR alert pipeline in n8n.</div>
+<div class="doc-caption">Figure 1: The template on the n8n canvas.</div>
 
 ---
 
-## 🎯 Overview & Use Cases
+## 🎯 Overview
 
-Generating compensation offer letters manually is slow, error-prone, and fraught with compliance risks:
+Drafting offer letters by hand is slow, and compensation figures copied from spreadsheets drift. This template takes a candidate row (from the sample node or a **Google Sheets trigger**) and:
 
-1. **Arithmetic & Formula Errors:** Statutory deductions under Indian Labor Law—such as Employee Provident Fund (12% of basic), Employer PF contribution (12%), and state Professional Tax (PT)—are frequently miscalculated in manual spreadsheets.
-2. **Slow Candidate Experience:** Taking hours or days to draft custom offer agreements leads to lost engineering and executive hires.
-3. **Data Security Concerns:** Uploading candidate compensation numbers to external cloud calculation services risks leaking sensitive HR figures.
+1. **Estimates pay** with DevDeskApp **CTC to In-Hand Salary**: monthly gross, basic, employee and employer PF, PT, TDS and in-hand.
+2. **Creates an offer token** (UUID v4) and a **candidate slug** such as `ananya-roy-principal-devops-engineer`.
+3. **Fingerprints the compensation** with SHA-256, so the figures in the letter can be checked later.
+4. Checks the offer with an **If** node, then fills a **Google Docs** template, emails it with **Gmail** and posts to HR **Slack**. Invalid offers go to a compliance alert instead.
 
-**Template #21594** creates a fully automated, instant HR onboarding pipeline:
-- Calculates accurate monthly gross, in-hand take-home, basic, HRA, employer/employee PF, and PT in **&lt; 0.2ms local execution**.
-- Formats candidate filename slugs and generates unique RFC 4122 v4 offer reference tokens.
-- Populates dynamic tags inside a master **Google Docs** offer template and exports an official signed PDF.
-- Dispatches the PDF offer letter via **Gmail** to the candidate and posts an approval notification to your **HR Slack** channel.
+::: danger Known issue in the published version (checked 4 Nov 2026)
+In `Format Offer Letter Document Payload`, three fields read top-level keys that the DevDeskApp node does not return, so the letter shows **₹0** for basic salary, PF and professional tax. Change:
+- `salary.basicSalary` → `salary.breakdown.monthlyBasic`
+- `salary.employeePf` → `salary.breakdown.employeePf`
+- `salary.professionalTax` → `salary.breakdown.professionalTax`
 
----
-
-## 📸 Workflow Architecture
-
-### Pipeline Sequence
-
-```mermaid
-flowchart TD
-    subgraph TriggerStage ["👤 Stage 1: Candidate Offer Request"]
-        HR["📝 HR Form / Webhook / ATS Trigger
-(Candidate Name, Role, Annual CTC, Joining Date)"]
-    end
-
-    subgraph DevDeskStage ["💰 Stage 2: DevDeskApp In-Memory Processing (<0.2ms)"]
-        direction TB
-        N1["1️⃣ DevDeskApp CTC Engine
-Computes Basic (50%), HRA, Employee PF (12%), Employer PF (12%), PT & Net In-Hand"]
-        N2["2️⃣ DevDeskApp Slugifier
-Generates candidate identifier (e.g. rohit-sharma-lead-architect)"]
-        N3["3️⃣ DevDeskApp UUID v4
-Generates tamper-resistant Offer Letter Token"]
-        N1 --> N2 --> N3
-    end
-
-    subgraph DocumentStage ["📄 Stage 3: Google Docs & PDF Generation"]
-        GD["📑 Create Document from Master Template
-Replaces {{Candidate_Name}}, {{Annual_CTC}}, {{Monthly_In_Hand}}, {{PF_Amount}}"]
-        PDF["📥 Export Official PDF File"]
-        GD --> PDF
-    end
-
-    subgraph DeliveryStage ["🚀 Stage 4: Candidate Email & Team Dispatch"]
-        Mail["📧 Gmail Dispatch
-Sends official PDF offer letter to candidate's personal email"]
-        Slack["💬 Slack Announcement
-#hr-announcements (Offer Letter Sent Successfully)"]
-        Mail --> Slack
-    end
-
-    TriggerStage --> DevDeskStage
-    DevDeskStage --> DocumentStage
-    DocumentStage --> DeliveryStage
-```
+Monthly gross, in-hand and CTC are already correct.
+:::
 
 ---
 
-## ⚙️ Key Operations & Calculations
+## 📸 Pipeline
 
-| Component | DevDeskApp Operation | Purpose |
+<div class="doc-image">
+  <img src="/images/fig-flow-21594.png" alt="Template 21594 pipeline: ingest, four DevDeskApp nodes, If gate, Google Docs, Gmail and Slack branch" />
+</div>
+<div class="doc-caption">Figure 2: Node order and branches in the published template.</div>
+
+| Node | Resource · Operation | Purpose |
 | :--- | :--- | :--- |
-| **CTC Salary Engine** | `ctc` | Automatically computes Indian statutory components: Basic salary, HRA, Employee PF, Employer PF, Professional Tax (PT), and monthly take-home. |
-| **Slugifier** | `slugify` | Creates normalized, URL-safe candidate strings for file naming (e.g., `offer-rohit-sharma-2026.pdf`). |
-| **UUID v4** | `generateUuid` | Injects an RFC 4122 v4 unique verification code for candidate tracking and electronic records. |
+| DevDeskApp: Indian CTC-to-In-Hand Engine | `calculator` · `ctcToInHand` | `annualCtc`, `basicPercentage` (default 50) |
+| DevDeskApp: Offer Tracking UUID | `crypto` · `uuid` | Offer token |
+| DevDeskApp: Candidate Slug Generator | `text` · `slugify` | `name-role` slug for file names |
+| DevDeskApp: Compensation Checksum Hasher | `crypto` · `hash` (`sha256`) | Hash of the full salary output |
+| If: Compensation Valid & Above Minimum Threshold | `if` | Valid offers go to Docs, Gmail and Slack, the rest to an HR alert |
 
 ---
 
-## ⚡ Real-Time Execution Sample
+## ⚡ Execution sample (with the fix above)
 
-### Sample Candidate Input
+**Input** (sample candidate):
 
 ```json
 {
-  "candidateName": "Aarav Sharma",
-  "candidateEmail": "aarav.sharma@example.com",
-  "designation": "Principal Backend Architect",
-  "annualCtc": 2800000,
+  "candidateName": "Ananya Roy",
+  "roleTitle": "Principal DevOps Engineer",
+  "annualCtc": 2100000,
+  "basicPercentage": 50,
   "joiningDate": "2026-12-01"
 }
 ```
 
-### Generated Compensation Breakdown
+**DevDeskApp CTC output:** `monthlyGross: 173200`, `monthlyInHand: 145575`, `breakdown.monthlyBasic: 87500`, `employeePf: 1800`, `professionalTax: 200`, `estimatedMonthlyTds: 25625`.
+
+**`Format Offer Letter Document Payload` output:**
 
 ```json
 {
-  "offerToken": "f784a91b-6f4e-4f38-89c5-8461019ad77c",
-  "fileSlug": "aarav-sharma-principal-backend-architect",
-  "payrollBreakdown": {
-    "annualCtc": 2800000,
-    "monthlyGross": 233333,
-    "basicSalaryMonthly": 116666,
-    "hraMonthly": 58333,
-    "employeePfMonthly": 14000,
-    "employerPfMonthly": 14000,
-    "professionalTaxMonthly": 200,
-    "netMonthlyTakeHome": 175133
-  },
-  "status": "OFFER_LETTER_GENERATED_AND_DISPATCHED"
+  "offerId": "83aaa78d-e801-4c0a-ab00-2621a1422747",
+  "trackingSlug": "ananya-roy-principal-devops-engineer",
+  "integrityChecksum": "575b5e91708c83e62caf29cc5e6a7fee1cfd0d5354faa7befc06dbcbb9a41293",
+  "compensationBreakdown": {
+    "annualCtcFormatted": "₹21,00,000",
+    "monthlyGrossFormatted": "₹1,73,200",
+    "basicSalaryFormatted": "₹87,500",
+    "employeePfFormatted": "₹1,800",
+    "professionalTaxFormatted": "₹200",
+    "monthlyInHandFormatted": "₹1,45,575"
+  }
 }
 ```
 
+PF follows the node's rule (12% of basic, capped at ₹1,800), so a ₹21L CTC shows ₹1,800, not 12% of the full basic.
+
 ---
 
-## 📥 How to Import into Your n8n Instance
+## 📥 Import it
 
-1. Open the [n8n Creator Portal page](https://n8n.io/workflows/21594-generate-indian-ctc-offer-letters-with-devdeskapp-google-docs-gmail-and-slack/) and click **"Use workflow"** or copy the JSON blueprint.
-2. In your n8n workspace, navigate to **Workflows → New Workflow**.
-3. Press **`Ctrl + V`** (or **`Cmd + V`** on macOS).
-4. Connect your **Google Docs**, **Gmail**, and **Slack** credentials.
-5. Save and execute to send your first automated offer letter!
+1. Make sure `n8n-nodes-devdeskapp` is installed ([installation guide](/n8n/installation)).
+2. Open the [template on n8n.io](https://n8n.io/workflows/21594-generate-indian-ctc-offer-letters-with-devdeskapp-google-docs-gmail-and-slack/) and click **Use for free**, or copy the workflow JSON.
+3. Paste it onto a new workflow canvas with **`Ctrl + V`** (**`Cmd + V`** on macOS).
+4. Apply the fix from the known-issue box, then connect **Google Docs**, **Gmail**, **Google Sheets** and **Slack** credentials.
+5. Point the Google Docs node at your offer-letter template and click **Test workflow**.

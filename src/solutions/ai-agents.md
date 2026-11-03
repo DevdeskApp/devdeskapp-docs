@@ -1,134 +1,105 @@
 ---
 title: 'AI Agents & LLM Function Calling'
-description: 'Give n8n AI Agents and LangChain deterministic tools: clean JSON, hash secrets and calculate payroll in memory without sending data to the cloud.'
+description: 'Attach the DevDeskApp node to an n8n AI Agent as a tool, so the model calls it for exact CTC maths, SHA-256 hashes and JSON formatting instead of guessing.'
 ---
 
 # 🤖 AI Agents & LLM Function Calling
 
-Learn how to connect **DevDeskApp** to **n8n AI Agents**, **LangChain**, and **LLMs** (OpenAI, Anthropic Claude, Google Gemini, Ollama) as a high-performance in-memory deterministic tool suite.
+The DevDeskApp node declares `usableAsTool: true`, so you can attach it to the **Tool** port of an n8n **AI Agent**. The model decides *when* to call it, and the node does the actual work: salary maths, hashing, encoding and JSON formatting. This works with any chat model n8n supports, such as OpenAI, Anthropic, Google Gemini or Ollama.
 
 ---
 
-## 🌟 Why AI Agents Need In-Memory Tools
+## 🌟 Why give an agent DevDeskApp tools?
 
-Large Language Models (LLMs) are phenomenal at natural language comprehension, reasoning, and synthesis. However, when deployed inside production workflow automations, LLMs suffer from three critical bottlenecks:
+1. **Exact maths.** LLMs often get multi-step payroll arithmetic wrong (PF caps, tax slabs, rounding). The CTC operation returns the same numbers every time.
+2. **Exact strings.** A model cannot compute a SHA-256 hash, Base64 or a UUID in its head. It will invent something that looks right.
+3. **Smaller prompts.** Minifying a large JSON payload before it goes into the prompt removes indentation and line breaks, which saves tokens.
 
-1. **Arithmetic Hallucinations**: LLMs struggle with precision financial math (Indian Tax slabs, PF, take-home salaries, compound CTC calculations).
-2. **Context Window Token Bloat**: Raw webhook payloads inject redundant whitespace and metadata, inflating token costs and slowing inference speeds.
-3. **Data Privacy & Secret Leaks**: Passing unmasked webhook secrets, HR salaries, or cryptographic seeds to external LLM cloud APIs violates enterprise security compliance (GDPR, SOC2, HIPAA).
-
-<div class="official-template-card">
-  <div class="template-card-left">
-    <div class="template-card-header">
-      <span class="template-badge">⚡ Native AI Tool</span>
-    </div>
-    <h3 class="template-card-title">DevDeskApp solves all three bottlenecks</h3>
-    <p class="template-card-desc">
-      By plugging DevDeskApp directly into the <strong>Tool port</strong> of an n8n AI Agent node, calculations, formatting, and hashing occur entirely in local Node.js memory in <strong>&lt; 0.2ms</strong> with zero external network calls.
-    </p>
-  </div>
-</div>
+The node runs inside your n8n process and makes no network calls of its own. Data you pass to the **chat model**, though, still goes to that model's provider. Hash or strip sensitive fields *before* they reach the agent if they must not leave your instance.
 
 ---
 
-## 📸 Architecture: AI Agent with DevDeskApp Tool
-
-Below is a live n8n visual automation workflow showing an **AI Agent** powered by an **OpenAI Chat Model** delegating security operations to the **DevDeskApp Hasher Tool**:
+## 📸 Architecture: AI Agent with DevDeskApp tools
 
 <div class="doc-image">
-  <img src="/images/screen_5_ai_agent_canvas.png" alt="n8n AI Agent with DevDeskApp Security Hasher Tool" />
+  <img src="/images/fig-ai-agent-tool.png" alt="n8n AI Agent with a chat model and DevDeskApp nodes attached to the Tool port" />
 </div>
-<div class="doc-caption">Figure: n8n AI Agent routing verification requests to DevDeskApp Security Hasher Tool directly on canvas.</div>
+<div class="doc-caption">Figure 1: The agent receives a chat message, the model chooses a tool, and the DevDeskApp node returns an exact result.</div>
 
 ---
 
-## 🎯 3 Primary AI Agent Use Cases
+## 🎯 Use cases
 
-### 1. 🧮 Deterministic Financial Calculations (CTC & Indian Payroll)
-LLMs frequently hallucinate tax exemptions, basic salary percentages, and employer PF contributions. 
+### 1. 🧮 Salary questions (CTC to in-hand)
 
-- **How it works**: When a user prompts the AI Agent:  
-  `"Calculate the monthly take-home salary and employee PF for a ₹24,00,000 CTC under the New Tax Regime."`
-- **Agent Action**: Instead of calculating math internally, the AI Agent invokes the `devdeskapp.ctcCalculator` tool.
-- **Result**: Exactly **₹1,45,000** take-home and **₹12,000** PF returned deterministically in **0.18ms**.
+Prompt: *"What is the monthly take-home and employee PF for a ₹24,00,000 CTC?"*
+
+The agent calls the DevDeskApp tool set to **Calculator → CTC to In-Hand Salary** with `annualCtc = 2400000`, and the node returns:
 
 ```json
 {
-  "monthlyGross": 200000,
-  "basicMonthly": 100000,
-  "employeePf": 12000,
-  "employerPf": 12000,
-  "takeHomeInHand": 145000,
-  "professionalTax": 200,
-  "regime": "new"
+  "annualCtc": 2400000,
+  "monthlyGross": 198200,
+  "monthlyInHand": 163075,
+  "breakdown": {
+    "monthlyBasic": 100000,
+    "employeePf": 1800,
+    "employerPf": 1800,
+    "professionalTax": 200,
+    "estimatedMonthlyTds": 33125
+  },
+  "taxRegime": "India Standard / New Tax Benchmark",
+  "reference": "https://www.devdeskapp.com/ctc-to-in-hand-calculator"
 }
 ```
 
+The agent then answers with **₹1,63,075 in hand per month** and **₹1,800 employee PF**. PF is 12% of basic, capped at ₹1,800, and TDS uses the new-regime slabs with the ₹75,000 standard deduction. Treat the output as an estimate, not payroll advice. See the [Operations Reference](/n8n/operations#_4-hr-calculator-calculator) for the full formula.
+
+### 2. 🧹 Shrinking JSON before it reaches the model
+
+Put a DevDeskApp node set to **JSON → Minify** *before* the agent, as a normal step rather than a tool, and pass its `minified` output into the prompt. Removing whitespace from a pretty-printed payload usually cuts its size noticeably. The exact saving depends on how indented the input was.
+
+### 3. 🔐 Hashing identifiers
+
+Ask the agent to fingerprint a value, or hash IDs before the agent sees them. **Crypto → Hash** with `sha256` returns, for example:
+
+```json
+{ "algorithm": "sha256", "input": "devdeskapp", "hash": "3b7d21ca0cac379b91140262ad701f739f04f3dae19adf5ea04aa7e118fa50d3" }
+```
+
+The output echoes `input`. If the raw value is sensitive, remove `input` with a **Set** node before passing the result on.
+
 ---
 
-### 2. 🧹 Context Window Compression (JSON Cleaning)
-Enterprise webhooks from Stripe, Shopify, or Salesforce can easily reach 10,000+ characters of unformatted JSON, consuming valuable LLM context window tokens.
+## ⚙️ Setup in n8n
 
-- **How it works**: Before piping incoming webhooks into the AI Agent prompt, pass the payload through `devdeskapp.jsonPrettifier` (minify mode) or `devdeskapp.slugGenerator`.
-- **Result**: Strips unwanted whitespace, standardizes keys, and trims context tokens by **up to 60%**, significantly lowering LLM API bills.
+### Step 1: Add the agent and a chat model
+1. Add a **When chat message received** trigger and an **AI Agent** node.
+2. Connect a chat model (for example **OpenAI Chat Model**, **Anthropic Chat Model** or **Ollama Chat Model**) to the agent's **Chat Model** input.
 
----
+### Step 2: Attach DevDeskApp as a tool
+1. Click **+** on the agent's **Tool** input and search for **DevDeskApp**.
+2. Pick the **Resource** and **Operation**, for example **Calculator → CTC to In-Hand Salary**. Each tool node runs one operation, so add one node per tool you want to offer (CTC, Hash, Minify and so on).
+3. Give each tool a clear name and description, such as *"Calculates Indian monthly in-hand salary from annual CTC in rupees"*. The model uses this text to decide when to call it.
+4. For inputs the model should fill in, use `$fromAI()` in the parameter, for example **Annual CTC** = `{{ $fromAI('annualCtc', 'Annual CTC in rupees', 'number') }}`.
 
-### 3. 🔐 Zero-Leak Cryptographic Hashing (SHA-256)
-Protect sensitive corporate credentials before feeding context to third-party LLMs.
+::: tip Self-hosted n8n
+For community nodes to appear as agent tools on self-hosted n8n, set the environment variable `N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true` and restart n8n.
+:::
 
-- **How it works**: Hash passwords, API verification tokens, and user IDs locally into SHA-256 hexadecimal digests.
-- **Result**: The AI Agent only ever sees the tamper-proof cryptographic fingerprint, preventing credentials from entering external LLM training loops or server logs.
-
----
-
-## ⚙️ Step-by-Step Setup in n8n
-
-### Step 1: Add the AI Agent Node
-1. On your n8n workflow canvas, click **+** and add an **AI Agent** node.
-2. Set **Prompt Type** to `Define below` or connect a **When chat message received** trigger.
-
-### Step 2: Connect a Chat Model
-1. Connect an **OpenAI Chat Model** (GPT-4o / GPT-4o-mini), **Anthropic Chat Model** (Claude 3.5 Sonnet), or **Ollama** node to the `Chat Model` input port.
-
-### Step 3: Connect DevDeskApp as a Custom Tool
-1. From the node selector, search for **DevDeskApp**.
-2. Drag the output into the **Tool** input port of the AI Agent node.
-3. Select the desired operation:
-   - `Hash Generator` (SHA-256, SHA-512, MD5)
-   - `CTC Calculator` (Indian Payroll)
-   - `JSON Prettifier & Minifier`
-   - `Base64 Encoder / Decoder`
-4. Provide a descriptive Tool Name (e.g., `DevDeskApp_Payroll_Engine` or `DevDeskApp_Security_Hasher`).
-
-### Step 4: System Prompt Configuration
-Add the following instruction to your AI Agent's system prompt:
+### Step 3: System prompt
 
 ```markdown
-You have access to the DevDeskApp utility tool suite.
-Always use DevDeskApp tools for:
-- Calculating Indian payroll, salaries, PF, and tax breakdowns.
-- Generating SHA-256 or MD5 cryptographic hashes.
-- Formatting and validating JSON payloads.
-Do NOT attempt to guess financial formulas manually. Always invoke the corresponding DevDeskApp tool.
+You can call DevDeskApp tools.
+- For any salary, PF, professional tax or take-home question, call the CTC tool. Never calculate it yourself.
+- For hashes, Base64 or UUIDs, call the matching DevDeskApp tool and return its exact output.
+- Quote numbers exactly as the tool returns them.
 ```
 
 ---
 
-## 🤖 Supported AI Models & Frameworks
+## 🚀 Next steps
 
-| Provider | Models Supported | Integration Type | Latency |
-| :--- | :--- | :--- | :--- |
-| **OpenAI** | GPT-4o, GPT-4o-mini, GPT-4 Turbo | Function Calling / Tool Port | &lt; 0.2ms local |
-| **Anthropic** | Claude 3.5 Sonnet, Claude 3 Opus | Tool Calling | &lt; 0.2ms local |
-| **Google** | Gemini 1.5 Pro, Gemini 1.5 Flash | Tool Calling | &lt; 0.2ms local |
-| **Ollama** | Llama 3.1, Mistral, Qwen 2.5 | Local Agent Tools | &lt; 0.2ms local |
-| **LangChain** | All LangChain agents in n8n | Structured Tool Port | &lt; 0.2ms local |
-
----
-
-## 🚀 Next Steps
-
-- Explore all 10 native tools in the [Operations Reference](/n8n/operations).
-- Inspect local Node execution speed vs cloud APIs in [Enterprise Architecture](/solutions/).
-- Download the official pre-built workflow blueprint in [Workflow Templates](/n8n/workflow-templates).
+- See all 19 operations in the [Operations Reference](/n8n/operations).
+- Compare local and cloud execution in [Enterprise Architecture](/solutions/).
+- Start from a ready workflow in [Workflow Templates](/n8n/workflow-templates).

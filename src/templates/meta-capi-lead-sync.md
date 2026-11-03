@@ -1,130 +1,95 @@
 ---
 title: 'Template #21595: Meta CAPI Lead Hasher & Sync'
-description: 'n8n template #21595: normalize and SHA-256 hash marketing leads from Google Sheets for privacy-safe Meta Conversions API (CAPI) syncing with Slack alerts.'
+description: 'n8n template #21595: lowercase and SHA-256 hash lead emails with DevDeskApp, add a UUID event_id, send opted-in leads to the Meta Conversions API, log them to Google Sheets and alert Slack.'
 ---
 
 # 📊 Template #21595: Hash and Sync Leads to Meta CAPI with DevDeskApp, Google Sheets, and Slack
 
 <div style="margin: 1rem 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-  <span class="badge-live">Published on n8n.io Creator Portal</span>
-  <span class="badge-live" style="background: rgba(168, 85, 247, 0.12); color: #a855f7; border-color: rgba(168, 85, 247, 0.3);">Template ID: 21595</span>
+  <span class="badge-live">Published on n8n.io</span>
+  <span class="badge-live badge-purple">Template ID: 21595</span>
 </div>
 
-🔗 **Direct n8n Template Link:**  
-[https://n8n.io/workflows/21595-hash-and-sync-leads-to-meta-capi-with-devdeskapp-google-sheets-and-slack/)
+🔗 **Template on n8n.io:** [n8n.io/workflows/21595](https://n8n.io/workflows/21595-hash-and-sync-leads-to-meta-capi-with-devdeskapp-google-sheets-and-slack/)
 
 <div class="doc-image">
-  <img src="/images/screen_meta_capi_canvas.png" alt="Meta CAPI Sync Canvas" />
+  <img src="/images/fig-canvas-21595.png" alt="Template 21595 Meta CAPI lead sync workflow on the n8n canvas" />
 </div>
-<div class="doc-caption">Figure 1: Privacy-compliant Meta Conversions API (CAPI) lead hashing and syncing pipeline in n8n.</div>
+<div class="doc-caption">Figure 1: The template on the n8n canvas.</div>
 
 ---
 
-## 🎯 Overview & Use Cases
+## 🎯 Overview
 
-Privacy standards (GDPR, CCPA, Apple App Tracking Transparency) have made browser-side pixel tracking unreliable. Performance marketing teams rely heavily on server-side tracking via the **Meta Conversions API (CAPI)**.
+The Meta Conversions API (CAPI) expects customer identifiers such as email to be **normalised (trimmed, lowercased) and SHA-256 hashed** before you send them. It also uses an `event_id` to deduplicate server events against pixel events. This template:
 
-However, implementing Meta CAPI presents strict technical hurdles:
-1. **Mandatory SHA-256 PII Hashing:** Meta strictly rejects raw personal data. Emails and phone numbers must be trimmed, lowercased, and converted into lowercase hex **SHA-256** digests before transmission.
-2. **Event Deduplication:** Every conversion event requires a deterministic `event_id` (RFC 4122 UUID v4) shared between pixel and server events to prevent double counting.
-3. **Data Leakage Risks:** Using third-party hosted cloud hashing webhooks risks exposing unhashed customer personal identifiable information (PII).
+1. Trims and **lowercases** the lead email with DevDeskApp **Case Converter**.
+2. **Hashes** it with SHA-256 in the n8n process, so the raw email is never sent to Meta.
+3. Creates a **UUID v4 `event_id`** and a **campaign slug** such as `q4-enterprise-cloud-migration`.
+4. Checks opt-in with an **If** node, then posts the event to the **Meta Graph API** (`/v19.0/{pixel_id}/events`), saves the lead to **Google Sheets** and alerts **Slack**. Leads without opt-in are logged to Slack and not sent.
 
-**Template #21595** provides an end-to-end, zero-leak lead sync pipeline:
-- Ingests inbound leads from **Google Sheets**, Typeform, or landing page webhooks.
-- Performs timing-safe **SHA-256 hashing** on email addresses and phone numbers in local memory.
-- Injects unique **UUID v4 deduplication event tokens** and formats campaign attribution slugs.
-- Dispatches privacy-safe payloads to the **Meta Graph API** (`/v19.0/{pixel_id}/events`) and confirms sync status in **Slack**.
+Only the email is hashed. The phone number in the sample is not sent to Meta. If you need `ph`, add another hash node on the digits-only phone number.
 
----
-
-## 📸 Workflow Architecture
-
-### Pipeline Sequence
-
-```mermaid
-flowchart TD
-    subgraph TriggerStage ["📥 Stage 1: Lead Capture"]
-        GS["📊 Google Sheets / Inbound Webhook
-(Captures raw lead: First Name, Email, Phone, Campaign)"]
-    end
-
-    subgraph DevDeskStage ["🔒 Stage 2: Privacy Hashing & Token Engine (<0.2ms)"]
-        direction TB
-        N1["1️⃣ DevDeskApp SHA-256 Hasher
-Normalizes & hashes email: sha256(lowercase(trim(email)))"]
-        N2["2️⃣ DevDeskApp SHA-256 Hasher
-Normalizes & hashes phone: sha256(digitsOnly(phone))"]
-        N3["3️⃣ DevDeskApp UUID v4
-Generates unique Meta CAPI event_id for deduplication"]
-        N4["4️⃣ DevDeskApp Slugifier
-Normalizes campaign name into URL-safe campaign tag"]
-        N1 --> N2 --> N3 --> N4
-    end
-
-    subgraph MetaStage ["🌐 Stage 3: Meta Conversions API Dispatch"]
-        CAPI["📡 HTTP Request: Meta Graph API
-POST https://graph.facebook.com/v19.0/{pixel_id}/events
-(Zero PII Leakage — Only Hashes & Event IDs Transmitted)"]
-    end
-
-    subgraph AlertStage ["💬 Stage 4: Marketing Alert"]
-        Slack["💬 Slack Notification
-#growth-conversions (Lead Synced to Meta CAPI)"]
-    end
-
-    TriggerStage --> DevDeskStage
-    DevDeskStage --> MetaStage
-    MetaStage --> AlertStage
-```
+::: danger Known issue in the published version (checked 4 Nov 2026)
+As published, **every lead is sent with the same email hash**: `e3b0c442…b855`, the SHA-256 of an empty string. Meta cannot match these events. Fix two parameters after import:
+1. **DevDeskApp: Email Lowercase & Clean**: set **Target Case** to **Lowercase** (`lowerCase`). The published value `lower` is not a valid option, so the node returns an empty `result`.
+2. **DevDeskApp: SHA-256 Email Privacy Hasher**: set **Text/Payload** to `{{ $json.result }}`. The published `{{ $json.convertedText }}` refers to a field that does not exist.
+:::
 
 ---
 
-## ⚙️ Key Operations Used
+## 📸 Pipeline
 
-| Operation | DevDeskApp Function | Purpose |
+<div class="doc-image">
+  <img src="/images/fig-flow-21595.png" alt="Template 21595 pipeline: ingest, four DevDeskApp nodes, opt-in gate, Meta Graph API, Google Sheets and Slack" />
+</div>
+<div class="doc-caption">Figure 2: Node order and branches in the published template.</div>
+
+| Node | Resource · Operation | Purpose |
 | :--- | :--- | :--- |
-| **SHA-256 Digest** | `generateHash` | Hashes sensitive customer email and phone numbers per Meta's strict privacy specifications. |
-| **UUID v4** | `generateUuid` | Creates an RFC 4122 v4 unique `event_id` to ensure accurate conversion deduplication across ad accounts. |
-| **Slugifier** | `slugify` | Normalizes marketing campaign titles into standardized attribution tags. |
+| DevDeskApp: Email Lowercase & Clean | `text` · `caseConverter` (`lowerCase`) | Normalises `leadEmail.trim()` |
+| DevDeskApp: SHA-256 Email Privacy Hasher | `crypto` · `hash` (`sha256`) | `em` value for CAPI |
+| DevDeskApp: Event Deduplication UUID | `crypto` · `uuid` | `event_id` |
+| DevDeskApp: Campaign Tracking Slug | `text` · `slugify` | Campaign tag in `custom_data` |
+| If: Lead Has Opted-In & Verified Email | `if` | Only opted-in leads reach Meta |
+| Meta Graph API: Dispatch Server CAPI Event | HTTP Request | `POST https://graph.facebook.com/v19.0/YOUR_PIXEL_ID/events` |
 
 ---
 
-## ⚡ Execution Output Sample
+## ⚡ CAPI payload (with the fix above)
 
-### Meta CAPI Normalized Payload
+For the sample lead `user@example.com`, `Format Meta CAPI Payload` produces:
 
 ```json
 {
   "data": [
     {
       "event_name": "Lead",
-      "event_time": 1730680200,
-      "event_id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
-      "action_source": "system_generated",
+      "event_time": 1793735085,
+      "event_id": "b7014673-4581-44c0-b06f-be1822754c7a",
       "user_data": {
-        "em": [
-          "f660ab912ec121d1b1e928a0bb4bc61b15f5ad44d5efdc4e1c92a25e99b8e44a"
-        ],
-        "ph": [
-          "a0c598b9a2c38d7210e73686888ef39f993d04cfbdfd8a8b27dd333333e69efc"
-        ]
+        "em": ["b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514"]
       },
       "custom_data": {
-        "campaign_slug": "q4-enterprise-cloud-migration",
-        "currency": "USD",
-        "value": 150.00
-      }
+        "currency": "INR",
+        "value": 50000,
+        "campaign": "q4-enterprise-cloud-migration"
+      },
+      "action_source": "system_generated"
     }
   ]
 }
 ```
 
+`b4c9a289…5514` is the SHA-256 of `user@example.com`. `event_id` and `event_time` change on every run.
+
 ---
 
-## 📥 How to Import into Your n8n Instance
+## 📥 Import it
 
-1. Open the [n8n Creator Portal page](https://n8n.io/workflows/21595-hash-and-sync-leads-to-meta-capi-with-devdeskapp-google-sheets-and-slack/) and copy the template JSON or click **"Use workflow"**.
-2. In your n8n workspace, navigate to **Workflows → New Workflow**.
-3. Press **`Ctrl + V`** (or **`Cmd + V`** on macOS) to paste the blueprint.
-4. Add your **Meta Pixel ID**, **System User Access Token**, and **Google Sheets** credentials.
-5. Save and activate the workflow for instant, zero-leak conversion tracking!
+1. Make sure `n8n-nodes-devdeskapp` is installed ([installation guide](/n8n/installation)).
+2. Open the [template on n8n.io](https://n8n.io/workflows/21595-hash-and-sync-leads-to-meta-capi-with-devdeskapp-google-sheets-and-slack/) and click **Use for free**, or copy the workflow JSON.
+3. Paste it onto a new workflow canvas with **`Ctrl + V`** (**`Cmd + V`** on macOS).
+4. Apply the two fixes from the known-issue box.
+5. Replace `YOUR_PIXEL_ID`, add your Meta access token, and connect **Google Sheets** and **Slack** credentials.
+6. Click **Test workflow** and check the event in Meta Events Manager → **Test events**.

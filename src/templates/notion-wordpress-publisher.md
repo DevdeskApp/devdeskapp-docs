@@ -1,118 +1,83 @@
 ---
 title: 'Template #21596: Notion to WordPress SEO Publisher'
-description: 'n8n template #21596: automate SEO blog publishing from Notion to WordPress with slugification, content integrity digests, and Slack notifications.'
+description: 'n8n template #21596: build clean SEO slugs with DevDeskApp, fingerprint article content with SHA-256, add a UUID trace ID and publish approved Notion posts to WordPress with Slack alerts.'
 ---
 
 # 📝 Template #21596: Publish SEO-Safe Notion Blog Posts to WordPress with DevDeskApp and Slack
 
 <div style="margin: 1rem 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-  <span class="badge-live">Published on n8n.io Creator Portal</span>
-  <span class="badge-live" style="background: rgba(236, 72, 153, 0.12); color: #ec4899; border-color: rgba(236, 72, 153, 0.3);">Template ID: 21596</span>
+  <span class="badge-live">Published on n8n.io</span>
+  <span class="badge-live badge-pink">Template ID: 21596</span>
 </div>
 
-🔗 **Direct n8n Template Link:**  
-[https://n8n.io/workflows/21596-publish-seo-safe-notion-blog-posts-to-wordpress-with-devdeskapp-and-slack/)
+🔗 **Template on n8n.io:** [n8n.io/workflows/21596](https://n8n.io/workflows/21596-publish-seo-safe-notion-blog-posts-to-wordpress-with-devdeskapp-and-slack/)
 
 <div class="doc-image">
-  <img src="/images/screen_notion_wp_canvas.png" alt="Notion to WordPress Canvas" />
+  <img src="/images/fig-canvas-21596.png" alt="Template 21596 Notion to WordPress workflow on the n8n canvas" />
 </div>
-<div class="doc-caption">Figure 1: Automated Notion to WordPress SEO publishing pipeline with DevDeskApp and Slack.</div>
+<div class="doc-caption">Figure 1: The template on the n8n canvas.</div>
 
 ---
 
-## 🎯 Overview & Use Cases
+## 🎯 Overview
 
-Modern content marketing teams write articles and manage editorial calendars in **Notion**, but publish production blogs to **WordPress**. Manual copy-pasting introduces several SEO and operational defects:
+Content teams write in Notion and publish on WordPress. Copying by hand produces messy permalinks and no record of which version went live. This template:
 
-1. **Broken or Ugly URL Slugs:** Editorial titles like *"Top 10 High-Growth AI Automation Trends in 2026! (Complete Guide)"* often result in cluttered URLs with special characters and uppercase letters, damaging search rankings.
-2. **Plagiarism & Content Drift:** Without deterministic cryptographic hashes, verifying if an article has been updated or tampered with between drafting and live deployment is difficult.
-3. **Taxonomy & Metadata Formatting Errors:** Unformatted tag and category JSON arrays fail WordPress REST API validation.
+1. Turns the article title into a **clean SEO slug** with DevDeskApp **Slugify String**. For example, *"Top 10 High-Throughput Microservice Architecture Patterns in 2027"* becomes `top-10-high-throughput-microservice-architecture-patterns-in-2027`.
+2. Computes a **SHA-256 fingerprint** of the article HTML, so you can tell whether the content changed between versions.
+3. Adds a **UUID v4 publication ID** to the JSON-LD and audit data.
+4. Checks the editorial status with an **If** node, then creates or updates the post through the **WordPress** node and announces it on **Slack**. Drafts trigger an editorial warning instead.
 
-**Template #21596** automates the entire editorial-to-production lifecycle:
-- Triggers when an article status changes to **"Ready to Publish"** in Notion.
-- Uses **DevDeskApp Slugifier** to generate canonical, clean, keyword-rich SEO permalinks.
-- Computes **SHA-256 content verification hashes** to establish an immutable audit digest.
-- Injects a **UUID v4 publishing trace ID** and formats taxonomy metadata with the **JSON Prettifier**.
-- Creates or updates the post via the **WordPress REST API** and pings your marketing channel on **Slack** with the live article link.
-
----
-
-## 📸 Workflow Architecture
-
-### Pipeline Sequence
-
-```mermaid
-flowchart TD
-    subgraph TriggerStage ["📝 Stage 1: Editorial Approval"]
-        Notion["📚 Notion Trigger
-Filter: Status == 'Ready to Publish' (Article Body, Title, Tags)"]
-    end
-
-    subgraph DevDeskStage ["🚀 Stage 2: SEO & Integrity Pipeline (<0.2ms)"]
-        direction TB
-        N1["1️⃣ DevDeskApp Slugifier
-Converts raw title into clean SEO URL slug (e.g. top-10-ai-trends-2026)"]
-        N2["2️⃣ DevDeskApp SHA-256
-Generates content revision digest for tamper verification"]
-        N3["3️⃣ DevDeskApp UUID v4
-Creates unique editorial trace & deployment token"]
-        N4["4️⃣ DevDeskApp JSON Prettifier
-Normalizes post metadata, categories, and custom fields"]
-        N1 --> N2 --> N3 --> N4
-    end
-
-    subgraph PublishStage ["🌐 Stage 3: WordPress Deployment"]
-        WP["📰 WordPress REST API
-POST /wp-json/wp/v2/posts
-(Title, Content, Clean Slug, Categories, Status: 'publish')"]
-    end
-
-    subgraph NotificationStage ["💬 Stage 4: Team Notification"]
-        Slack["💬 Slack Announcement
-#content-marketing (Article Live on Production with URL)"]
-    end
-
-    TriggerStage --> DevDeskStage
-    DevDeskStage --> PublishStage
-    PublishStage --> NotificationStage
-```
+::: danger Known issue in the published version (checked 4 Nov 2026)
+Running the published template end to end shows two problems:
+1. **The content hash covers an empty string.** `Content Fingerprint Hasher` reads `{{ $json.rawHtmlContent }}`, but its input is the slug node's output. Use `{{ $('Sample Notion Article Draft').item.json.rawHtmlContent }}`, or your Notion trigger node's name.
+2. **The post title is empty.** `Meta Title Casing Formatter` uses Target Case `title`, which the node does not support (it returns an empty `result`), and the WordPress code reads `titleData.convertedText`, which does not exist. Either delete that node and use `article.articleTitle` in `Format WordPress Post Payload`, or pick a supported case and read `titleData.result`.
+:::
 
 ---
 
-## ⚙️ Key Operations Used
+## 📸 Pipeline
 
-| Operation | DevDeskApp Function | Purpose |
+<div class="doc-image">
+  <img src="/images/fig-flow-21596.png" alt="Template 21596 pipeline: ingest, four DevDeskApp nodes, approval gate, WordPress and Slack" />
+</div>
+<div class="doc-caption">Figure 2: Node order and branches in the published template.</div>
+
+| Node | Resource · Operation | Purpose |
 | :--- | :--- | :--- |
-| **Slugifier** | `slugify` | Generates lowercased, hyphen-separated canonical SEO permalinks stripped of special characters. |
-| **SHA-256 Digest** | `generateHash` | Creates an immutable cryptographic hash of the article body to detect content drift across revisions. |
-| **UUID v4** | `generateUuid` | Injects an RFC 4122 v4 unique deployment token for cross-platform audit logs. |
-| **JSON Prettifier** | `formatJson` | Validates and prettifies metadata, schema tags, and WordPress custom field payloads. |
+| DevDeskApp: URL Slug Normalizer | `text` · `slugify` | WordPress `slug` |
+| DevDeskApp: Content Fingerprint Hasher | `crypto` · `hash` (`sha256`) | Version digest of the article HTML |
+| DevDeskApp: Publication Trace UUID | `crypto` · `uuid` | Publication ID in JSON-LD and audit data |
+| DevDeskApp: Meta Title Casing Formatter | `text` · `caseConverter` | See the known issue. There is no Title Case option. |
+| If: Article Approved & Ready for Publication | `if` | Publishes approved posts only |
+| WordPress: Create / Update Blog Post | WordPress node | Creates the post with title, slug, content and categories |
 
 ---
 
-## ⚡ Execution Result Sample
-
-### Sample Published Payload
+## ⚡ WordPress payload (with the fixes above)
 
 ```json
 {
-  "postId": 4821,
-  "publicationToken": "7b2e3f41-a189-4d62-8173-90d5bc84112e",
-  "contentDigestSha256": "3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d",
-  "seoPermalink": "https://blog.devdeskapp.com/top-10-ai-trends-2026",
-  "slug": "top-10-ai-trends-2026",
-  "title": "Top 10 High-Growth AI Automation Trends in 2026",
-  "status": "PUBLISHED_LIVE",
-  "notionPageId": "d98124b1-8729-411a-8219-98012bb14781"
+  "title": "Top 10 High-Throughput Microservice Architecture Patterns in 2027",
+  "slug": "top-10-high-throughput-microservice-architecture-patterns-in-2027",
+  "status": "publish",
+  "categories": ["Software Engineering"],
+  "audit": {
+    "publicationId": "a7c1f0f2-1b0e-4a55-9b52-5c0c1d6f8e21",
+    "contentSha256": "f27253646187f9d5f7aa44e397fee49df53d0001946d6b729b476911e0a03f0a",
+    "permalink": "https://myblog.com/posts/top-10-high-throughput-microservice-architecture-patterns-in-2027"
+  }
 }
 ```
 
+`contentSha256` is the SHA-256 of the sample article's HTML. `publicationId` changes on every run.
+
 ---
 
-## 📥 How to Import into Your n8n Instance
+## 📥 Import it
 
-1. Open the [n8n Creator Portal page](https://n8n.io/workflows/21596-publish-seo-safe-notion-blog-posts-to-wordpress-with-devdeskapp-and-slack/) and copy the template JSON or click **"Use workflow"**.
-2. In your n8n workspace, navigate to **Workflows → New Workflow**.
-3. Press **`Ctrl + V`** (or **`Cmd + V`** on macOS) inside the workflow canvas.
-4. Add your **Notion**, **WordPress (Application Password)**, and **Slack** credentials.
-5. Save and execute to publish articles automatically from your Notion database!
+1. Make sure `n8n-nodes-devdeskapp` is installed ([installation guide](/n8n/installation)).
+2. Open the [template on n8n.io](https://n8n.io/workflows/21596-publish-seo-safe-notion-blog-posts-to-wordpress-with-devdeskapp-and-slack/) and click **Use for free**, or copy the workflow JSON.
+3. Paste it onto a new workflow canvas with **`Ctrl + V`** (**`Cmd + V`** on macOS).
+4. Apply the fixes from the known-issue box.
+5. Connect **Notion**, **WordPress** (application password) and **Slack** credentials, then click **Test workflow**.
