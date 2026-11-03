@@ -20,11 +20,11 @@ description: 'Documentation for DevDeskApp and the n8n-nodes-devdeskapp communit
     </div>
     <h3 class="template-card-title">Format JSON &amp; Secure HR Payloads with DevDeskApp</h3>
     <p class="template-card-desc">
-      Official workflow blueprint is live on n8n.io. Import it with 1 click directly into your n8n workspace with zero configuration needed.
+      The official template is live on n8n.io. Click Use for free to open it in your n8n workspace. It needs no credentials.
     </p>
   </div>
   <a
-    href="https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities"
+    href="https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/"
     target="_blank"
     rel="noopener"
     class="template-card-cta"
@@ -34,7 +34,7 @@ description: 'Documentation for DevDeskApp and the n8n-nodes-devdeskapp communit
   </a>
 </div>
 
-## 🎯 Zero-Latency Architecture Pipeline
+## 🎯 How it fits in a workflow
 
 <div class="pipeline-flow">
   <div class="pipeline-step">
@@ -44,7 +44,7 @@ description: 'Documentation for DevDeskApp and the n8n-nodes-devdeskapp communit
   </div>
   <div class="pipeline-arrow">&rarr;</div>
   <div class="pipeline-step active-node">
-    <span class="step-badge">0ms In-Memory</span>
+    <span class="step-badge">In-process</span>
     <span class="step-title">⚡ DevDeskApp Node</span>
     <span class="step-desc">JSON • Crypto • CTC • Slug</span>
   </div>
@@ -66,17 +66,17 @@ description: 'Documentation for DevDeskApp and the n8n-nodes-devdeskapp communit
 
 ## 📸 Visual Workflow Execution
 
-DevDeskApp allows developers, DevOps engineers, and HR automation teams to chain data cleaning and computation directly on the canvas without external API overhead:
+Chain data cleaning and computation directly on the n8n canvas, with no external API calls:
 
 <div class="doc-image">
-  <img src="/images/screen_2_workflow_canvas.png" alt="DevDeskApp Workflow Canvas" />
+  <img src="/images/fig-canvas-21017.png" alt="Template 21017 developer suite workflow on the n8n canvas" />
 </div>
-<div class="doc-caption">Figure 1: Full DevDeskApp Developer Suite chained on n8n visual automation canvas.</div>
+<div class="doc-caption">Figure 1: The Developer Suite template (#21017) on the n8n canvas.</div>
 
 <div class="doc-image">
-  <img src="/images/screen_4_workflow_executed.png" alt="DevDeskApp Workflow Execution Result" />
+  <img src="/images/fig-suite-executed.png" alt="Template 21017 after a successful run, every node marked green" />
 </div>
-<div class="doc-caption">Figure 2: Sub-millisecond execution with green success badges and unified output data structure.</div>
+<div class="doc-caption">Figure 2: After Test workflow, every node shows a green success mark and the final node returns one combined result.</div>
 
 ---
 

@@ -1,41 +1,52 @@
 # DevDeskApp Documentation
 
-> Official developer documentation for DevDeskApp, 350+ client-side utilities, and the `n8n-nodes-devdeskapp` community node.
-> Full comprehensive context: https://docs.devdeskapp.com/llms-full.txt
+> Official documentation for DevDeskApp (340+ browser-based developer tools at https://www.devdeskapp.com) and the `n8n-nodes-devdeskapp` n8n community node.
+> Full context: https://docs.devdeskapp.com/llms-full.txt
 
-DevDeskApp provides sub-millisecond, in-memory execution of developer utilities, formatters, and financial calculation engines directly inside n8n workflows and AI Agent function calling pipelines with zero external cloud API data leaks.
+`n8n-nodes-devdeskapp` (v0.1.6, MIT) adds one node, DevDeskApp, with 19 operations in 5 resources. Operations run synchronously inside the n8n process with no external API calls and need no credentials. The node declares `usableAsTool: true`, so it can be attached to an n8n AI Agent's Tool port.
 
-## Core Capabilities
-- **350+ Client-Side Tools**: Online developer utilities running entirely in the browser at https://www.devdeskapp.com.
-- **n8n Community Node**: Published on NPM as `n8n-nodes-devdeskapp` (v0.1.4+).
-- **Official n8n Workflow Templates**:
-  - Template #21017 on n8n.io ("Format JSON & Secure HR Payloads with DevDeskApp").
-  - Template #21130 on n8n.io ("Automate Salary & In-Hand CTC Calculations with DevDeskApp").
-- **AI Agent Function Calling**: Zero-latency deterministic tools for OpenAI, Anthropic Claude, Google Gemini, and Ollama inside n8n.
-- **Zero-Latency In-Memory Execution**: Operations execute in < 0.2ms using local Node.js CPU cycles.
-- **Privacy-First Zero Cloud Leak**: Payloads never leave local host memory.
+## Core facts
+- Web app: 340+ tools that process input in the browser.
+- n8n node: 19 operations (JSON, Crypto, Text, Calculator, E-commerce). Each output item keeps `pairedItem`. Errors throw `NodeOperationError`, or return `{ "error": "..." }` when the node's On Error setting continues.
+- Measured node logic for 10,000 items: CTC 12.6 ms, JSON prettify 22.6 ms, slugify 40.7 ms, SHA-256 46.5 ms.
+- 7 templates published on n8n.io: #21017, #21130, #21376, #21593, #21594, #21595, #21596. #21593 to #21596 need a small fix after import, documented on each template page.
 
-## Documentation Index
-- [Getting Started](https://docs.devdeskapp.com/n8n/): Architecture overview, benefits, and execution model.
-- [Installation Guide](https://docs.devdeskapp.com/n8n/installation): Setup via n8n Community Nodes UI, Docker, or npm.
-- [Operations Reference](https://docs.devdeskapp.com/n8n/operations): Schema specifications for all 10 native operations.
-- [Workflow Templates Hub](https://docs.devdeskapp.com/templates/): All verified blueprints and catalog.
-- [Template #21017: Developer Suite](https://docs.devdeskapp.com/templates/developer-suite): JSON prettification, SHA-256, UUID, and slug generation.
-- [Template #21130: CTC Salary Engine](https://docs.devdeskapp.com/templates/ctc-salary-engine): Indian payroll statutory calculation and net take-home salary.
-- [How to Import Templates](https://docs.devdeskapp.com/templates/how-to-import): 1-click clipboard paste guide into n8n canvas.
-- [AI Agents & LLM Function Calling](https://docs.devdeskapp.com/solutions/ai-agents): Connecting DevDeskApp to n8n AI Agents and LangChain models.
-- [Enterprise Architecture](https://docs.devdeskapp.com/solutions/): Performance benchmarks comparing in-memory Node vs external REST APIs.
-- [Production Best Practices](https://docs.devdeskapp.com/solutions/best-practices): Concurrency limits, memory management, and error handling.
-- [Platform Architecture](https://docs.devdeskapp.com/about/architecture): Zero-leak security guarantee and cryptographic guarantees.
+## Documentation index
+- [Getting Started](https://docs.devdeskapp.com/n8n/): What the node does and when to use it.
+- [Installation Guide](https://docs.devdeskapp.com/n8n/installation): Community Nodes UI, Docker and manual npm install.
+- [Operations Reference](https://docs.devdeskapp.com/n8n/operations): Parameters, output fields and real outputs for all 19 operations.
+- [Workflow Templates](https://docs.devdeskapp.com/n8n/workflow-templates): Overview of the 7 published templates.
+- [Templates Hub](https://docs.devdeskapp.com/templates/): Catalog with one page per template.
+- [Template #21017: Developer Suite](https://docs.devdeskapp.com/templates/developer-suite): prettify, SHA-256, UUID, slugify and CTC in one chain.
+- [Template #21130: CTC Salary Engine](https://docs.devdeskapp.com/templates/ctc-salary-engine): Annual CTC to monthly in-hand breakdown.
+- [Template #21376: Payment Webhook Sanitizer](https://docs.devdeskapp.com/templates/payment-webhook-sanitizer): Format, checksum and trace payment webhooks with Slack alerts.
+- [Template #21593: AI LLM JSON Ingestion](https://docs.devdeskapp.com/templates/ai-llm-postgres-ingest): Strip markdown fences, format, hash and insert LLM JSON into PostgreSQL.
+- [Template #21594: CTC Offer Letter Generator](https://docs.devdeskapp.com/templates/offer-letter-generator): Salary breakdown into Google Docs, Gmail and Slack.
+- [Template #21595: Meta CAPI Lead Sync](https://docs.devdeskapp.com/templates/meta-capi-lead-sync): Lowercase and SHA-256 hash lead emails for the Meta Conversions API.
+- [Template #21596: Notion to WordPress Publisher](https://docs.devdeskapp.com/templates/notion-wordpress-publisher): SEO slug, content hash and WordPress publishing.
+- [How to Import Templates](https://docs.devdeskapp.com/templates/how-to-import): Copy a template and paste it onto the n8n canvas.
+- [AI Agents & LLM Function Calling](https://docs.devdeskapp.com/solutions/ai-agents): Using the node as an AI Agent tool.
+- [Local Node vs Cloud APIs](https://docs.devdeskapp.com/solutions/): Measured timings and trade-offs.
+- [Production Best Practices](https://docs.devdeskapp.com/solutions/best-practices): Paired items, error handling, batches and hashing.
+- [Architecture & Privacy](https://docs.devdeskapp.com/about/architecture): How the web app and the node handle data.
 
-## Operations Summary
-1. `jsonPrettifier`: Minify or format JSON with customizable indentation.
-2. `hashGenerator`: Compute SHA-256, SHA-512, MD5, and SHA-1 cryptographic digests.
-3. `ctcCalculator`: Indian payroll engine calculating basic, HRA, PF, and net take-home salary.
-4. `slugGenerator`: SEO-friendly URL slug generator with multi-language transliteration.
-5. `base64Converter`: Encode and decode UTF-8 strings to Base64.
-6. `urlEncoder`: Percent-encode or decode query parameters safely.
-7. `uuidGenerator`: Generate RFC4122 Version 4 UUIDs.
-8. `caseConverter`: Convert strings to camelCase, snake_case, kebab-case, and PascalCase.
-9. `markdownToHtml`: Render Markdown to sanitized HTML.
-10. `jwtDecoder`: Decode and inspect JWT headers and claims without signature verification.
+## Operations summary (resource.operation)
+1. `json.prettify`: Format JSON with 2 spaces, 4 spaces or tabs. Output `formatted`.
+2. `json.minify`: Remove whitespace. Output `minified`.
+3. `json.validate`: Check JSON without throwing. Output `valid`, plus `parsed` or `error`.
+4. `crypto.hash`: md5, sha1, sha256 or sha512 hex digest. Output `algorithm`, `input`, `hash`.
+5. `crypto.base64Encode`: UTF-8 text to Base64. Output `encoded`.
+6. `crypto.base64Decode`: Base64 to UTF-8 text. Output `decoded`.
+7. `crypto.uuid`: Random UUID v4. Output `uuid`, `version`.
+8. `text.slugify`: URL slug. Output `slug`.
+9. `text.caseConverter`: camelCase, kebabCase, lowerCase, pascalCase, snakeCase or upperCase. Output `original`, `casing`, `result`.
+10. `text.urlEncode`: Percent-encode text. Output `encoded`.
+11. `text.urlDecode`: Decode percent-encoding. Output `decoded`.
+12. `calculator.ctcToInHand`: Indian annual CTC to monthly gross, basic, PF (12% of basic, capped at ₹1,800), PT ₹200, new-regime TDS estimate and in-hand pay.
+13. `ecommerce.catalogMapper`: Map product catalogs between Shopify, WooCommerce and Google Merchant Center.
+14. `ecommerce.upiQr`: Build a UPI payment URI and QR payload.
+15. `ecommerce.gstJsonToTable`: Flatten GSTR-1, GSTR-3B or GSTR-2B JSON into rows.
+16. `ecommerce.profitCalculator`: Profit margin and ROAS after fees, shipping, ads and RTO.
+17. `ecommerce.shippingLabelCrop`: Crop coordinates for carrier shipping labels.
+18. `ecommerce.webhookVerifier`: Verify Razorpay, Shopify, Stripe or custom HMAC-SHA256 webhook signatures.
+19. `ecommerce.whatsappPayload`: Build WhatsApp interactive message payloads.

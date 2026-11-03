@@ -1,84 +1,91 @@
 ---
 title: 'Production Best Practices'
-description: 'Best practices for running n8n-nodes-devdeskapp in production: error handling, input validation, secrets, versioning and monitoring workflows.'
+description: 'Best practices for running n8n-nodes-devdeskapp in production: paired items, error handling with On Error, batch sizes, AI agent tools and safe hashing.'
 ---
 # Production Best Practices
 
-Implementing automated workflows in production requires attention to data integrity, error boundaries, and throughput optimization. This guide outlines recommended practices when deploying `n8n-nodes-devdeskapp` at scale.
+These practices help you run `n8n-nodes-devdeskapp` reliably in production workflows.
 
 ---
 
-## 1. Preserving Data Lineage with pairedItem
+## 1. Reaching earlier data with paired items
 
-In n8n, data flows through nodes as arrays of items. When downstream nodes query prior inputs using `$item(0)`, n8n relies on **pairedItem metadata** to trace which input item produced which output item.
-
-`n8n-nodes-devdeskapp` strictly attaches pairedItem indices:
+n8n passes data between nodes as a list of items. Every item the DevDeskApp node returns carries **`pairedItem`** metadata that points back to the input item it came from:
 
 ```typescript
-// Internal node execution pattern:
+// Inside the node, for every input item i:
 returnData.push({
   json: result,
-  pairedItem: { item: i }
+  pairedItem: { item: i },
 });
 ```
 
-### Best Practice
-When chaining multiple transformations (e.g. Ingest -> DevDeskApp Slug -> DevDeskApp Hash -> Postgres Upsert), you can safely access original webhook inputs downstream using:
+### Best practice
+`$json` and `$input.item.json` only show the **previous** node's output. After a DevDeskApp node, that is the node's result (for example `{ "hash": "…" }`), not your original fields. To read a field from an earlier node, reference that node by name. n8n follows `pairedItem` back to the matching item:
+
 ```javascript
-// In downstream expressions:
-$input.item.json.candidateName
+// In a later expression or Code node (Run Once for Each Item):
+$('Webhook').item.json.body.candidateName
 ```
-n8n will always map back to the correct source item even if previous steps filtered or modified elements.
+
+This works through a chain such as *Webhook → DevDeskApp Slugify → DevDeskApp Hash → Postgres*, because each DevDeskApp node keeps the pairing.
 
 ---
 
-## 2. Robust Error Handling
+## 2. Error handling
 
-In standard mode, if an unexpected input is received (e.g. invalid Base64 string), `n8n-nodes-devdeskapp` throws an item-linked `NodeOperationError`:
+If an item cannot be processed (for example invalid JSON in **Prettify**), the node throws a `NodeOperationError` linked to that item, and the execution stops:
 
 ```typescript
 throw new NodeOperationError(this.getNode(), error, { itemIndex: i });
 ```
 
-### Production Recommendation
-If your pipeline handles bulk incoming batches from third parties where isolated records might be malformed:
-1. Open the node settings tab (cog icon).
-2. Enable **Continue On Fail**.
-3. When enabled, failed items output an error structure rather than aborting the entire workflow execution.
-4. Add an **If** or **Switch** node downstream to route failed records into a Dead Letter Queue (DLQ) or Slack alert channel.
+### Production recommendation
+For batches from third parties where a few records may be malformed:
+
+1. Open the DevDeskApp node and go to **Settings**.
+2. Set **On Error** to **Continue** or **Continue (using error output)**.
+3. Failed items are returned as `{ "error": "<message>" }` with the same `pairedItem`, and the remaining items keep going.
+4. With **Continue (using error output)**, connect the node's error output to a Slack alert or a dead-letter table. With **Continue**, add an **If** node that checks whether `error` exists.
+
+::: tip Use Validate when failures are expected
+**JSON → Validate** never throws. It returns `valid: true/false` plus `error`, so you can branch on bad input without changing the error setting.
+:::
 
 ---
 
-## 3. High-Throughput Batch Processing
+## 3. Batch processing
 
-Because `n8n-nodes-devdeskapp` runs synchronous in-memory logic:
-- **Avoid SplitInBatches where possible**: You do not need to split inputs into batches of 10 or 50 to prevent rate-limiting or socket exhaustion. The node can process arrays of 10,000 items in a single execution tick.
-- **Memory Consumption**: Processing 50,000 items in a single pass consumes minimal V8 heap. After execution, transient string allocations are automatically collected during normal Node.js garbage collection cycles.
+The node's operations are synchronous and run in the n8n process with no network calls:
+
+- **No rate limits.** You do not need **Loop Over Items** to avoid throttling. In a local benchmark, 10,000 items took about 13 ms for CTC, 23 ms for Prettify, 41 ms for Slugify and 46 ms for SHA-256 (node logic only, excluding n8n overhead).
+- **Memory comes from your data.** Memory use grows with the size of the items you pass in. For very large or deeply nested payloads, split the input first so a single execution does not hold everything at once.
 
 ---
 
-## 4. Leveraging usableAsTool with AI Agents
+## 4. Using the node as an AI Agent tool
 
-`n8n-nodes-devdeskapp` specifies `usableAsTool: true` in its node description. This allows the node to be attached as a **Tool** to n8n AI Agent nodes (OpenAI, Anthropic, or Local Ollama models).
+The node declares `usableAsTool: true`, so it can be attached to an n8n **AI Agent** as a tool.
 
-### Setup Steps
-1. Add an **AI Agent** node to your canvas.
-2. Under the **Tools** input of the AI Agent node, connect the **DevDeskApp** node.
-3. Select the required resource (e.g. `HR & Calculator` or `Crypto & Hash`).
-4. In the AI Agent prompt, instruct the agent:
-   > "When a user asks for salary breakdown or take-home pay, call the DevDeskApp In-Hand Salary tool with their CTC."
-5. The LLM will parse parameters from chat and invoke the deterministic calculator without hallucinations.
+### Setup steps
+1. Add an **AI Agent** node and connect a chat model.
+2. Click **+** on the agent's **Tool** input and add **DevDeskApp**.
+3. Choose one resource and operation per tool node, for example **Calculator → CTC to In-Hand Salary** or **Crypto → Hash**.
+4. Fill model-supplied inputs with `$fromAI()`, for example `{{ $fromAI('annualCtc', 'Annual CTC in rupees', 'number') }}`.
+5. Tell the agent in its system prompt to call the tool for salary or hash questions instead of calculating.
+
+On self-hosted n8n, set `N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true` so community nodes can be used as tools.
 
 <div class="doc-image">
-  <img src="/images/screen_5_ai_agent_canvas.png" alt="DevDeskApp AI Agent Tool Canvas" />
+  <img src="/images/fig-ai-agent-tool.png" alt="n8n AI Agent with DevDeskApp nodes attached to the Tool port" />
 </div>
-<div class="doc-caption">Figure 1: DevDeskApp wired as an autonomous tool into an n8n AI Agent.</div>
+<div class="doc-caption">Figure 1: DevDeskApp nodes attached to an AI Agent's Tool port. More in <a href="/solutions/ai-agents">AI Agents & LLMs</a>.</div>
 
 ---
 
-## 5. Security & Secret Protection
+## 5. Hashing and secrets
 
-When hashing or encoding sensitive tokens:
-- Use **SHA-256** or **SHA-512** for signatures and integrity checks.
-- Reserve **MD5** strictly for legacy non-security hashes (such as Gravatar email lookups).
-- DevDeskApp does not log strings to disk or external monitoring platforms. Workflows running inside air-gapped environments remain completely isolated.
+- Use **SHA-256** or **SHA-512** for integrity checks and fingerprints. Reserve **MD5** and **SHA-1** for legacy lookups such as Gravatar.
+- A plain hash is **not** a signature. To verify Razorpay, Shopify or Stripe webhooks, use **E-Commerce & FinTech → Webhook Signature Verifier**, which checks the provider's HMAC-SHA256 signature with your shared secret. Store that secret in a credential or environment variable, not in the workflow JSON.
+- The **Hash** output includes the original `input`. Drop it with a **Set** node if the raw value must not travel further.
+- The node makes no network calls and writes nothing to disk. n8n itself stores execution data, including inputs and outputs, according to your **execution saving** settings, so turn those down for workflows that handle secrets.
