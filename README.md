@@ -1,13 +1,13 @@
 # 📖 DevDeskApp Documentation Portal
 
-> Official documentation for the **DevDeskApp** platform, 350+ developer utilities, and the **`n8n-nodes-devdeskapp`** community node.
+> Official documentation for the **DevDeskApp** platform (340+ browser-based developer tools) and the **`n8n-nodes-devdeskapp`** community node.
 
 <div align="center">
 
 [![Live Documentation](https://img.shields.io/badge/docs-docs.devdeskapp.com-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://docs.devdeskapp.com)
 [![NPM Package](https://img.shields.io/npm/v/n8n-nodes-devdeskapp?color=ea4b71&style=for-the-badge&logo=npm)](https://www.npmjs.com/package/n8n-nodes-devdeskapp)
-[![n8n Template #21017](https://img.shields.io/badge/n8n.io-Template_%2321017-10b981?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
-[![n8n Template #21130](https://img.shields.io/badge/n8n.io-Template_%2321130-3b82f6?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)
+[![n8n Template #21017](https://img.shields.io/badge/n8n.io-Template_%2321017-10b981?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/)
+[![n8n Template #21130](https://img.shields.io/badge/n8n.io-Template_%2321130-3b82f6?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
 </div>
@@ -16,98 +16,105 @@
 
 ## 🌟 What is DevDeskApp?
 
-DevDeskApp is a modern, privacy-first developer ecosystem designed to eliminate sensitive data leaks:
-
-1. **[DevDeskApp Web](https://www.devdeskapp.com/)**: Over 350+ browser-based utilities (JSON formatters, regex testers, cryptography tools, and CTC calculators) operating 100% client-side with zero external server tracking.
-2. **[`n8n-nodes-devdeskapp`](https://www.npmjs.com/package/n8n-nodes-devdeskapp)**: Official n8n community node providing deterministic, in-memory execution in **< 0.2ms** with **zero cloud API exfiltration**.
-3. **AI Agent Tool Calling**: Deterministic local function calling tools for LangChain, OpenAI, Google Gemini, Anthropic Claude, and Ollama agents inside n8n workflows.
+1. **[DevDeskApp Web](https://www.devdeskapp.com/)**: 340+ browser-based tools (JSON formatters, hash generators, encoders, CTC and HR calculators) that process your input in the browser.
+2. **[`n8n-nodes-devdeskapp`](https://www.npmjs.com/package/n8n-nodes-devdeskapp)**: an n8n community node with 19 operations that run inside your n8n process with no external API calls.
+3. **AI Agent tools**: the node declares `usableAsTool: true`, so n8n AI Agents can call it for exact salary maths, hashes and JSON formatting.
 
 ---
 
-## 📑 Documentation Structure
+## 📑 Documentation structure
 
-The documentation portal is built with **VitePress 1.6+** and structured into 5 core pillars:
+Built with **VitePress 1.6**:
 
 | Section | Route | Description |
 | :--- | :--- | :--- |
-| **DevDeskApp Suite** | [`/about/`](https://docs.devdeskapp.com/about/) | Platform mission, zero-leak architecture, and privacy model. |
-| **n8n Node Guide** | [`/n8n/`](https://docs.devdeskapp.com/n8n/) | UI installation, Docker deployment, and operational concepts. |
-| **Templates Hub** | [`/templates/`](https://docs.devdeskapp.com/templates/) | Central catalog of official blueprints, parameter schemas, and 1-click import guides. |
-| **AI Agents & LLMs** | [`/solutions/ai-agents`](https://docs.devdeskapp.com/solutions/ai-agents) | Connecting in-memory tools to AI Agents for hallucination-free payroll math and hashing. |
-| **Enterprise Solutions** | [`/solutions/`](https://docs.devdeskapp.com/solutions/) | Benchmarks, concurrency limits, and native Node vs REST API latency comparisons. |
+| **DevDeskApp Suite** | [`/about/`](https://docs.devdeskapp.com/about/) | Platform, architecture and privacy model |
+| **n8n Node Guide** | [`/n8n/`](https://docs.devdeskapp.com/n8n/) | Installation, Docker and the operations reference |
+| **Templates Hub** | [`/templates/`](https://docs.devdeskapp.com/templates/) | The 7 published n8n templates and the import guide |
+| **AI Agents & LLMs** | [`/solutions/ai-agents`](https://docs.devdeskapp.com/solutions/ai-agents) | Using the node as an AI Agent tool |
+| **Enterprise Solutions** | [`/solutions/`](https://docs.devdeskapp.com/solutions/) | Local node vs cloud API, with measured timings |
 
 ---
 
-## 📋 Official n8n Workflow Templates
+## 📋 Published n8n templates
 
-We provide verified, production-ready n8n blueprints published directly on the **n8n.io Creator Portal**:
-
-- **🌟 [Template #21017: Developer Suite & Security Engine](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)**
-  - Sequential pipeline: JSON prettification, SHA-256 cryptographic hashing, RFC 4122 v4 UUID tracing, SEO slug generation, and CTC salary breakdown.
-  - [Read Detailed Blueprint Guide →](https://docs.devdeskapp.com/templates/developer-suite)
-
-- **💰 [Template #21130: CTC to In-Hand Salary Engine](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)**
-  - Automated compensation modeling: Indian statutory PF calculation (12%), Professional Tax (PT), HRA allowance, and take-home salary projections.
-  - [Read Detailed Blueprint Guide →](https://docs.devdeskapp.com/templates/ctc-salary-engine)
-
----
-
-## ⚙️ 10 Native Operations Reference
-
-`n8n-nodes-devdeskapp` provides 10 high-speed operations out of the box:
-
-1. **`jsonPrettifier`**: Minify or format JSON with customizable indentation.
-2. **`hashGenerator`**: Compute SHA-256, SHA-512, MD5, and SHA-1 cryptographic digests.
-3. **`ctcCalculator`**: Indian statutory payroll engine (basic, HRA, PF, PT, and net monthly in-hand).
-4. **`slugGenerator`**: SEO-friendly URL slug generation with multi-language transliteration.
-5. **`base64Converter`**: Fast UTF-8 string encoding and decoding.
-6. **`urlEncoder`**: Safe percent-encoding / decoding of query parameters.
-7. **`uuidGenerator`**: Cryptographically secure RFC 4122 Version 4 UUIDs.
-8. **`caseConverter`**: CamelCase, snake_case, kebab-case, and PascalCase transformations.
-9. **`markdownToHtml`**: Sanitized Markdown rendering to HTML.
-10. **`jwtDecoder`**: Header and payload claim inspection without signature verification.
+| ID | Template | Docs |
+| :--- | :--- | :--- |
+| #21017 | [Developer Suite & Security Engine](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/) | [Guide](https://docs.devdeskapp.com/templates/developer-suite) |
+| #21130 | [CTC to In-Hand Salary Engine](https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/) | [Guide](https://docs.devdeskapp.com/templates/ctc-salary-engine) |
+| #21376 | [Payment Webhook Sanitizer](https://n8n.io/workflows/21376-sanitize-and-audit-payment-webhooks-with-devdeskapp-json-and-crypto-tools/) | [Guide](https://docs.devdeskapp.com/templates/payment-webhook-sanitizer) |
+| #21593 | [AI LLM JSON into Postgres](https://n8n.io/workflows/21593-sanitize-and-ingest-ai-llm-json-into-postgres-with-devdeskapp-and-slack/) | [Guide](https://docs.devdeskapp.com/templates/ai-llm-postgres-ingest) |
+| #21594 | [CTC Offer Letter Generator](https://n8n.io/workflows/21594-generate-indian-ctc-offer-letters-with-devdeskapp-google-docs-gmail-and-slack/) | [Guide](https://docs.devdeskapp.com/templates/offer-letter-generator) |
+| #21595 | [Meta CAPI Lead Sync](https://n8n.io/workflows/21595-hash-and-sync-leads-to-meta-capi-with-devdeskapp-google-sheets-and-slack/) | [Guide](https://docs.devdeskapp.com/templates/meta-capi-lead-sync) |
+| #21596 | [Notion to WordPress Publisher](https://n8n.io/workflows/21596-publish-seo-safe-notion-blog-posts-to-wordpress-with-devdeskapp-and-slack/) | [Guide](https://docs.devdeskapp.com/templates/notion-wordpress-publisher) |
 
 ---
 
-## ⚡ Quick Node Installation
+## ⚙️ 19 operations in 5 resources
 
-### In n8n Community Nodes UI:
-1. In your n8n workspace: **Settings** → **Community Nodes** → **Install**.
-2. Enter package name:
-   ```text
-   n8n-nodes-devdeskapp
-   ```
-3. Agree to the risks and click **Install**.
+| Resource | Operations |
+| :--- | :--- |
+| **JSON** (`json`) | `prettify`, `minify`, `validate` |
+| **Crypto** (`crypto`) | `hash` (md5, sha1, sha256, sha512), `base64Encode`, `base64Decode`, `uuid` |
+| **Text** (`text`) | `slugify`, `caseConverter` (camelCase, kebabCase, lowerCase, pascalCase, snakeCase, upperCase), `urlEncode`, `urlDecode` |
+| **Calculator** (`calculator`) | `ctcToInHand` |
+| **E-commerce** (`ecommerce`) | `catalogMapper`, `upiQr`, `gstJsonToTable`, `profitCalculator`, `shippingLabelCrop`, `webhookVerifier`, `whatsappPayload` |
 
-### Via Docker / CLI:
+Full parameters and real outputs: [Operations Reference](https://docs.devdeskapp.com/n8n/operations).
+
+---
+
+## ⚡ Quick node installation
+
+### In the n8n UI
+1. **Settings** → **Community Nodes** → **Install**.
+2. Enter `n8n-nodes-devdeskapp`.
+3. Tick the risk acknowledgement and click **Install**.
+
+### Manually (self-hosted)
 ```bash
+mkdir -p ~/.n8n/nodes && cd ~/.n8n/nodes
 npm install n8n-nodes-devdeskapp
+# then restart n8n
 ```
 
 ---
 
-## 🤖 Machine-Readable AI Endpoints
+## 🛠️ Working on these docs
 
-For AI crawlers, LLMs, and autonomous agents, this documentation exposes clean markdown and context endpoints:
+```bash
+npm install
+npm run docs:dev      # local preview at http://localhost:5173
+npm run docs:build    # production build into .vitepress/dist
+```
 
-- **LLMs Index**: [`https://docs.devdeskapp.com/llms.txt`](https://docs.devdeskapp.com/llms.txt)
-- **Comprehensive Full Context**: [`https://docs.devdeskapp.com/llms-full.txt`](https://docs.devdeskapp.com/llms-full.txt)
+Figures in `src/public/images/fig-*.png` are generated with the DevDeskApp light palette:
+
+```bash
+python -I scripts/doc-images/generate.py            # all figures
+python -I scripts/doc-images/generate.py node-prettify ctc-output   # selected figures
+```
+
+The generator needs Python, Playwright and a local Chrome install. Source screenshots for the framed figures are in `scripts/doc-images/raw/`.
 
 ---
 
-## 🔗 Official Ecosystem Links
+## 🤖 Machine-readable endpoints
 
-- **Documentation Portal**: [https://docs.devdeskapp.com](https://docs.devdeskapp.com)
-- **Web Platform**: [https://www.devdeskapp.com](https://www.devdeskapp.com)
-- **Node NPM Package**: [https://www.npmjs.com/package/n8n-nodes-devdeskapp](https://www.npmjs.com/package/n8n-nodes-devdeskapp)
-- **Node Source Code**: [https://github.com/DevdeskApp/n8n-nodes-devdeskapp](https://github.com/DevdeskApp/n8n-nodes-devdeskapp)
-- **Template #21017**: [n8n.io/workflows/21017](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
-- **Template #21130**: [n8n.io/workflows/21130](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)
+- **LLMs index**: [`https://docs.devdeskapp.com/llms.txt`](https://docs.devdeskapp.com/llms.txt)
+- **Full context**: [`https://docs.devdeskapp.com/llms-full.txt`](https://docs.devdeskapp.com/llms-full.txt)
+
+---
+
+## 🔗 Links
+
+- **Documentation**: [https://docs.devdeskapp.com](https://docs.devdeskapp.com)
+- **Web platform**: [https://www.devdeskapp.com](https://www.devdeskapp.com)
+- **npm package**: [https://www.npmjs.com/package/n8n-nodes-devdeskapp](https://www.npmjs.com/package/n8n-nodes-devdeskapp)
+- **Node source code**: [https://github.com/DevdeskApp/n8n-nodes-devdeskapp](https://github.com/DevdeskApp/n8n-nodes-devdeskapp)
 
 ---
 
 ## 📄 License
 
-Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
-
-Copyright © 2026 [DevDeskApp Community](https://github.com/DevdeskApp). All rights reserved.
+Distributed under the **MIT License**. See [LICENSE](LICENSE).

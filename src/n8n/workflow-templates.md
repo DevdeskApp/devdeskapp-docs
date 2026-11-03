@@ -1,129 +1,137 @@
 ---
-title: 'Workflow Templates for the n8n Node'
-description: 'Ready-made n8n workflows built on n8n-nodes-devdeskapp for developer utilities, security hashing and payroll calculation, with setup notes.'
+title: 'Official n8n Workflow Templates | DevDeskApp'
+description: 'The 7 published n8n templates built with n8n-nodes-devdeskapp: developer utilities, Indian CTC payroll, payment webhook audit, AI LLM JSON ingestion, offer letters, Meta CAPI and Notion to WordPress.'
 ---
 
-# Official Workflow Templates
+# 🌟 Official Workflow Templates (n8n Community)
 
-Discover and copy production-ready n8n workflows built with `n8n-nodes-devdeskapp`. You can copy the workflow JSON snippets below and paste them directly into your n8n canvas using `Ctrl+V` (or `Cmd+V`).
+Seven templates built with `n8n-nodes-devdeskapp` are published on [n8n.io](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/). Each one uses colour-coded sticky notes that explain the flow on the canvas, and you can import any of them by pasting the workflow JSON onto a canvas.
 
-<div class="official-template-card">
+<div class="official-template-card" style="margin-bottom: 2rem;">
   <div class="template-card-left">
     <div class="template-card-header">
-      <span class="template-badge">New Hub</span>
-      <span class="badge-live">Dedicated Templates Portal</span>
+      <span class="template-badge">7 Live Templates</span>
+      <span class="badge-live">Published on n8n.io</span>
     </div>
-    <h3 class="template-card-title">Explore the Dedicated Templates Hub</h3>
+    <h3 class="template-card-title">Import in three steps</h3>
     <p class="template-card-desc">
-      We have launched a dedicated <strong>Templates Catalog</strong> featuring individual blueprints, architectural diagrams, parameter guides, and 1-click import instructions.
+      Install the node, copy a template from n8n.io, and press <code>Ctrl + V</code> on your n8n canvas.
     </p>
   </div>
-  <a href="/templates/" class="template-card-cta">
-    <span>Browse All Templates</span>
+  <a href="/templates/how-to-import" class="template-card-cta">
+    <span>Import Guide</span>
     <span>→</span>
   </a>
 </div>
 
 ---
 
-## Template 1: Flagship Developer Suite & Security Engine (Template #21017)
+## 📊 Template matrix
 
-<div style="margin: 1rem 0;">
-  <span class="badge-live">Published on n8n.io Creator Portal</span>
-  <span class="badge-live" style="margin-left: 8px;">Template ID: 21017</span>
-</div>
+| ID | Template | DevDeskApp operations | Other integrations | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| [#21017](/templates/developer-suite) | Developer Suite & Security Engine | prettify, hash, uuid, slugify, ctcToInHand | None | Runs as published |
+| [#21130](/templates/ctc-salary-engine) | CTC to In-Hand Salary Engine | slugify, ctcToInHand, uuid, hash | None | Runs as published |
+| [#21376](/templates/payment-webhook-sanitizer) | Payment Webhook Sanitizer | prettify, hash, uuid, slugify | Webhook, Slack | Runs as published |
+| [#21593](/templates/ai-llm-postgres-ingest) | AI LLM JSON into Postgres | prettify, uuid, hash | Webhook, PostgreSQL, Slack | Fix after import |
+| [#21594](/templates/offer-letter-generator) | CTC Offer Letter Generator | ctcToInHand, uuid, slugify, hash | Google Docs, Gmail, Google Sheets, Slack | Fix after import |
+| [#21595](/templates/meta-capi-lead-sync) | Meta CAPI Lead Sync | caseConverter, hash, uuid, slugify | Webhook, Meta Graph API, Google Sheets, Slack | Fix after import |
+| [#21596](/templates/notion-wordpress-publisher) | Notion to WordPress Publisher | slugify, hash, uuid, caseConverter | Notion, WordPress, Slack | Fix after import |
 
-🔗 **Direct n8n Template Link:**  
-[n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities)
-
-📖 **Detailed Documentation & Blueprint:**  
-[Read the Full Blueprint Guide →](/templates/developer-suite)
-
-### Workflow Architecture
-This workflow runs on a manual trigger or incoming webhook and performs 5 essential developer operations sequentially:
-1. **Sample Developer & HR Payload:** Mock payload with minified JSON and candidate profile.
-2. **DevDeskApp Prettifier:** Re-formats raw JSON into an indented, human-readable structure.
-3. **DevDeskApp SHA-256 Digest:** Generates cryptographic tamper-proof digest.
-4. **DevDeskApp UUID Generator:** Stamps every request with an RFC 4122 v4 trace ID.
-5. **DevDeskApp Slugifier:** Cleans full names and titles into URL-safe slug identifiers.
-6. **DevDeskApp CTC Calculator:** Computes monthly take-home, employee/employer PF, PT, and tax breakdown.
-7. **Consolidated Output:** Assembles clean, validated JSON output ready for databases or downstream microservices.
-
-<div class="doc-image">
-  <img src="/images/screen_2_workflow_canvas.png" alt="Developer Suite Canvas" />
-</div>
-<div class="doc-caption">Figure 1: Complete automation pipeline with sticky notes and configured node parameters.</div>
-
-### 1-Click Execution Result
-When executed, every step finishes in sub-millisecond CPU time:
-
-<div class="doc-image">
-  <img src="/images/template_test_result.png" alt="Template Test Result Execution" />
-</div>
-<div class="doc-caption">Figure 2: Execution trace showing instantaneous transformation across all 5 DevDeskApp operations.</div>
+"Fix after import" means one or two parameters need changing before the workflow gives correct output. Each template page shows the exact fix.
 
 ---
 
-## Template 2: Employee CTC to In-Hand Salary Engine (Template #21130)
+## 1. Developer Suite & Security Engine (#21017)
 
-<div style="margin: 1rem 0;">
-  <span class="badge-live">Published on n8n.io Creator Portal</span>
-  <span class="badge-live" style="margin-left: 8px; background: rgba(16, 185, 129, 0.12); color: #10b981; border-color: rgba(16, 185, 129, 0.3);">Template ID: 21130</span>
-</div>
-
-🔗 **Direct n8n Template Link:**  
-[n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp](https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp)
-
-📖 **Detailed Documentation & Blueprint:**  
-[Read the Full Blueprint Guide →](/templates/ctc-salary-engine)
-
-Designed for HR, Payroll, and Recruiting operations to automate salary computation from raw offer letter inputs:
+A no-credentials demo of the main operations in one chain: format JSON, hash it with SHA-256, add a UUID, slugify a name and break down a CTC. The final Code node collects every result into one object.
 
 <div class="doc-image">
-  <img src="/images/screen_ctc_canvas.png" alt="CTC Calculator Canvas" />
+  <img src="/images/fig-canvas-21017.png" alt="Template 21017 developer suite workflow on the n8n canvas" />
 </div>
-<div class="doc-caption">Figure 3: Automated CTC evaluation flow in n8n.</div>
-
-### Parameter Drawer & Indian Payroll Rules
-- Input annual CTC (e.g. ₹2,400,000).
-- Configurable basic salary percentage (default: 50%).
-- Automatic statutory calculation for Employee PF, Employer PF, Professional Tax (PT), and estimated monthly in-hand take-home salary.
-
-<div class="doc-image">
-  <img src="/images/screen_ctc_drawer.png" alt="CTC Parameter Drawer" />
-</div>
-<div class="doc-caption">Figure 4: Inputting annual compensation parameters in DevDeskApp node drawer.</div>
-
-### Real-Time Breakdown Output
-
-<div class="doc-image">
-  <img src="/images/screen_ctc_executed.png" alt="CTC Execution Output" />
-</div>
-<div class="doc-caption">Figure 5: Complete salary breakdown returned in structured JSON format.</div>
-
-```json
-{
-  "annualCtc": 2400000,
-  "monthlyGross": 200000,
-  "monthlyInHand": 145000,
-  "breakdown": {
-    "basic": 100000,
-    "hra": 50000,
-    "specialAllowance": 34600,
-    "employeePf": 12000,
-    "employerPf": 12000,
-    "professionalTax": 200,
-    "estimatedTaxMonthly": 40200
-  }
-}
-```
+<div class="doc-caption">Figure 1: Template #21017. <a href="/templates/developer-suite">Full page →</a></div>
 
 ---
 
-## How to Import Templates into Your n8n
+## 2. CTC to In-Hand Salary Engine (#21130)
 
-1. Copy the JSON structure of any template or click the direct n8n.io link.
-2. In your n8n editor window, click anywhere on the canvas grid.
-3. Press `Ctrl + V` (or `Cmd + V` on macOS).
-4. The workflow will appear instantly with all connections and pre-set parameters!  
-   *(See the complete [Import Guide](/templates/how-to-import) for details)*.
+Creates an employee slug, UUID and payroll checksum, and turns an annual CTC into monthly gross, basic, employee and employer PF (capped at ₹1,800), professional tax, a new-regime TDS estimate and in-hand pay.
+
+<div class="doc-image">
+  <img src="/images/fig-canvas-21130.png" alt="Template 21130 CTC salary engine workflow on the n8n canvas" />
+</div>
+<div class="doc-caption">Figure 2: Template #21130. <a href="/templates/ctc-salary-engine">Full page →</a></div>
+
+---
+
+## 3. Payment Webhook Sanitizer (#21376)
+
+Receives a payment webhook, parses and formats the body, then adds a SHA-256 checksum, a UUID v4 trace ID and a slug, and alerts Slack. The checksum records what was received. It does not verify the provider's signature. Add the DevDeskApp **Webhook Signature Verifier** operation for that.
+
+<div class="doc-image">
+  <img src="/images/fig-canvas-21376.png" alt="Template 21376 payment webhook sanitizer workflow on the n8n canvas" />
+</div>
+<div class="doc-caption">Figure 3: Template #21376. <a href="/templates/payment-webhook-sanitizer">Full page →</a></div>
+
+---
+
+## 4. Sanitize & Ingest AI LLM JSON into Postgres (#21593)
+
+A Code node removes markdown fences from LLM output, DevDeskApp parses and formats the JSON, adds a trace UUID and a SHA-256 checksum, and an If node sends clean records to PostgreSQL and bad ones to Slack.
+
+<div class="doc-image">
+  <img src="/images/fig-canvas-21593.png" alt="Template 21593 AI LLM JSON ingestion workflow on the n8n canvas" />
+</div>
+<div class="doc-caption">Figure 4: Template #21593. <a href="/templates/ai-llm-postgres-ingest">Full page and fix →</a></div>
+
+---
+
+## 5. Generate Indian CTC Offer Letters (#21594)
+
+Calculates the salary breakdown, creates an offer UUID, candidate slug and compensation checksum, then fills a Google Docs letter, emails it with Gmail and alerts HR on Slack.
+
+<div class="doc-image">
+  <img src="/images/fig-canvas-21594.png" alt="Template 21594 CTC offer letter workflow on the n8n canvas" />
+</div>
+<div class="doc-caption">Figure 5: Template #21594. <a href="/templates/offer-letter-generator">Full page and fix →</a></div>
+
+---
+
+## 6. Hash & Sync Leads to Meta CAPI (#21595)
+
+Lowercases and SHA-256 hashes the lead email, adds an `event_id` UUID and a campaign slug, and sends opted-in leads to the Meta Conversions API with a Google Sheets log. Only the email is hashed and sent.
+
+<div class="doc-image">
+  <img src="/images/fig-canvas-21595.png" alt="Template 21595 Meta CAPI lead sync workflow on the n8n canvas" />
+</div>
+<div class="doc-caption">Figure 6: Template #21595. <a href="/templates/meta-capi-lead-sync">Full page and fix →</a></div>
+
+---
+
+## 7. Publish Notion Blog Posts to WordPress (#21596)
+
+Builds an SEO slug from the title, fingerprints the article HTML with SHA-256, adds a publication UUID and publishes approved posts through the WordPress node with a Slack alert.
+
+<div class="doc-image">
+  <img src="/images/fig-canvas-21596.png" alt="Template 21596 Notion to WordPress workflow on the n8n canvas" />
+</div>
+<div class="doc-caption">Figure 7: Template #21596. <a href="/templates/notion-wordpress-publisher">Full page and fix →</a></div>
+
+---
+
+## ⏳ Submitted, waiting for review
+
+- **#22360:** Auto-generate social media banners from RSS feeds with DevDeskApp, LinkedIn, X and Slack
+- **#22361:** Convert GitHub PR schemas into Mermaid architecture diagrams with DevDeskApp, Slack and Notion
+- **#22362:** Normalize CRM leads and validate JSON with DevDeskApp, PostgreSQL and Slack
+- **#22363:** Detect payment fraud and deduplicate webhooks with DevDeskApp, PostgreSQL and Slack
+
+---
+
+## 💡 Import any template
+
+1. Install `n8n-nodes-devdeskapp` ([installation guide](/n8n/installation)).
+2. Open the template on n8n.io and click **Use for free**, or copy the workflow JSON.
+3. Click an empty canvas and press `Ctrl + V` (Windows / Linux) or `Cmd + V` (macOS).
+
+More detail and troubleshooting: [How to Import Templates](/templates/how-to-import).

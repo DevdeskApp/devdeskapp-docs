@@ -1,304 +1,233 @@
-# DevDeskApp Comprehensive Documentation (llms-full.txt)
+# DevDeskApp Documentation (llms-full.txt)
 
-> The Complete Knowledge Base & Machine-Readable Reference for AI Agents, LLM Function Calling, and Automation Engineers.
+> Machine-readable reference for AI agents, LLM tool calling and automation engineers.
 > Canonical URL: https://docs.devdeskapp.com/llms-full.txt
-> Documentation Portal: https://docs.devdeskapp.com
-> Main Web Application: https://www.devdeskapp.com
-> NPM Package: https://www.npmjs.com/package/n8n-nodes-devdeskapp
-> Official n8n Workflow Template: https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities
-> GitHub Organization: https://github.com/DevdeskApp
+> Documentation: https://docs.devdeskapp.com
+> Web application: https://www.devdeskapp.com
+> npm package: https://www.npmjs.com/package/n8n-nodes-devdeskapp
+> Template #21017: https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/
 
 ---
 
-## 1. Executive Summary & Value Proposition
+## 1. Summary
 
-DevDeskApp is a dual-ecosystem developer productivity platform:
-1. **Web Suite**: 330+ client-side developer utilities, formatters, financial calculators, and converters running 100% in the browser with zero cloud storage or tracking at https://www.devdeskapp.com.
-2. **n8n Automation Node (`n8n-nodes-devdeskapp`)**: An official community node for n8n that brings 10 core developer utilities directly onto the visual automation canvas.
+DevDeskApp has two parts:
+1. **Web app**: 340+ browser-based developer tools (formatters, encoders, hash generators, generators, CTC and HR calculators) at https://www.devdeskapp.com. Tools process input in the browser.
+2. **n8n community node** `n8n-nodes-devdeskapp` (v0.1.6, MIT): one node, "DevDeskApp", with **19 operations in 5 resources**.
 
-### The Problem with Cloud Utility APIs
-Traditional workflow automations (Zapier, Make, default REST nodes) rely on third-party SaaS APIs to format JSON, hash secrets, or calculate payroll. This introduces:
-- **Severe Latency Overhead**: 150ms to 450ms network round-trip time per HTTP request.
-- **Data Privacy Violations**: Sensitive HR payrolls, employee IDs, customer PII, and webhook secrets leave corporate servers and traverse external clouds.
-- **Fragile Cloud Dependencies**: Rate limits, API quota exhaustion, and vendor downtime break critical production pipelines.
-
-### The DevDeskApp Solution
-- **Sub-Millisecond Execution**: Runs synchronously in-process inside Node.js memory in < 0.2ms per item.
-- **Zero Cloud Data Leaks**: 0 KB external network egress. Payloads never touch an external server or third-party cloud.
-- **Zero Configuration & Quotas**: No API keys, credentials, or paid subscriptions required.
+Node behaviour:
+- Runs synchronously inside the n8n process. No external API calls and no credentials.
+- Every output item carries `pairedItem: { item: i }`.
+- Errors throw `NodeOperationError` linked to the item. If the node's **On Error** setting is set to continue, failed items return `{ "error": "<message>" }`.
+- `usableAsTool: true`: it can be attached to an n8n AI Agent's Tool port.
+- Measured node logic (10,000 items, compiled v0.1.6, Node.js 24): CTC 12.6 ms, prettify 22.6 ms, slugify 40.7 ms, SHA-256 46.5 ms. That is about 0.001 to 0.005 ms per item, before n8n's own overhead.
 
 ---
 
-## 2. Complete Operations Reference (10 Native Engines)
+## 2. Operations reference
 
-### 2.1 JSON Prettifier & Minifier (`jsonPrettifier`)
-- **Purpose**: Cleans, parses, formats, or minifies raw JSON payloads from webhooks, AI agents, or databases.
-- **Execution Speed**: 0.08ms – 0.15ms.
-- **Parameters**:
-  - `mode`: `"prettify"` (human-readable) | `"minify"` (single-line token saver).
-  - `indent`: `2` | `4` | `tab` (applicable when mode is prettify).
-  - `inputJson`: String or incoming JSON object.
-- **Sample Input**:
-  ```json
-  {"service":"payment","status":"success","empId":1042,"traceId":"8f2a1b9c-4e3d-4c8a-9f1e-2b3c4d5e6f7a"}
-  ```
-- **Minified Output (Context Saver)**:
-  `{"service":"payment","status":"success","empId":1042,"traceId":"8f2a1b9c-4e3d-4c8a-9f1e-2b3c4d5e6f7a"}`
-- **Prettified Output**:
-  ```json
-  {
-    "service": "payment",
-    "status": "success",
-    "empId": 1042,
-    "traceId": "8f2a1b9c-4e3d-4c8a-9f1e-2b3c4d5e6f7a"
-  }
-  ```
+Parameter names are the internal n8n names. JSON operations read `jsonInput`, Crypto operations read `textPayload`, and Text operations read `textInput`.
 
----
+### 2.1 JSON (`json`)
 
-### 2.2 Hash Generator (`hashGenerator`)
-- **Purpose**: Computes one-way cryptographic digests for webhook verification, password storage, and data integrity verification.
-- **Execution Speed**: 0.05ms – 0.12ms.
-- **Supported Algorithms**: `sha256`, `sha512`, `md5`, `sha1`.
-- **Parameters**:
-  - `algorithm`: Cryptographic hashing algorithm.
-  - `text`: Plaintext input string.
-  - `encoding`: `"hex"` (default) | `"base64"`.
-- **Sample Input**:
-  `text`: `"devdeskapp_production_webhook_secret_key"`, `algorithm`: `"sha256"`
-- **Sample Output**:
-  ```json
-  {
-    "algorithm": "sha256",
-    "hash": "c0053e1a0673f4e3c35b80a1846b0a034f78de1f74075f782c5890772714041b",
-    "tamperProof": true,
-    "length": 64
-  }
-  ```
-
----
-
-### 2.3 CTC & Indian Payroll Calculator (`ctcCalculator`)
-- **Purpose**: Deterministic Indian compensation calculation engine compliant with New & Old Tax Regimes, calculating monthly gross, basic salary, HRA, employee PF, employer PF, professional tax, and net take-home salary.
-- **Execution Speed**: 0.18ms.
-- **Parameters**:
-  - `annualCtc`: Number (e.g., `2400000`).
-  - `basicPercentage`: Percentage of CTC allocated to Basic (default: `50%`).
-  - `regime`: `"new"` | `"old"`.
-  - `metroCity`: Boolean (affects HRA exemption under Old Regime).
-- **Sample Input**:
-  `annualCtc`: `2400000`, `basicPercentage`: `50`, `regime`: `"new"`
-- **Sample Output**:
-  ```json
-  {
-    "annualCtc": 2400000,
-    "monthlyGross": 200000,
-    "basicSalaryMonthly": 100000,
-    "hraMonthly": 50000,
-    "specialAllowanceMonthly": 38000,
-    "employeePfMonthly": 12000,
-    "employerPfMonthly": 12000,
-    "professionalTaxMonthly": 200,
-    "estimatedMonthlyTds": 30800,
-    "netTakeHomeMonthly": 145000,
-    "taxRegime": "new"
-  }
-  ```
-
----
-
-### 2.4 Slug Generator (`slugGenerator`)
-- **Purpose**: Transforms arbitrary strings, article titles, or product names into URL-safe, SEO-optimized slugs.
-- **Execution Speed**: 0.04ms.
-- **Features**: Unicode character transliteration, lowercasing, non-word replacement, multiple consecutive hyphens collapsed.
-- **Sample Input**: `"DevDeskApp: High-Performance Node & AI Utilities 2026!"`
-- **Sample Output**:
-  ```json
-  {
-    "original": "DevDeskApp: High-Performance Node & AI Utilities 2026!",
-    "slug": "devdeskapp-high-performance-node-ai-utilities-2026"
-  }
-  ```
-
----
-
-### 2.5 Base64 Converter (`base64Converter`)
-- **Purpose**: Encodes UTF-8 strings or raw buffers into Base64 format or decodes Base64 payloads back to plaintext.
-- **Execution Speed**: 0.03ms.
-- **Parameters**:
-  - `action`: `"encode"` | `"decode"`.
-  - `input`: String.
-- **Sample Output (Encode)**:
-  ```json
-  {
-    "action": "encode",
-    "result": "ZGV2ZGVza2FwcC1zZWN1cmUtYXV0b21hdGlvbg=="
-  }
-  ```
-
----
-
-### 2.6 URL Encoder / Decoder (`urlEncoder`)
-- **Purpose**: RFC 3986 percent-encoding and decoding for query parameters and dynamic web links.
-- **Execution Speed**: 0.03ms.
-- **Parameters**:
-  - `action`: `"encode"` | `"decode"`.
-  - `input`: String.
-- **Sample Output**:
-  ```json
-  {
-    "action": "encode",
-    "result": "https%3A%2F%2Fdocs.devdeskapp.com%2Fsearch%3Fq%3Ddeveloper%2Btools"
-  }
-  ```
-
----
-
-### 2.7 UUID Generator (`uuidGenerator`)
-- **Purpose**: Generates cryptographically strong RFC 4122 Version 4 UUIDs for request tracing and database IDs.
-- **Execution Speed**: 0.02ms.
-- **Parameters**:
-  - `quantity`: Number of UUIDs to generate (1 to 100).
-- **Sample Output**:
-  ```json
-  {
-    "uuid": "4f18b3e2-89c1-4d37-a56e-92d6e3f41a08",
-    "version": 4
-  }
-  ```
-
----
-
-### 2.8 Case Converter (`caseConverter`)
-- **Purpose**: Converts text across naming conventions for code generators and database schema mappings.
-- **Supported Cases**: `camelCase`, `snake_case`, `kebab-case`, `pascalCase`, `constantCase`.
-- **Sample Output**:
-  ```json
-  {
-    "camelCase": "employeeSalaryRecord",
-    "snakeCase": "employee_salary_record",
-    "kebabCase": "employee-salary-record",
-    "pascalCase": "EmployeeSalaryRecord",
-    "constantCase": "EMPLOYEE_SALARY_RECORD"
-  }
-  ```
-
----
-
-### 2.9 Markdown to HTML Converter (`markdownToHtml`)
-- **Purpose**: Parses CommonMark and GitHub Flavored Markdown into sanitized HTML for notification emails and CMS updates.
-- **Execution Speed**: 0.22ms.
-- **Sample Output**:
-  ```json
-  {
-    "html": "<h3>Payroll Summary</h3><p>Take home: <strong>₹1,45,000</strong></p>"
-  }
-  ```
-
----
-
-### 2.10 JWT Claim Inspector & Decoder (`jwtDecoder`)
-- **Purpose**: Decodes base64url-encoded JWT headers and claims locally for routing and permission evaluation without external auth verification.
-- **Execution Speed**: 0.09ms.
-- **Sample Output**:
-  ```json
-  {
-    "header": { "alg": "HS256", "typ": "JWT" },
-    "payload": { "sub": "usr_9981", "role": "admin", "exp": 1792195200 },
-    "isExpired": false
-  }
-  ```
-
----
-
-## 3. Step-by-Step Installation
-
-### Method 1: n8n Community Nodes UI (Recommended)
-1. Open your n8n workspace.
-2. Navigate to **Settings** &rarr; **Community Nodes**.
-3. Click **Install**.
-4. Enter the package name:
-   ```text
-   n8n-nodes-devdeskapp
-   ```
-5. Check the risk agreement checkbox and click **Install**. The node will appear immediately in the node library.
-
-### Method 2: Docker / Docker Compose
-Add the package to your `docker-compose.yml` environment:
-```yaml
-environment:
-  - N8N_COMMUNITY_PACKAGES_ENABLED=true
-```
-Or install directly in the container:
-```bash
-docker exec -it n8n npm install n8n-nodes-devdeskapp
-```
-
-### Method 3: NPM CLI
-```bash
-npm install n8n-nodes-devdeskapp
-```
-
----
-
-## 4. Official n8n Workflow Template #21017
-
-- **Template URL**: https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities
-- **Title**: Format JSON and Secure HR Payloads with DevDeskApp Utilities
-- **Architecture**:
-  `Webhook Trigger ➔ DevDeskApp: JSON Prettifier ➔ DevDeskApp: Security Hasher ➔ DevDeskApp: CTC Calculator ➔ Clean Output`
-- **Use Case**: Ingests raw employee compensation updates, minifies the payload, cryptographically hashes the verification secret via SHA-256, computes monthly take-home salary, and delivers structured JSON to downstream HR databases.
-
----
-
-## 5. AI Agents & LLM Function Calling Integration
-
-DevDeskApp seamlessly plugs into the **Tool port** of n8n AI Agent nodes (LangChain, OpenAI, Anthropic Claude, Google Gemini, Ollama).
-
-### Why AI Agents Require DevDeskApp Tools
-1. **Eliminate Math Hallucinations**: LLMs are language predictors and produce severe errors when calculating compound tax deductions, HRA exemptions, and PF contributions. DevDeskApp computes exact figures in 0.18ms.
-2. **Context Window Token Optimization**: Raw webhook payloads waste thousands of tokens. DevDeskApp minifies JSON prior to prompting, saving 40%–60% on token fees.
-3. **Data Security**: Secrets and PII are hashed into SHA-256 digests in local RAM before prompt assembly, preventing credentials from leaking to third-party LLM cloud servers.
-
-### Recommended System Prompt for AI Agents
-```markdown
-You have access to the DevDeskApp utility tool suite.
-Always use DevDeskApp tools for:
-- Calculating Indian payroll, salaries, PF, and tax breakdowns.
-- Generating SHA-256 or MD5 cryptographic hashes.
-- Formatting and validating JSON payloads.
-Do NOT guess financial calculations manually. Always invoke the corresponding DevDeskApp tool.
-```
-
----
-
-## 6. Enterprise Performance Benchmarks
-
-| Metric | DevDeskApp Native Node | Cloud REST API Alternative |
+| Operation | Parameters | Output |
 | :--- | :--- | :--- |
-| **Execution Latency** | **0.18ms** | 220ms – 450ms |
-| **Data Privacy** | **100% In-Memory (Zero Leak)** | Transmitted over public cloud |
-| **API Costs & Quotas** | **$0 / Unlimited** | Pay-per-call / Rate limited |
-| **Network Failure Risk** | **0% (Offline Capable)** | Prone to HTTP timeouts / DNS drops |
-| **Throughput Capacity** | **5,000+ items / sec** | Limited by connection pool |
+| `prettify` | `jsonInput`, `indentation` (`2` default, `4`, `tab`) | `formatted`, `success`. Throws on invalid JSON. |
+| `minify` | `jsonInput` | `minified`, `success`. Throws on invalid JSON. |
+| `validate` | `jsonInput` | `valid`, plus `parsed` (valid) or `error` (invalid). Never throws. |
+
+Prettify, input `{"service":"payment","status":"success","empId":1042}`:
+```json
+{ "formatted": "{\n  \"service\": \"payment\",\n  \"status\": \"success\",\n  \"empId\": 1042\n}", "success": true }
+```
+
+Validate, input `{"service": payment}`:
+```json
+{ "valid": false, "error": "Unexpected token 'p', \"{\"service\": payment}\" is not valid JSON" }
+```
+
+### 2.2 Crypto (`crypto`)
+
+| Operation | Parameters | Output |
+| :--- | :--- | :--- |
+| `hash` | `textPayload`, `hashAlgorithm` (`md5`, `sha1`, `sha256` default, `sha512`) | `algorithm`, `input`, `hash` (hex) |
+| `base64Encode` | `textPayload` | `encoded`, `original` |
+| `base64Decode` | `textPayload` | `decoded`, `original` |
+| `uuid` | none | `uuid`, `version` (4) |
+
+Hash, input `devdeskapp_production_webhook_secret_key`, sha256:
+```json
+{
+  "algorithm": "sha256",
+  "input": "devdeskapp_production_webhook_secret_key",
+  "hash": "7ac4c84d335afd794bde94eb049d2259cc348357a96538929f263f7c5911a686"
+}
+```
+
+Base64 encode, input `devdeskapp-secure-automation`:
+```json
+{ "encoded": "ZGV2ZGVza2FwcC1zZWN1cmUtYXV0b21hdGlvbg==", "original": "devdeskapp-secure-automation" }
+```
+
+UUID:
+```json
+{ "uuid": "8af08c51-e5bf-4800-85a4-0ec7f7f24eea", "version": 4 }
+```
+
+A plain hash is not a signature. Use `ecommerce.webhookVerifier` to verify HMAC webhook signatures.
+
+### 2.3 Text (`text`)
+
+| Operation | Parameters | Output |
+| :--- | :--- | :--- |
+| `slugify` | `textInput` | `original`, `slug` |
+| `caseConverter` | `textInput`, `targetCase`: `camelCase`, `kebabCase` (default), `lowerCase`, `pascalCase`, `snakeCase`, `upperCase` | `original`, `casing`, `result` |
+| `urlEncode` | `textInput` | `original`, `encoded`, `success` |
+| `urlDecode` | `textInput` | `original`, `decoded`, `success` (plus `error` if malformed) |
+
+Only the six `targetCase` values above work. Other values (for example `lower` or `title`) return `"result": ""` without an error. There is no `convertedText` field.
+
+Slugify, input `DevDeskApp: High-Performance Node & AI Utilities 2026!`:
+```json
+{ "original": "DevDeskApp: High-Performance Node & AI Utilities 2026!", "slug": "devdeskapp-high-performance-node-ai-utilities-2026" }
+```
+
+Case converter, input `Employee Salary Record`, snakeCase:
+```json
+{ "original": "Employee Salary Record", "casing": "snakeCase", "result": "employee_salary_record" }
+```
+
+URL encode, input `developer tools & n8n`:
+```json
+{ "original": "developer tools & n8n", "encoded": "developer%20tools%20%26%20n8n", "success": true }
+```
+
+### 2.4 Calculator (`calculator`)
+
+`ctcToInHand`: parameters `annualCtc` (default 1200000) and `basicPercentage` (default 50).
+
+Formula:
+- Monthly basic = annual CTC × basic % ÷ 12.
+- Employee PF = employer PF = min(12% of monthly basic, ₹1,800).
+- Monthly gross = (annual CTC − 12 × employer PF) ÷ 12.
+- Professional tax = ₹200 per month.
+- TDS = new-regime slabs on (12 × gross − ₹75,000 standard deduction), divided by 12.
+- In-hand = gross − employee PF − PT − TDS.
+
+It does not model HRA, special allowance, the old regime, ESIC, cess, surcharge or rebates. Treat results as estimates.
+
+Output for `annualCtc: 2400000`, `basicPercentage: 50`:
+```json
+{
+  "annualCtc": 2400000,
+  "monthlyGross": 198200,
+  "monthlyInHand": 163075,
+  "breakdown": {
+    "monthlyBasic": 100000,
+    "employeePf": 1800,
+    "employerPf": 1800,
+    "professionalTax": 200,
+    "estimatedMonthlyTds": 33125
+  },
+  "taxRegime": "India Standard / New Tax Benchmark",
+  "reference": "https://www.devdeskapp.com/ctc-to-in-hand-calculator"
+}
+```
+
+Other CTCs (monthly gross / TDS / in-hand): ₹12L 98,200 / 6,563 / 89,638 · ₹18L 1,48,200 / 18,125 / 1,28,075 · ₹21L 1,73,200 / 25,625 / 1,45,575 · ₹28L 2,31,533 / 43,125 / 1,86,408.
+
+### 2.5 E-commerce & FinTech (`ecommerce`)
+
+| Operation | Purpose |
+| :--- | :--- |
+| `catalogMapper` | Map product catalogs between Shopify, WooCommerce and Google Merchant Center |
+| `upiQr` | Build a UPI payment URI and QR payload |
+| `gstJsonToTable` | Flatten GSTR-1, GSTR-3B or GSTR-2B JSON into table rows |
+| `profitCalculator` | Profit margin and ROAS after commission, shipping, ad spend and RTO |
+| `shippingLabelCrop` | Crop coordinates for carrier shipping labels on A4 or thermal pages |
+| `webhookVerifier` | Verify Razorpay, Shopify, Stripe or custom HMAC-SHA256 webhook signatures |
+| `whatsappPayload` | Build WhatsApp interactive message payloads |
+
+Full parameters: https://docs.devdeskapp.com/n8n/operations
 
 ---
 
-## 7. Machine-Readable Metadata
+## 3. Installation
+
+### n8n UI (recommended)
+1. **Settings → Community Nodes → Install**.
+2. Enter `n8n-nodes-devdeskapp`.
+3. Tick the risk acknowledgement and click **Install**.
+
+### Docker
+```bash
+docker exec -it n8n sh -c "mkdir -p ~/.n8n/nodes && cd ~/.n8n/nodes && npm install n8n-nodes-devdeskapp"
+docker restart n8n
+```
+
+### Manual (self-hosted)
+```bash
+mkdir -p ~/.n8n/nodes && cd ~/.n8n/nodes
+npm install n8n-nodes-devdeskapp
+# restart n8n
+```
+
+In queue mode, install the package on the main instance and every worker. To use the node as an AI Agent tool on self-hosted n8n, set `N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true`.
+
+---
+
+## 4. Published n8n templates
+
+| ID | Template | DevDeskApp operations | Status |
+| :--- | :--- | :--- | :--- |
+| 21017 | Developer Suite & Security Engine | prettify, hash, uuid, slugify, ctcToInHand | Runs as published |
+| 21130 | CTC to In-Hand Salary Engine | slugify, ctcToInHand, uuid, hash | Runs as published |
+| 21376 | Payment Webhook Sanitizer | prettify, hash, uuid, slugify (+ Webhook, Slack) | Runs as published |
+| 21593 | AI LLM JSON into Postgres | prettify, uuid, hash (+ Webhook, Postgres, Slack) | Fix after import |
+| 21594 | CTC Offer Letter Generator | ctcToInHand, uuid, slugify, hash (+ Google Docs, Gmail, Sheets, Slack) | Fix after import |
+| 21595 | Meta CAPI Lead Sync | caseConverter, hash, uuid, slugify (+ Meta Graph API, Sheets, Slack) | Fix after import |
+| 21596 | Notion to WordPress Publisher | slugify, hash, uuid, caseConverter (+ Notion, WordPress, Slack) | Fix after import |
+
+Fixes after import (as of 4 Nov 2026):
+- 21593: fix the sample Code node string. Hash `$('DevDeskApp: JSON Prettifier & Schema Validator').item.json.formatted`. Read `prettified.formatted`, not `prettified.prettified`.
+- 21594: read `salary.breakdown.monthlyBasic`, `salary.breakdown.employeePf` and `salary.breakdown.professionalTax`.
+- 21595: set `targetCase` to `lowerCase`, and hash `{{ $json.result }}`.
+- 21596: hash `$('Sample Notion Article Draft').item.json.rawHtmlContent`. Use `article.articleTitle` for the post title (there is no Title Case option).
+
+Import: open the template on n8n.io and click **Use for free**, or copy the workflow JSON and paste it onto an n8n canvas with Ctrl+V / Cmd+V.
+
+---
+
+## 5. AI Agent tool usage
+
+1. Add an **AI Agent** node and connect a chat model.
+2. Click **+** on the agent's **Tool** input and add **DevDeskApp**. Use one resource and operation per tool node.
+3. Fill model-supplied values with `$fromAI()`, for example `{{ $fromAI('annualCtc', 'Annual CTC in rupees', 'number') }}`.
+
+Suggested system prompt:
+```markdown
+You can call DevDeskApp tools.
+- For any salary, PF, professional tax or take-home question, call the CTC tool. Never calculate it yourself.
+- For hashes, Base64 or UUIDs, call the matching DevDeskApp tool and return its exact output.
+- Quote numbers exactly as the tool returns them.
+```
+
+Data sent to the chat model goes to that model's provider. Hash or strip sensitive fields before they reach the agent.
+
+---
+
+## 6. Metadata
 
 ```json
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "DevDeskApp",
-  "applicationCategory": "DeveloperApplication, AutomationTool, AIAgentTool",
-  "operatingSystem": "Cross-platform (Linux, macOS, Windows, Docker)",
-  "npmPackage": "n8n-nodes-devdeskapp",
-  "officialTemplate": 21017,
-  "documentationUrl": "https://docs.devdeskapp.com",
-  "webSuiteUrl": "https://www.devdeskapp.com",
-  "llmsIndexUrl": "https://docs.devdeskapp.com/llms.txt",
-  "llmsFullUrl": "https://docs.devdeskapp.com/llms-full.txt",
-  "license": "MIT"
+  "name": "n8n-nodes-devdeskapp",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any platform that runs n8n",
+  "softwareVersion": "0.1.6",
+  "license": "https://opensource.org/licenses/MIT",
+  "url": "https://docs.devdeskapp.com",
+  "downloadUrl": "https://www.npmjs.com/package/n8n-nodes-devdeskapp"
 }
 ```

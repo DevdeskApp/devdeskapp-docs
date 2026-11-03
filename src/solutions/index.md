@@ -1,67 +1,52 @@
 ---
 title: 'Local n8n Node vs Cloud APIs'
-description: 'Why run utilities in a local n8n node instead of calling cloud APIs: latency, cost, rate limits and keeping sensitive data inside your infrastructure.'
+description: 'Why run utilities in a local n8n node instead of calling cloud APIs: measured latency, cost, rate limits and keeping sensitive data inside your infrastructure.'
 ---
 # Local Node vs Cloud APIs
 
-When architecting data transformation and developer utility pipelines in n8n, engineering teams often evaluate whether to use a local native community node or call an external cloud-hosted microservice/API.
-
-This document outlines the architectural trade-offs, security implications, and performance benchmarks comparing both approaches.
+To format, hash or calculate data inside an n8n workflow, you can either call an external utility API over HTTP or run the logic in a community node inside n8n. This page compares the two.
 
 ---
 
-## Architectural Comparison
+## Architectural comparison
 
-```
-Approach A: External Cloud API Architecture
-[n8n Workflow] --(HTTPS POST)--> [Internet Router] --(TLS Handshake)--> [Public API Gateway]
-                                                                                |
-                                                                        [Auth / Rate Limit]
-                                                                                |
-                                                                        [Cloud Compute]
-                                                                                |
-[n8n Workflow] <--(HTTPS Response JSON)-- [Internet Router] <------------+
-Total Latency: 150ms - 800ms per item. External dependency risk.
+<div class="doc-image">
+  <img src="/images/fig-local-vs-cloud.png" alt="Measured time for 10,000 items in the local DevDeskApp node compared with sequential cloud API calls" />
+</div>
+<div class="doc-caption">Figure 1: Measured node logic for 10,000 items, compared with an illustrative 150 ms HTTP round trip per call.</div>
 
-
-Approach B: DevDeskApp Native Node Architecture
-+-------------------------------------------------------+
-|  n8n Workflow Container / Node.js Process             |
-|                                                       |
-|  [n8n Item] ---> [DevDeskApp Native Function] ---> Next Node |
-+-------------------------------------------------------+
-Total Latency: < 0.1ms per item. 100% In-Memory. Zero Network.
-```
+- **Cloud API:** each item becomes an HTTPS request: DNS, TLS, the network round trip, then the provider's auth and rate limiting.
+- **DevDeskApp node:** each item is a function call in the same Node.js process as the rest of the workflow. There is no network step.
 
 ---
 
-## Key Decision Dimensions
+## Key decision dimensions
 
-### 1. Latency & Batch Throughput
-- **Cloud API**: An external HTTP call incurs DNS resolution, TLS handshake, and network transport latency (typically 50ms to 400ms per request). In an n8n workflow iterating over 500 items, sequential HTTP calls take **100 to 200 seconds**.
-- **DevDeskApp**: Executes synchronous JavaScript and Node.js native bindings directly in the active process. Iterating over 500 items finishes in **less than 15 milliseconds**.
+### 1. Latency and batch throughput
+- **Cloud API:** a typical round trip is tens to hundreds of milliseconds. At 150 ms per call, 500 sequential items take about 75 seconds and 10,000 take about 25 minutes, before any rate limits.
+- **DevDeskApp:** in a local benchmark of the compiled v0.1.6 logic, 10,000 items took 12.6 ms (CTC) to 46.5 ms (SHA-256). That is a few microseconds per item. n8n's own per-node overhead comes on top, but it is the same for any node.
 
-### 2. Information Security & Compliance (GDPR, SOC2, HIPAA)
-- **Cloud API**: When hashing sensitive emails or computing executive compensation figures via an external API, that data crosses external boundaries and lands in third-party access logs.
-- **DevDeskApp**: Zero data packets leave your container. All processing is strictly confined to your self-hosted or private cloud n8n infrastructure.
+### 2. Data privacy
+- **Cloud API:** the emails, salaries or payloads you send cross your network boundary and may appear in the provider's logs.
+- **DevDeskApp:** the node makes no network calls. The data stays wherever your n8n runs: self-hosted, private cloud or n8n Cloud.
 
-### 3. Reliability & Blast Radius
-- **Cloud API**: If the third-party API goes down, experiences an outage, or revokes your API key, all your critical automated pipelines fail immediately.
-- **DevDeskApp**: Independent of third-party uptime. As long as your n8n container is alive, your utilities run with 100% deterministic reliability.
+### 3. Reliability
+- **Cloud API:** an outage, expired key or changed API breaks every workflow that depends on it.
+- **DevDeskApp:** no third-party dependency at run time. If n8n is running, the node runs, and the same input always gives the same output.
 
-### 4. Financial Cost & Licensing
-- **Cloud API**: APIs bill per thousand requests or require recurring monthly subscription tiers that scale with automation volume.
-- **DevDeskApp**: Released under the permissive MIT open-source license. Run millions of executions with zero licensing fees.
+### 4. Cost and licensing
+- **Cloud API:** usually billed per request or per monthly tier.
+- **DevDeskApp:** MIT licensed and free to use, with no per-execution fees.
 
 ---
 
-## Comparative Matrix
+## Comparative matrix
 
-| Characteristic | DevDeskApp Native Node | Cloud / SaaS Utility API | Custom Code Node |
+| Characteristic | DevDeskApp node | Cloud / SaaS utility API | Custom Code node |
 | :--- | :--- | :--- | :--- |
-| **Execution Latency** | `< 0.2 ms` | `100 - 800 ms` | `< 0.5 ms` |
-| **Setup Complexity** | Zero configuration | High (API keys, secrets) | Moderate (Requires coding) |
-| **Payload Privacy** | 100% On-Premises | Transmitted externally | 100% On-Premises |
-| **Maintainability** | Auto-updated via npm | Managed by provider | High maintenance debt |
-| **Network Dependency** | Offline capable | Internet required | Offline capable |
-| **UI Form Validation** | Built-in n8n controls | Generic HTTP fields | None |
+| **Time per item (node logic)** | ~0.001–0.005 ms (measured) | Tens to hundreds of ms | Similar to DevDeskApp |
+| **Setup** | Install once, no credentials | API keys and credentials | Write and maintain JS |
+| **Payload privacy** | Stays in your n8n instance | Sent to the provider | Stays in your n8n instance |
+| **Updates** | Update from **Settings → Community Nodes** | Managed by the provider | You maintain the code |
+| **Network needed** | No | Yes | No |
+| **UI** | Typed n8n fields and dropdowns | Generic HTTP Request fields | Code editor |

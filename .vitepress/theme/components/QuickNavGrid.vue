@@ -17,7 +17,7 @@ const cards: NavCard[] = [
     category: 'Architecture & Overview',
     badge: 'Core Concept',
     badgeType: 'indigo',
-    description: 'Overview of DevDeskApp node, in-memory zero-latency execution, and security value proposition.',
+    description: 'What the DevDeskApp node does, its 5 resources, and why it runs in-process with no external API calls.',
     link: '/n8n/',
     linkText: 'n8n Overview',
     icon: '🚀'
@@ -27,7 +27,7 @@ const cards: NavCard[] = [
     category: 'Setup & Deployment',
     badge: 'UI & Docker',
     badgeType: 'cyan',
-    description: 'Step-by-step setup via n8n Community Nodes UI, Docker container images, npm package, or environment variables.',
+    description: 'Install from Settings → Community Nodes, inside Docker, or manually with npm in ~/.n8n/nodes.',
     link: '/n8n/installation',
     linkText: 'Installation Steps',
     icon: '📦'
@@ -37,7 +37,7 @@ const cards: NavCard[] = [
     category: 'Native Node Engine',
     badge: '10 Operations',
     badgeType: 'blue',
-    description: 'Full schema specifications, input parameter types, and sample execution outputs for all 10 native operations.',
+    description: 'Parameters, output fields and real sample outputs for all 19 operations.',
     link: '/n8n/operations',
     linkText: 'Operations Reference',
     icon: '⚙️'
@@ -47,7 +47,7 @@ const cards: NavCard[] = [
     category: 'Official n8n.io Recipes',
     badge: '2 Official Blueprints',
     badgeType: 'emerald',
-    description: 'Explore official blueprints #21017 and #21130 published on n8n.io with pre-wired sample payloads and validation steps.',
+    description: 'The 7 templates published on n8n.io, each with its pipeline, a real run and any fix needed after import.',
     link: '/templates/',
     linkText: 'Templates Catalog',
     icon: '🌟',
@@ -58,7 +58,7 @@ const cards: NavCard[] = [
     category: 'Function Calling & Tools',
     badge: 'LangChain & OpenAI',
     badgeType: 'purple',
-    description: 'Wire DevDeskApp into n8n AI Agents as zero-latency deterministic tools for payroll, hashing, and JSON compression.',
+    description: 'Attach DevDeskApp to the Tool port of an n8n AI Agent for exact payroll maths, hashing and JSON minifying.',
     link: '/solutions/ai-agents',
     linkText: 'AI Agent Guide',
     icon: '🤖',
@@ -69,7 +69,7 @@ const cards: NavCard[] = [
     category: 'Security & Benchmarks',
     badge: 'Zero-Leak Audit',
     badgeType: 'indigo',
-    description: 'Deep-dive security benchmarks comparing local native Node execution vs external cloud REST APIs.',
+    description: 'Measured local node timings compared with calling cloud utility APIs over HTTP.',
     link: '/solutions/',
     linkText: 'Architecture & Solutions',
     icon: '🛡️'
@@ -79,7 +79,7 @@ const cards: NavCard[] = [
     category: 'Performance Tuning',
     badge: 'Optimization',
     badgeType: 'amber',
-    description: 'High-throughput concurrency tips, memory management, defensive error handling, and automated CI/CD.',
+    description: 'Paired items, On Error handling, batch sizes, AI tool setup and safe hashing.',
     link: '/solutions/best-practices',
     linkText: 'Best Practices',
     icon: '⚡'

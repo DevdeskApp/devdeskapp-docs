@@ -18,6 +18,15 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
   title: 'DevDeskApp Docs',
   description: 'Official Documentation for DevDeskApp suite, developer utilities, and n8n-nodes-devdeskapp community node.',
   cleanUrls: true,
+  markdown: {
+    // n8n expressions such as `{{ $json.formatted }}` appear in inline code.
+    // Mark inline code v-pre so Vue does not try to evaluate them as template interpolation.
+    config(md) {
+      const renderInline = md.renderer.rules.code_inline!
+      md.renderer.rules.code_inline = (...args) =>
+        renderInline(...args).replace(/^<code/, '<code v-pre')
+    },
+  },
   // Git commit time of each page: shown as "Last updated" and emitted as <lastmod> in sitemap.xml.
   lastUpdated: true,
   sitemap: {
@@ -111,9 +120,13 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
           { text: '📋 Templates Catalog', link: '/templates/' },
           { text: '🏛️ Architecture & Solutions', link: '/solutions/' },
           { text: `📦 NPM Package (v${n8nNode.version})`, link: N8N_NODE_VERSIONS_URL },
-          { text: '🌟 n8n Template #21017', link: 'https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities' },
-          { text: '💰 n8n Template #21130', link: 'https://n8n.io/workflows/21130-automate-salary-and-in-hand-ctc-calculations-with-devdeskapp' },
-          { text: '🛡️ n8n Template #21376', link: 'https://n8n.io/workflows/21376' },
+          { text: '🌟 Developer Suite Blueprint', link: 'https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/' },
+          { text: '💰 CTC Salary Engine Blueprint', link: 'https://n8n.io/workflows/21130-generate-indian-ctc-offers-and-payroll-breakdowns-with-devdeskapp/' },
+          { text: '🛡️ Payment Webhook Sanitizer Blueprint', link: 'https://n8n.io/workflows/21376-sanitize-and-audit-payment-webhooks-with-devdeskapp-json-and-crypto-tools/' },
+          { text: '🤖 AI LLM JSON Ingestion Blueprint', link: 'https://n8n.io/workflows/21593-sanitize-and-ingest-ai-llm-json-into-postgres-with-devdeskapp-and-slack/' },
+          { text: '📄 CTC Offer Letter Blueprint', link: 'https://n8n.io/workflows/21594-generate-indian-ctc-offer-letters-with-devdeskapp-google-docs-gmail-and-slack/' },
+          { text: '📊 Meta CAPI Lead Sync Blueprint', link: 'https://n8n.io/workflows/21595-hash-and-sync-leads-to-meta-capi-with-devdeskapp-google-sheets-and-slack/' },
+          { text: '📝 Notion to WordPress Blueprint', link: 'https://n8n.io/workflows/21596-publish-seo-safe-notion-blog-posts-to-wordpress-with-devdeskapp-and-slack/' },
           { text: '🐙 Node GitHub Repo', link: 'https://github.com/DevdeskApp/n8n-nodes-devdeskapp' },
           { text: '🌐 DevDeskApp Web App', link: 'https://www.devdeskapp.com' }
         ]
@@ -151,9 +164,13 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
         {
           text: 'Official Blueprints',
           items: [
-            { text: '🌟 Developer Suite (#21017)', link: '/templates/developer-suite' },
-            { text: '💰 CTC Salary Engine (#21130)', link: '/templates/ctc-salary-engine' },
-            { text: '🛡️ Payment Webhook Sanitizer (#21376)', link: '/templates/payment-webhook-sanitizer' }
+            { text: '🌟 Developer Suite', link: '/templates/developer-suite' },
+            { text: '💰 CTC Salary Engine', link: '/templates/ctc-salary-engine' },
+            { text: '🛡️ Payment Webhook Sanitizer', link: '/templates/payment-webhook-sanitizer' },
+            { text: '🤖 AI LLM JSON Ingestion', link: '/templates/ai-llm-postgres-ingest' },
+            { text: '📄 CTC Offer Letter Generator', link: '/templates/offer-letter-generator' },
+            { text: '📊 Meta CAPI Lead Sync', link: '/templates/meta-capi-lead-sync' },
+            { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' }
           ]
         }
       ],

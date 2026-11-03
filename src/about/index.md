@@ -1,44 +1,42 @@
 ---
 title: 'About DevDeskApp'
-description: 'What DevDeskApp is: a privacy-first suite of 300+ browser-based developer tools, plus an n8n community node that runs the same utilities in your workflows.'
+description: 'What DevDeskApp is: a privacy-first suite of 340+ browser-based developer tools, plus an n8n community node that brings core utilities into your workflows.'
 ---
 # About DevDeskApp
 
-DevDeskApp is an all-in-one developer productivity platform and open-source automation utility suite. It provides modern engineering and operations teams with over 330+ developer utilities, calculators, encoders, and workflow tools designed to run with maximum speed and absolute privacy.
+DevDeskApp is a developer productivity platform with **340+ browser-based tools** (formatters, encoders, generators and calculators), plus an open-source n8n community node that brings the most-used utilities into workflow automation.
 
-## Mission and Vision
+## Mission
 
-Every day, software engineers, DevOps professionals, and automation builders copy and paste sensitive data into ad-hoc online tools:
-- Database connection strings and API payloads into online JSON formatters.
-- Plaintext passwords and secret tokens into third-party hash generators.
-- Employee payroll and compensation numbers into random calculator websites.
+Every day, engineers and automation builders paste sensitive data into random online tools:
+- connection strings and API payloads into online JSON formatters,
+- passwords and tokens into third-party hash generators,
+- salary figures into calculator websites.
 
-DevDeskApp eliminates this security vulnerability by delivering a comprehensive suite of utilities that execute locally in your environment:
-1. **DevDeskApp Web**: Runs 100% inside your browser using client-side JavaScript and WebAssembly. No telemetry, no server logs, and no remote data storage.
-2. **n8n Community Node (`n8n-nodes-devdeskapp`)**: Runs natively inside your n8n workflow engine as local Node.js functions. No HTTP API calls, no third-party downtime, and zero cloud exfiltration.
-
----
-
-## The DevDeskApp Ecosystem
-
-The platform spans two core components:
-
-### 1. DevDeskApp Web Platform
-The flagship web portal houses more than 330 tools categorized for daily developer workflows:
-- **Formatters & Beautifiers**: JSON, XML, HTML, CSS, SQL, GraphQL, YAML.
-- **Crypto & Security**: MD5, SHA-1, SHA-256, SHA-512, HMAC, AES, RSA key generators, JWT decoders.
-- **Encoders & Decoders**: Base64, URL, HTML entities, Hex, Unicode, Punycode.
-- **Generators**: UUID v4, NanoID, Lorem Ipsum, QR codes, Strong passwords, Dummy data.
-- **Calculators & Converters**: CTC salary breakdown, in-hand tax estimation, unit converters, timestamp/epoch converters.
-
-### 2. n8n Community Node
-An official n8n community package (`n8n-nodes-devdeskapp`) that brings core DevDeskApp processing capabilities directly into workflow automation pipelines. With seamless n8n UI integration, users can sanitize payloads, calculate salaries, hash sensitive fields, and format strings without writing custom JavaScript code.
+DevDeskApp keeps that processing local:
+1. **DevDeskApp Web** ([devdeskapp.com](https://www.devdeskapp.com/)): the tools process your input in your browser. It is not sent to a DevDeskApp server.
+2. **n8n community node (`n8n-nodes-devdeskapp`)**: runs inside your n8n instance as plain Node.js code, with no external API calls and no third-party downtime.
 
 ---
 
-## Core Principles
+## The DevDeskApp ecosystem
 
-- **Zero-Trust Privacy**: Your data belongs to you. No inputs or outputs are ever transmitted to external endpoints.
-- **Speed & Efficiency**: Instant execution without network latency.
-- **Standards Compliance**: Tested against strict formatting and calculation standards (including official Indian payroll PF, ESI, PT, and Tax regulations).
-- **Open Architecture**: Open-source, extensible, and fully transparent.
+### 1. DevDeskApp Web
+More than 340 tools, grouped for everyday work:
+- **Formatters:** JSON, XML, HTML, CSS, SQL, YAML and more.
+- **Crypto and security:** MD5, SHA-1, SHA-256, SHA-512, HMAC, JWT decoding, password generation.
+- **Encoders and decoders:** Base64, URL, HTML entities, hex, Unicode.
+- **Generators:** UUID, ULID, Lorem Ipsum, QR codes, dummy data.
+- **Calculators and converters:** CTC to in-hand salary, gratuity, HR metrics, timestamps, units.
+
+### 2. n8n community node
+`n8n-nodes-devdeskapp` brings **19 operations** in 5 resources (JSON, Crypto, Text, Calculator, E-commerce) into n8n as typed form fields, so you can format payloads, hash fields, convert case and estimate salaries without writing Code nodes. See the [Operations Reference](/n8n/operations).
+
+---
+
+## Core principles
+
+- **Privacy first:** the data you transform is processed where it already is, in your browser or your n8n instance.
+- **Speed:** no network round trip for the processing itself.
+- **Transparent maths:** calculators document their formulas. The CTC calculation shows the PF cap, PT and tax slabs it uses, and its output is an estimate.
+- **Open source:** the n8n node is MIT licensed.
