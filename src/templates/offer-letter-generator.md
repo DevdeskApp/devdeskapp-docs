@@ -1,6 +1,6 @@
 ---
 title: 'Template #21594: Indian CTC Offer Letter Generator'
-description: 'n8n template #21594: estimate in-hand salary, PF and PT from annual CTC with DevDeskApp, create a Google Docs offer letter, email it with Gmail and alert HR on Slack.'
+description: 'n8n template #21594: estimate in-hand salary, PF and PT from CTC with DevDeskApp, then create and email a Google Docs offer letter.'
 ---
 
 # 📄 Template #21594: Generate Indian CTC Offer Letters with DevDeskApp, Google Docs, Gmail and Slack

@@ -1,6 +1,6 @@
 ---
 title: 'Template #21596: Notion to WordPress SEO Publisher'
-description: 'n8n template #21596: build clean SEO slugs with DevDeskApp, fingerprint article content with SHA-256, add a UUID trace ID and publish approved Notion posts to WordPress with Slack alerts.'
+description: 'n8n template #21596: build SEO slugs with DevDeskApp, fingerprint content with SHA-256 and publish approved Notion posts to WordPress.'
 ---
 
 # 📝 Template #21596: Publish SEO-Safe Notion Blog Posts to WordPress with DevDeskApp and Slack

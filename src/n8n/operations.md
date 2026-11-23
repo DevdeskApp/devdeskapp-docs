@@ -1,6 +1,6 @@
 ---
 title: 'n8n Node Operations Reference'
-description: 'Reference for all 19 n8n-nodes-devdeskapp operations across 5 resources: parameters and real output fields for JSON, hashing, text, CTC payroll and e-commerce utilities.'
+description: 'Reference for all 19 n8n-nodes-devdeskapp operations in 5 resources: parameters and real output fields for JSON, hashing, text, CTC payroll and e-commerce.'
 ---
 # Operations Reference
 

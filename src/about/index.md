@@ -40,3 +40,23 @@ More than 340 tools, grouped for everyday work:
 - **Speed:** no network round trip for the processing itself.
 - **Transparent maths:** calculators document their formulas. The CTC calculation shows the PF cap, PT and tax slabs it uses, and its output is an estimate.
 - **Open source:** the n8n node is MIT licensed.
+
+---
+
+## Who uses DevDeskApp
+
+- **Developers** format API responses, decode JWTs, generate UUIDs and test regular expressions without pasting data into a third-party server.
+- **Automation builders** use the n8n node to clean webhook payloads, hash personal data before sending it to ad platforms and build URL slugs inside workflows.
+- **HR and payroll teams in India** estimate in-hand salary, PF and professional tax from an annual CTC, in the browser or as an n8n step that feeds offer letters.
+- **Students and learners** use the calculators and converters as a quick reference while studying networking, encoding or finance.
+
+## Browser tool or n8n node?
+
+Use **DevDeskApp Web** when a person needs a one-off answer: paste a payload, read the result, copy it. Use the **n8n node** when the same transformation has to run every time an event arrives, such as each new lead, payment webhook or blog post. Both are built around the same everyday operations, so a result you check by hand in the browser is the kind of step you can then automate.
+
+## Where to start
+
+1. Read [Installation](/n8n/installation) to add `n8n-nodes-devdeskapp` to a self-hosted n8n instance.
+2. Browse the [Operations Reference](/n8n/operations) for every parameter and output field.
+3. Import a ready-made workflow from the [Templates](/templates/) section and adapt it.
+4. See [Architecture](/about/architecture) for how the node runs inside n8n without external API calls.
