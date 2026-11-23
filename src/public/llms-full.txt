@@ -111,7 +111,7 @@ Formula:
 - Employee PF = employer PF = min(12% of monthly basic, ₹1,800).
 - Monthly gross = (annual CTC − 12 × employer PF) ÷ 12.
 - Professional tax = ₹200 per month.
-- TDS = new-regime slabs on (12 × gross − ₹75,000 standard deduction), divided by 12.
+- TDS = Budget 2025 new-regime slabs on (12 × gross − ₹75,000 standard deduction), Section 87A rebate up to ₹12,00,000 taxable (with marginal relief), plus 4% cess, divided by 12.
 - In-hand = gross − employee PF − PT − TDS.
 
 It does not model HRA, special allowance, the old regime, ESIC, cess, surcharge or rebates. Treat results as estimates.
@@ -121,20 +121,20 @@ Output for `annualCtc: 2400000`, `basicPercentage: 50`:
 {
   "annualCtc": 2400000,
   "monthlyGross": 198200,
-  "monthlyInHand": 163075,
+  "monthlyInHand": 172293,
   "breakdown": {
     "monthlyBasic": 100000,
     "employeePf": 1800,
     "employerPf": 1800,
     "professionalTax": 200,
-    "estimatedMonthlyTds": 33125
+    "estimatedMonthlyTds": 23907
   },
-  "taxRegime": "India Standard / New Tax Benchmark",
+  "taxRegime": "India New Tax Regime (FY 2025-26 slabs, 87A rebate up to 12L)",
   "reference": "https://www.devdeskapp.com/ctc-to-in-hand-calculator"
 }
 ```
 
-Other CTCs (monthly gross / TDS / in-hand): ₹12L 98,200 / 6,563 / 89,638 · ₹18L 1,48,200 / 18,125 / 1,28,075 · ₹21L 1,73,200 / 25,625 / 1,45,575 · ₹28L 2,31,533 / 43,125 / 1,86,408.
+Other CTCs (monthly gross / TDS / in-hand): ₹12L 98,200 / 0 / 96,200 · ₹18L 1,48,200 / 12,192 / 1,34,008 · ₹21L 1,73,200 / 17,407 / 1,53,793 · ₹28L 2,31,533 / 33,888 / 1,95,645.
 
 ### 2.5 E-commerce & FinTech (`ecommerce`)
 

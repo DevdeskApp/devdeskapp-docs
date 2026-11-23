@@ -60,15 +60,15 @@ PF is always 12% of basic, capped at ₹1,800 a month, and professional tax is a
 {
   "annualCtc": 1800000,
   "monthlyGross": 148200,
-  "monthlyInHand": 128075,
+  "monthlyInHand": 134008,
   "breakdown": {
     "monthlyBasic": 75000,
     "employeePf": 1800,
     "employerPf": 1800,
     "professionalTax": 200,
-    "estimatedMonthlyTds": 18125
+    "estimatedMonthlyTds": 12192
   },
-  "taxRegime": "India Standard / New Tax Benchmark",
+  "taxRegime": "India New Tax Regime (FY 2025-26 slabs, 87A rebate up to 12L)",
   "reference": "https://www.devdeskapp.com/ctc-to-in-hand-calculator"
 }
 ```

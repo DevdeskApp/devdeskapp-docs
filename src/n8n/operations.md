@@ -140,7 +140,7 @@ How the node calculates it:
 - **Employee PF** = 12% of monthly basic, capped at **₹1,800**. Employer PF is the same.
 - **Monthly gross** = (CTC − 12 × employer PF) ÷ 12
 - **Professional tax** = flat ₹200 a month
-- **Estimated TDS**: new-regime slabs after a ₹75,000 standard deduction (none at or below ₹7,00,000 CTC)
+- **Estimated TDS**: new-regime slabs from Budget 2025 on gross salary after a ₹75,000 standard deduction, Section 87A rebate up to ₹12,00,000 taxable income (with marginal relief) and 4% cess (since version 0.1.8)
 - **Monthly in-hand** = gross − employee PF − PT − TDS
 
 **Annual CTC `1800000`, basic `50`:**
@@ -149,15 +149,15 @@ How the node calculates it:
 {
   "annualCtc": 1800000,
   "monthlyGross": 148200,
-  "monthlyInHand": 128075,
+  "monthlyInHand": 134008,
   "breakdown": {
     "monthlyBasic": 75000,
     "employeePf": 1800,
     "employerPf": 1800,
     "professionalTax": 200,
-    "estimatedMonthlyTds": 18125
+    "estimatedMonthlyTds": 12192
   },
-  "taxRegime": "India Standard / New Tax Benchmark",
+  "taxRegime": "India New Tax Regime (FY 2025-26 slabs, 87A rebate up to 12L)",
   "reference": "https://www.devdeskapp.com/ctc-to-in-hand-calculator"
 }
 ```

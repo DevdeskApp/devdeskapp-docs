@@ -40,20 +40,20 @@ The agent calls the DevDeskApp tool set to **Calculator → CTC to In-Hand Salar
 {
   "annualCtc": 2400000,
   "monthlyGross": 198200,
-  "monthlyInHand": 163075,
+  "monthlyInHand": 172293,
   "breakdown": {
     "monthlyBasic": 100000,
     "employeePf": 1800,
     "employerPf": 1800,
     "professionalTax": 200,
-    "estimatedMonthlyTds": 33125
+    "estimatedMonthlyTds": 23907
   },
-  "taxRegime": "India Standard / New Tax Benchmark",
+  "taxRegime": "India New Tax Regime (FY 2025-26 slabs, 87A rebate up to 12L)",
   "reference": "https://www.devdeskapp.com/ctc-to-in-hand-calculator"
 }
 ```
 
-The agent then answers with **₹1,63,075 in hand per month** and **₹1,800 employee PF**. PF is 12% of basic, capped at ₹1,800, and TDS uses the new-regime slabs with the ₹75,000 standard deduction. Treat the output as an estimate, not payroll advice. See the [Operations Reference](/n8n/operations#_4-hr-calculator-calculator) for the full formula.
+The agent then answers with **₹1,72,293 in hand per month** and **₹1,800 employee PF**. PF is 12% of basic, capped at ₹1,800, and TDS uses the Budget 2025 new-regime slabs with the ₹75,000 standard deduction, the 87A rebate and 4% cess. Treat the output as an estimate, not payroll advice. See the [Operations Reference](/n8n/operations#_4-hr-calculator-calculator) for the full formula.
 
 ### 2. 🧹 Shrinking JSON before it reaches the model
 
