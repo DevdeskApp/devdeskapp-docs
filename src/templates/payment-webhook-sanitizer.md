@@ -1,6 +1,6 @@
 ---
 title: 'Template #21376: Payment Webhook Sanitizer'
-description: 'n8n template #21376: format payment webhook JSON, compute a SHA-256 checksum, add a UUID trace ID and audit slug, then route captured and failed payments to Slack.'
+description: 'n8n template #21376: format payment webhook JSON, add a SHA-256 checksum and UUID trace ID, then route captured and failed payments to Slack.'
 ---
 
 # 🛡️ Template #21376: Payment Webhook Sanitizer & Security Audit Pipeline

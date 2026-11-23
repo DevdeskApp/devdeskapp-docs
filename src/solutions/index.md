@@ -1,6 +1,6 @@
 ---
 title: 'Local n8n Node vs Cloud APIs'
-description: 'Why run utilities in a local n8n node instead of calling cloud APIs: measured latency, cost, rate limits and keeping sensitive data inside your infrastructure.'
+description: 'Why run utilities in a local n8n node instead of cloud APIs: latency, cost, rate limits and keeping sensitive data inside your own infrastructure.'
 ---
 # Local Node vs Cloud APIs
 

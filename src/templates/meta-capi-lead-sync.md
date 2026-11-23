@@ -1,6 +1,6 @@
 ---
 title: 'Template #21595: Meta CAPI Lead Hasher & Sync'
-description: 'n8n template #21595: lowercase and SHA-256 hash lead emails with DevDeskApp, add a UUID event_id, send opted-in leads to the Meta Conversions API, log them to Google Sheets and alert Slack.'
+description: 'n8n template #21595: SHA-256 hash lead emails with DevDeskApp, add a UUID event_id and send opted-in leads to the Meta Conversions API.'
 ---
 
 # 📊 Template #21595: Hash and Sync Leads to Meta CAPI with DevDeskApp, Google Sheets, and Slack

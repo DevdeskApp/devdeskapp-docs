@@ -292,4 +292,4 @@ Have you built a creative automation pipeline using `n8n-nodes-devdeskapp`?
 - **Data Engineering**: High-throughput JSON sanitization before PostgreSQL or Snowflake ingestion.
 - **Enterprise DevOps**: Secure webhook digestion and SHA-256 payload verification.
 
-Submit your templates to our [GitHub Community Discussions](https://github.com/DevdeskApp/n8n-nodes-devdeskapp/discussions) to get featured in the official catalog!
+Submit your templates to our [n8n-nodes-devdeskapp issue tracker](https://github.com/DevdeskApp/n8n-nodes-devdeskapp/issues) to get featured in the official catalog!

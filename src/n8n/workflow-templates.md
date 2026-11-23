@@ -1,6 +1,6 @@
 ---
 title: 'Official n8n Workflow Templates | DevDeskApp'
-description: 'The 7 published n8n templates built with n8n-nodes-devdeskapp: developer utilities, Indian CTC payroll, payment webhook audit, AI LLM JSON ingestion, offer letters, Meta CAPI and Notion to WordPress.'
+description: 'The 7 published n8n templates built with n8n-nodes-devdeskapp: developer utilities, CTC payroll, webhook audit, LLM JSON, offer letters, Meta CAPI and more.'
 ---
 
 # 🌟 Official Workflow Templates (n8n Community)

@@ -1,6 +1,6 @@
 ---
 title: 'Template #21593: AI LLM JSON Ingestion'
-description: 'n8n template #21593: strip markdown fences from LLM output, format and fingerprint the JSON with DevDeskApp, add a UUID trace ID, and insert clean records into PostgreSQL with Slack alerts.'
+description: 'n8n template #21593: strip markdown fences from LLM output, format and fingerprint JSON with DevDeskApp, then insert clean records into PostgreSQL.'
 ---
 
 # 🤖 Template #21593: Sanitize & Ingest AI LLM JSON into Postgres with DevDeskApp and Slack
