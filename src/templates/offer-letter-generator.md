@@ -70,7 +70,7 @@ Monthly gross, in-hand and CTC are already correct.
 }
 ```
 
-**DevDeskApp CTC output:** `monthlyGross: 173200`, `monthlyInHand: 145575`, `breakdown.monthlyBasic: 87500`, `employeePf: 1800`, `professionalTax: 200`, `estimatedMonthlyTds: 25625`.
+**DevDeskApp CTC output:** `monthlyGross: 173200`, `monthlyInHand: 153793`, `breakdown.monthlyBasic: 87500`, `employeePf: 1800`, `professionalTax: 200`, `estimatedMonthlyTds: 17407`.
 
 **`Format Offer Letter Document Payload` output:**
 
