@@ -137,6 +137,7 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
       '/about/': [
         {
           text: 'DevDeskApp Platform',
+          collapsed: false,
           items: [
             { text: 'Platform Overview', link: '/about/' },
             { text: 'Zero-Leak Architecture', link: '/about/architecture' }
@@ -145,25 +146,57 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
       ],
       '/n8n/': [
         {
-          text: 'n8n Community Node',
+          text: '🚀 Getting Started & Setup',
+          collapsed: false,
           items: [
-            { text: 'Getting Started', link: '/n8n/' },
+            { text: 'Node Overview', link: '/n8n/' },
             { text: 'Step-by-Step Installation', link: '/n8n/installation' },
             { text: 'Operations Reference', link: '/n8n/operations' },
-            { text: 'Workflow Templates Hub', link: '/templates/' }
+            { text: 'Templates Hub', link: '/n8n/workflow-templates' }
+          ]
+        },
+        {
+          text: '📋 Featured Blueprints',
+          collapsed: false,
+          items: [
+            { text: '🌟 Developer Suite (#21017)', link: '/templates/developer-suite' },
+            { text: '💰 CTC Salary Engine (#21130)', link: '/templates/ctc-salary-engine' },
+            { text: '🛡️ Payment Webhook Sanitizer', link: '/templates/payment-webhook-sanitizer' },
+            { text: '🤖 AI LLM JSON Ingestion', link: '/templates/ai-llm-postgres-ingest' },
+            { text: '📄 CTC Offer Letter Generator', link: '/templates/offer-letter-generator' },
+            { text: '📊 Meta CAPI Lead Sync', link: '/templates/meta-capi-lead-sync' },
+            { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' }
+          ]
+        },
+        {
+          text: '🤖 AI Agents & Solutions',
+          collapsed: true,
+          items: [
+            { text: 'AI Agents & LLM Tool Calling', link: '/solutions/ai-agents' },
+            { text: 'Local Node vs Cloud APIs', link: '/solutions/' },
+            { text: 'Production Best Practices', link: '/solutions/best-practices' }
+          ]
+        },
+        {
+          text: '💼 Custom Automation Services',
+          collapsed: true,
+          items: [
+            { text: 'Hire n8n Experts & Consulting', link: '/services/' }
           ]
         }
       ],
       '/templates/': [
         {
-          text: 'Workflow Templates Hub',
+          text: '📋 Workflow Templates Hub',
+          collapsed: false,
           items: [
-            { text: '📋 All Templates Catalog', link: '/templates/' },
+            { text: 'All Templates Catalog', link: '/templates/' },
             { text: '⚡ Quick Import Guide', link: '/templates/how-to-import' }
           ]
         },
         {
           text: 'Official Blueprints',
+          collapsed: false,
           items: [
             { text: '🌟 Developer Suite', link: '/templates/developer-suite' },
             { text: '💰 CTC Salary Engine', link: '/templates/ctc-salary-engine' },
@@ -173,23 +206,67 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
             { text: '📊 Meta CAPI Lead Sync', link: '/templates/meta-capi-lead-sync' },
             { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' }
           ]
+        },
+        {
+          text: '🚀 n8n Community Node',
+          collapsed: true,
+          items: [
+            { text: 'Getting Started', link: '/n8n/' },
+            { text: 'Installation', link: '/n8n/installation' },
+            { text: 'Operations Reference', link: '/n8n/operations' }
+          ]
+        },
+        {
+          text: '💼 Custom Automation Services',
+          collapsed: true,
+          items: [
+            { text: 'Hire n8n Experts & Consulting', link: '/services/' }
+          ]
         }
       ],
       '/solutions/': [
         {
           text: 'Solutions & AI',
+          collapsed: false,
           items: [
             { text: '🤖 AI Agents & LLM Calling', link: '/solutions/ai-agents' },
             { text: 'Local Node vs Cloud APIs', link: '/solutions/' },
             { text: 'Production Best Practices', link: '/solutions/best-practices' }
+          ]
+        },
+        {
+          text: '🚀 n8n Community Node',
+          collapsed: true,
+          items: [
+            { text: 'Node Overview', link: '/n8n/' },
+            { text: 'Installation', link: '/n8n/installation' },
+            { text: 'Operations Reference', link: '/n8n/operations' }
+          ]
+        },
+        {
+          text: '💼 Custom Automation Services',
+          collapsed: true,
+          items: [
+            { text: 'Hire n8n Experts & Consulting', link: '/services/' }
           ]
         }
       ],
       '/services/': [
         {
           text: 'Custom Consulting & Automations',
+          collapsed: false,
           items: [
             { text: '💼 Custom n8n Services', link: '/services/' }
+          ]
+        },
+        {
+          text: '🚀 n8n Community Node',
+          collapsed: true,
+          items: [
+            { text: 'Node Overview', link: '/n8n/' },
+            { text: 'Installation', link: '/n8n/installation' },
+            { text: 'Operations Reference', link: '/n8n/operations' },
+            { text: 'Templates Hub', link: '/templates/' }
           ]
         }
       ]
