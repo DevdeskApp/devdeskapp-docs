@@ -113,6 +113,7 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
       { text: 'n8n Node Guide', link: '/n8n/' },
       { text: '📋 Templates', link: '/templates/' },
       { text: '🤖 AI Agents & LLMs', link: '/solutions/ai-agents' },
+      { text: '💼 Hire Us / Services', link: '/services/' },
       {
         text: 'More',
         items: [
@@ -181,6 +182,14 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
             { text: '🤖 AI Agents & LLM Calling', link: '/solutions/ai-agents' },
             { text: 'Local Node vs Cloud APIs', link: '/solutions/' },
             { text: 'Production Best Practices', link: '/solutions/best-practices' }
+          ]
+        }
+      ],
+      '/services/': [
+        {
+          text: 'Custom Consulting & Automations',
+          items: [
+            { text: '💼 Custom n8n Services', link: '/services/' }
           ]
         }
       ]
