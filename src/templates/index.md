@@ -1,6 +1,6 @@
 ---
 title: 'Official n8n Workflow Templates'
-description: 'Catalog of 7 official DevDeskApp n8n templates: AI LLM ingestion, CTC payroll, payment webhook sanitizer, Meta CAPI sync, and Notion CMS publishing.'
+description: 'Catalog of 10 official DevDeskApp n8n templates: AI LLM ingestion, CTC payroll, payment fraud detection, GitHub PR architecture diagrams, social media banners, and Notion CMS publishing.'
 ---
 
 # 📋 Official n8n Workflow Templates
@@ -10,7 +10,7 @@ Discover and deploy production-ready n8n automation blueprints built with **`n8n
 <div class="official-template-card">
   <div class="template-card-left">
     <div class="template-card-header">
-      <span class="template-badge">7 Verified Blueprints</span>
+      <span class="template-badge">10 Verified Blueprints</span>
       <span class="badge-live">Official n8n Creator Portal</span>
     </div>
     <h3 class="template-card-title">1-Click n8n Canvas Import</h3>
@@ -26,7 +26,7 @@ Discover and deploy production-ready n8n automation blueprints built with **`n8n
 
 ---
 
-## 🌟 Templates Catalog (7 Published Live)
+## 🌟 Templates Catalog (10 Published Live)
 
 Each template has its own page with the node order, parameters and a real execution result. Templates marked **Fix after import** need one small change, listed on their page.
 
@@ -256,20 +256,116 @@ Each template has its own page with the node order, parameters and a real execut
     </div>
   </div>
 
+  <!-- Template 8: GitHub PR Architecture Diagrams -->
+  <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #2563eb; background: rgba(37, 99, 235, 0.12); border: 1px solid rgba(37, 99, 235, 0.3); padding: 2px 8px; border-radius: 9999px;">
+          TEMPLATE #22361
+        </span>
+        <span class="badge-live badge-green" style="font-size: 0.7rem;">Verified Live</span>
+      </div>
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
+        Sync GitHub PR Architecture Diagrams
+      </h3>
+      <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
+        Generates canonical slugs and SHA-256 fingerprint hashes from GitHub pull request architecture changes, auto-updating Notion documentation and alerting engineering in Slack.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">GitHub API</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Notion Hub</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Slugifier</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">SHA-256 Hash</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--vp-c-border);">
+      <a href="/templates/github-pr-architecture-diagrams" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #2563eb; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+        View Blueprint →
+      </a>
+      <a href="https://n8n.io/workflows/22361-sync-github-pr-architecture-diagrams-with-devdeskapp-slack-and-notion/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+        n8n Portal ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Template 9: Payment Fraud & Webhook Deduplication -->
+  <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626; background: rgba(220, 38, 38, 0.12); border: 1px solid rgba(220, 38, 38, 0.3); padding: 2px 8px; border-radius: 9999px;">
+          TEMPLATE #22363
+        </span>
+        <span class="badge-live badge-green" style="font-size: 0.7rem;">Verified Live</span>
+      </div>
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
+        Detect Payment Fraud & Deduplicate Webhooks
+      </h3>
+      <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
+        Prevents payment webhook double-processing and replay attacks using DevDeskApp SHA-256 fingerprinting, PostgreSQL transaction checks, and instant Slack security escalations.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">PostgreSQL</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">SHA-256 Dedupe</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">UUID v4 Audit</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">Security Alert</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--vp-c-border);">
+      <a href="/templates/payment-fraud-detection" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #dc2626; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+        View Blueprint →
+      </a>
+      <a href="https://n8n.io/workflows/22363-detect-payment-fraud-and-deduplicate-webhooks-with-devdeskapp-postgresql-and-slack/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+        n8n Portal ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Template 10: RSS-Based Social Banner Publisher -->
+  <div style="border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 1.5rem; background: var(--vp-c-bg-soft); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease;" class="pipeline-step">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #8b5cf6; background: rgba(139, 92, 246, 0.12); border: 1px solid rgba(139, 92, 246, 0.3); padding: 2px 8px; border-radius: 9999px;">
+          TEMPLATE #22360
+        </span>
+        <span class="badge-live badge-green" style="font-size: 0.7rem;">Verified Live</span>
+      </div>
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; color: var(--vp-c-text-1);">
+        Publish RSS-Based Social Banner Posts
+      </h3>
+      <p style="font-size: 0.88rem; color: var(--vp-c-text-2); line-height: 1.5; margin: 0 0 1rem 0;">
+        Extracts incoming RSS feed items, creates SEO slugs and SHA-256 idempotency hashes, and publishes formatted posts with image banners to LinkedIn and X (Twitter) with Slack confirmation.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">RSS Read</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">LinkedIn & X</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">SEO Slugifier</span>
+        <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 6px; background: var(--vp-c-bg-mute); color: var(--vp-c-text-2);">SHA-256 Dedupe</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--vp-c-border);">
+      <a href="/templates/rss-social-banner-publisher" style="flex: 1; text-align: center; padding: 8px 12px; border-radius: 8px; background: #8b5cf6; color: white !important; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+        View Blueprint →
+      </a>
+      <a href="https://n8n.io/workflows/22360-publish-rss-based-social-banner-posts-with-devdeskapp-linkedin-x-and-slack/" target="_blank" rel="noopener" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); color: var(--vp-c-text-1) !important; font-size: 0.82rem; font-weight: 600; text-decoration: none;">
+        n8n Portal ↗
+      </a>
+    </div>
+  </div>
+
 </div>
 
 ---
 
 ## ⏳ Upcoming Templates (Under n8n Community Review)
 
-These 4 workflows are submitted to the n8n Creator Portal and waiting for review:
+These 4 workflows are submitted to the n8n Creator Portal and currently pending human review:
 
-| Template ID | Workflow Name | Key Operations | Target Pipeline |
-| :--- | :--- | :--- | :--- |
-| **#22360** | RSS-based Social Banner Publisher | Slugifier, SHA-256, UUID v4 | LinkedIn, X & Slack automated multi-platform broadcasting |
-| **#22361** | GitHub PR Architecture Diagram Sync | Slugifier, SHA-256 | GitHub Pull Requests, Slack alerts & Notion Architecture Hub |
-| **#22362** | CRM Lead Normalizer & Deduplication | Prettifier, SHA-256, UUID v4 | HubSpot, Salesforce, PostgreSQL & Slack pipeline |
-| **#22363** | Real-Time Fraud & Webhook Deduplication | SHA-256, UUID v4, Condition Gate | Stripe/Razorpay anti-replay defense & Slack incident escalation |
+| Workflow Name | Key Operations | Target Pipeline |
+| :--- | :--- | :--- |
+| **Review GitHub pull requests with OpenAI, DevDeskApp, Mermaid and Slack** | SHA-256, UUID v4, Prettifier | Automated PR Code Review & Mermaid Architecture Diagram Sync |
+| **Redact PII and escalate urgent support tickets with DevDeskApp, PostgreSQL and Slack** | Mask PII, Regex Redaction, UUID v4 | High-Urgency Support Ticket Escalation & Postgres Ingestion |
+| **Audit contractor invoices and calculate tax withholding with DevDeskApp, PostgreSQL and Slack** | CTC / Invoice Math, SHA-256 | Automated Invoice Audit, GST/TDS Computation & Compliance Archival |
+| **Normalize CRM leads and sync PostgreSQL with DevDeskApp and Slack** (#22362) | Prettifier, SHA-256, UUID v4 | HubSpot, Salesforce, PostgreSQL & Slack pipeline |
 
 ---
 

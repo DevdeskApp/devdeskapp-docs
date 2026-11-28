@@ -40,6 +40,9 @@ See the [Installation Guide](/n8n/installation) for Docker, manual and queue-mod
 | #21594 | [CTC Offer Letter Generator](https://n8n.io/workflows/21594-generate-indian-ctc-offer-letters-with-devdeskapp-google-docs-gmail-and-slack/) | Google Docs, Gmail, Google Sheets, Slack |
 | #21595 | [Meta CAPI Lead Sync](https://n8n.io/workflows/21595-hash-and-sync-leads-to-meta-capi-with-devdeskapp-google-sheets-and-slack/) | Meta access token, Google Sheets, Slack |
 | #21596 | [Notion to WordPress Publisher](https://n8n.io/workflows/21596-publish-seo-safe-notion-blog-posts-to-wordpress-with-devdeskapp-and-slack/) | Notion, WordPress, Slack |
+| #22360 | [RSS-based Social Banner Publisher](https://n8n.io/workflows/22360-publish-rss-based-social-banner-posts-with-devdeskapp-linkedin-x-and-slack/) | LinkedIn, X, Slack |
+| #22361 | [GitHub PR Architecture Diagrams](https://n8n.io/workflows/22361-sync-github-pr-architecture-diagrams-with-devdeskapp-slack-and-notion/) | GitHub, Slack, Notion |
+| #22363 | [Payment Fraud & Webhook Deduplication](https://n8n.io/workflows/22363-detect-payment-fraud-and-deduplicate-webhooks-with-devdeskapp-postgresql-and-slack/) | PostgreSQL, Slack |
 
 Click **Use for free** to open it in your own n8n, or use the copy option to put the workflow JSON on your clipboard.
 

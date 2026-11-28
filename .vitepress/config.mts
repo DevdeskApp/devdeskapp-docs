@@ -166,7 +166,10 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
             { text: '🤖 AI LLM JSON Ingestion', link: '/templates/ai-llm-postgres-ingest' },
             { text: '📄 CTC Offer Letter Generator', link: '/templates/offer-letter-generator' },
             { text: '📊 Meta CAPI Lead Sync', link: '/templates/meta-capi-lead-sync' },
-            { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' }
+            { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' },
+            { text: '🏗️ GitHub PR Diagrams (#22361)', link: '/templates/github-pr-architecture-diagrams' },
+            { text: '🛡️ Payment Fraud Detection (#22363)', link: '/templates/payment-fraud-detection' },
+            { text: '🚀 Viral RSS Banner Publisher (#22360)', link: '/templates/rss-social-banner-publisher' }
           ]
         },
         {
@@ -205,7 +208,10 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
             { text: '🤖 AI LLM JSON Ingestion', link: '/templates/ai-llm-postgres-ingest' },
             { text: '📄 CTC Offer Letter Generator', link: '/templates/offer-letter-generator' },
             { text: '📊 Meta CAPI Lead Sync', link: '/templates/meta-capi-lead-sync' },
-            { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' }
+            { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' },
+            { text: '🏗️ GitHub PR Architecture Diagrams', link: '/templates/github-pr-architecture-diagrams' },
+            { text: '🛡️ Payment Fraud Detection', link: '/templates/payment-fraud-detection' },
+            { text: '🚀 Viral RSS Banner Publisher', link: '/templates/rss-social-banner-publisher' }
           ]
         },
         {
