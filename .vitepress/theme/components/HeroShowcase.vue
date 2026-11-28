@@ -20,7 +20,6 @@ const tabs = [
       <!-- Floating Ambient Glow Blobs -->
       <div class="hero-blob-1" />
       <div class="hero-blob-2" />
-      <div class="hero-blob-3" />
 
       <div class="hero-inner">
         <!-- Left Column: Branding, Title, Actions, Metrics -->
@@ -207,16 +206,10 @@ const tabs = [
   border-radius: 24px;
   overflow: hidden;
   padding: 3rem 2.5rem;
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg-soft);
   backdrop-filter: blur(16px);
-  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.06);
-}
-
-:global(.dark) .hero-section {
-  border-color: rgba(51, 65, 85, 0.8);
-  background: rgba(15, 23, 42, 0.6);
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
 }
 
 /* Grid Background */
@@ -239,7 +232,7 @@ const tabs = [
   width: 20rem;
   height: 20rem;
   border-radius: 9999px;
-  background-color: rgba(99, 102, 241, 0.15);
+  background-color: rgba(99, 102, 241, 0.06);
   filter: blur(90px);
   pointer-events: none;
 }
@@ -251,26 +244,10 @@ const tabs = [
   width: 20rem;
   height: 20rem;
   border-radius: 9999px;
-  background-color: rgba(168, 85, 247, 0.15);
+  background-color: rgba(51, 65, 85, 0.06);
   filter: blur(90px);
   pointer-events: none;
 }
-
-.hero-blob-3 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24rem;
-  height: 24rem;
-  border-radius: 9999px;
-  background-color: rgba(236, 72, 153, 0.08);
-  filter: blur(110px);
-  pointer-events: none;
-}
-
-:global(.dark) .hero-blob-1 { background-color: rgba(99, 102, 241, 0.22); }
-:global(.dark) .hero-blob-2 { background-color: rgba(168, 85, 247, 0.2); }
 
 /* Layout Grid */
 .hero-inner {
@@ -341,24 +318,16 @@ const tabs = [
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -0.03em;
-  color: #0f172a;
+  color: var(--vp-c-text-1);
   margin: 0;
-}
-
-:global(.dark) .hero-title {
-  color: #f8fafc;
 }
 
 .hero-subtitle {
   font-size: clamp(0.95rem, 1.2vw, 1.1rem);
   line-height: 1.6;
-  color: #475569;
+  color: var(--vp-c-text-2);
   margin: 0;
   max-width: 580px;
-}
-
-:global(.dark) .hero-subtitle {
-  color: #94a3b8;
 }
 
 .highlight-privacy {
@@ -420,28 +389,19 @@ const tabs = [
   gap: 6px;
   padding: 10px 16px;
   border-radius: 12px;
-  background-color: #f1f5f9;
-  color: #1e293b !important;
-  border: 1px solid #e2e8f0;
+  background-color: var(--vp-c-bg-mute);
+  color: var(--vp-c-text-1) !important;
+  border: 1px solid var(--vp-c-border);
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none !important;
   transition: all 0.25s ease;
 }
 
-:global(.dark) .btn-secondary-slate {
-  background-color: #1e293b;
-  color: #f1f5f9 !important;
-  border-color: #334155;
-}
-
 .btn-secondary-slate:hover {
   transform: translateY(-2px);
-  background-color: #e2e8f0;
-}
-
-:global(.dark) .btn-secondary-slate:hover {
-  background-color: #334155;
+  background-color: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-brand-1);
 }
 
 .btn-template-highlight {
@@ -507,13 +467,9 @@ const tabs = [
   align-items: center;
   gap: 1.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--vp-c-border);
   margin-top: 0.5rem;
   flex-wrap: wrap;
-}
-
-:global(.dark) .metrics-strip {
-  border-color: #334155;
 }
 
 .metric-box {
@@ -524,17 +480,13 @@ const tabs = [
 .metric-number {
   font-size: 1.2rem;
   font-weight: 800;
-  color: #0f172a;
-}
-
-:global(.dark) .metric-number {
-  color: #f8fafc;
+  color: var(--vp-c-text-1);
 }
 
 .metric-tag {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--vp-c-text-3);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -542,7 +494,7 @@ const tabs = [
 .metric-sep {
   width: 1px;
   height: 26px;
-  background-color: #e2e8f0;
+  background-color: var(--vp-c-border);
 }
 
 :global(.dark) .metric-sep {

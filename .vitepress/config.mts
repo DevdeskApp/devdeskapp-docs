@@ -51,7 +51,8 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
     ]
   },
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'icon', type: 'image/jpeg', href: '/logo-light.jpg', id: 'app-favicon' }],
+    ['script', {}, `(function(){try{var app=localStorage.getItem('vitepress-theme-appearance')||'auto';var dark=app==='dark'||(app==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var l=document.querySelector("link[rel~='icon']");if(l){l.href=dark?'/logo-dark.jpg':'/logo-light.jpg';}}catch(e){}})();`],
     ['link', { rel: 'ai-catalog', href: 'https://docs.devdeskapp.com/.well-known/ai-catalog.json', type: 'application/json' }],
     ['link', { rel: 'api-catalog', href: 'https://docs.devdeskapp.com/.well-known/api-catalog', type: 'application/linkset+json' }],
     ['link', { rel: 'service-doc', href: 'https://docs.devdeskapp.com/llms.txt', type: 'text/markdown' }],
@@ -113,6 +114,7 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
       { text: 'n8n Node Guide', link: '/n8n/' },
       { text: '📋 Templates', link: '/templates/' },
       { text: '🤖 AI Agents & LLMs', link: '/solutions/ai-agents' },
+      { text: '💼 Hire Us / Services', link: '/services/' },
       {
         text: 'More',
         items: [
@@ -136,6 +138,7 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
       '/about/': [
         {
           text: 'DevDeskApp Platform',
+          collapsed: false,
           items: [
             { text: 'Platform Overview', link: '/about/' },
             { text: 'Zero-Leak Architecture', link: '/about/architecture' }
@@ -144,25 +147,57 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
       ],
       '/n8n/': [
         {
-          text: 'n8n Community Node',
+          text: '🚀 Getting Started & Setup',
+          collapsed: false,
           items: [
-            { text: 'Getting Started', link: '/n8n/' },
+            { text: 'Node Overview', link: '/n8n/' },
             { text: 'Step-by-Step Installation', link: '/n8n/installation' },
             { text: 'Operations Reference', link: '/n8n/operations' },
-            { text: 'Workflow Templates Hub', link: '/templates/' }
+            { text: 'Templates Hub', link: '/n8n/workflow-templates' }
+          ]
+        },
+        {
+          text: '📋 Featured Blueprints',
+          collapsed: false,
+          items: [
+            { text: '🌟 Developer Suite (#21017)', link: '/templates/developer-suite' },
+            { text: '💰 CTC Salary Engine (#21130)', link: '/templates/ctc-salary-engine' },
+            { text: '🛡️ Payment Webhook Sanitizer', link: '/templates/payment-webhook-sanitizer' },
+            { text: '🤖 AI LLM JSON Ingestion', link: '/templates/ai-llm-postgres-ingest' },
+            { text: '📄 CTC Offer Letter Generator', link: '/templates/offer-letter-generator' },
+            { text: '📊 Meta CAPI Lead Sync', link: '/templates/meta-capi-lead-sync' },
+            { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' }
+          ]
+        },
+        {
+          text: '🤖 AI Agents & Solutions',
+          collapsed: true,
+          items: [
+            { text: 'AI Agents & LLM Tool Calling', link: '/solutions/ai-agents' },
+            { text: 'Local Node vs Cloud APIs', link: '/solutions/' },
+            { text: 'Production Best Practices', link: '/solutions/best-practices' }
+          ]
+        },
+        {
+          text: '💼 Custom Automation Services',
+          collapsed: true,
+          items: [
+            { text: 'Hire n8n Experts & Consulting', link: '/services/' }
           ]
         }
       ],
       '/templates/': [
         {
-          text: 'Workflow Templates Hub',
+          text: '📋 Workflow Templates Hub',
+          collapsed: false,
           items: [
-            { text: '📋 All Templates Catalog', link: '/templates/' },
+            { text: 'All Templates Catalog', link: '/templates/' },
             { text: '⚡ Quick Import Guide', link: '/templates/how-to-import' }
           ]
         },
         {
           text: 'Official Blueprints',
+          collapsed: false,
           items: [
             { text: '🌟 Developer Suite', link: '/templates/developer-suite' },
             { text: '💰 CTC Salary Engine', link: '/templates/ctc-salary-engine' },
@@ -172,15 +207,67 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
             { text: '📊 Meta CAPI Lead Sync', link: '/templates/meta-capi-lead-sync' },
             { text: '📝 Notion to WordPress Publisher', link: '/templates/notion-wordpress-publisher' }
           ]
+        },
+        {
+          text: '🚀 n8n Community Node',
+          collapsed: true,
+          items: [
+            { text: 'Getting Started', link: '/n8n/' },
+            { text: 'Installation', link: '/n8n/installation' },
+            { text: 'Operations Reference', link: '/n8n/operations' }
+          ]
+        },
+        {
+          text: '💼 Custom Automation Services',
+          collapsed: true,
+          items: [
+            { text: 'Hire n8n Experts & Consulting', link: '/services/' }
+          ]
         }
       ],
       '/solutions/': [
         {
           text: 'Solutions & AI',
+          collapsed: false,
           items: [
             { text: '🤖 AI Agents & LLM Calling', link: '/solutions/ai-agents' },
             { text: 'Local Node vs Cloud APIs', link: '/solutions/' },
             { text: 'Production Best Practices', link: '/solutions/best-practices' }
+          ]
+        },
+        {
+          text: '🚀 n8n Community Node',
+          collapsed: true,
+          items: [
+            { text: 'Node Overview', link: '/n8n/' },
+            { text: 'Installation', link: '/n8n/installation' },
+            { text: 'Operations Reference', link: '/n8n/operations' }
+          ]
+        },
+        {
+          text: '💼 Custom Automation Services',
+          collapsed: true,
+          items: [
+            { text: 'Hire n8n Experts & Consulting', link: '/services/' }
+          ]
+        }
+      ],
+      '/services/': [
+        {
+          text: 'Custom Consulting & Automations',
+          collapsed: false,
+          items: [
+            { text: '💼 Custom n8n Services', link: '/services/' }
+          ]
+        },
+        {
+          text: '🚀 n8n Community Node',
+          collapsed: true,
+          items: [
+            { text: 'Node Overview', link: '/n8n/' },
+            { text: 'Installation', link: '/n8n/installation' },
+            { text: 'Operations Reference', link: '/n8n/operations' },
+            { text: 'Templates Hub', link: '/templates/' }
           ]
         }
       ]
