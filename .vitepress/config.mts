@@ -51,7 +51,8 @@ export default defineConfigWithTheme<DefaultTheme.Config & { n8nNodeVersion: str
     ]
   },
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'icon', type: 'image/jpeg', href: '/logo-light.jpg', id: 'app-favicon' }],
+    ['script', {}, `(function(){try{var app=localStorage.getItem('vitepress-theme-appearance')||'auto';var dark=app==='dark'||(app==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var l=document.querySelector("link[rel~='icon']");if(l){l.href=dark?'/logo-dark.jpg':'/logo-light.jpg';}}catch(e){}})();`],
     ['link', { rel: 'ai-catalog', href: 'https://docs.devdeskapp.com/.well-known/ai-catalog.json', type: 'application/json' }],
     ['link', { rel: 'api-catalog', href: 'https://docs.devdeskapp.com/.well-known/api-catalog', type: 'application/linkset+json' }],
     ['link', { rel: 'service-doc', href: 'https://docs.devdeskapp.com/llms.txt', type: 'text/markdown' }],
