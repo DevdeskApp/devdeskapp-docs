@@ -1,16 +1,16 @@
 ---
 title: 'Official n8n Workflow Templates | DevDeskApp'
-description: 'The 7 published n8n templates built with n8n-nodes-devdeskapp: developer utilities, CTC payroll, webhook audit, LLM JSON, offer letters, Meta CAPI and more.'
+description: 'The 10 published n8n templates built with n8n-nodes-devdeskapp: developer utilities, CTC payroll, webhook audit, LLM JSON, offer letters, Meta CAPI and more.'
 ---
 
 # 🌟 Official Workflow Templates (n8n Community)
 
-Seven templates built with `n8n-nodes-devdeskapp` are published on [n8n.io](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/). Each one uses colour-coded sticky notes that explain the flow on the canvas, and you can import any of them by pasting the workflow JSON onto a canvas.
+Ten official templates built with `n8n-nodes-devdeskapp` are published on [n8n.io](https://n8n.io/workflows/21017-format-json-and-secure-hr-payloads-with-devdeskapp-utilities/). Each one uses colour-coded sticky notes that explain the flow on the canvas, and you can import any of them by pasting the workflow JSON onto a canvas.
 
 <div class="official-template-card" style="margin-bottom: 2rem;">
   <div class="template-card-left">
     <div class="template-card-header">
-      <span class="template-badge">7 Live Templates</span>
+      <span class="template-badge">10 Live Templates</span>
       <span class="badge-live">Published on n8n.io</span>
     </div>
     <h3 class="template-card-title">Import in three steps</h3>
@@ -37,6 +37,9 @@ Seven templates built with `n8n-nodes-devdeskapp` are published on [n8n.io](http
 | [#21594](/templates/offer-letter-generator) | CTC Offer Letter Generator | ctcToInHand, uuid, slugify, hash | Google Docs, Gmail, Google Sheets, Slack | Fix after import |
 | [#21595](/templates/meta-capi-lead-sync) | Meta CAPI Lead Sync | caseConverter, hash, uuid, slugify | Webhook, Meta Graph API, Google Sheets, Slack | Fix after import |
 | [#21596](/templates/notion-wordpress-publisher) | Notion to WordPress Publisher | slugify, hash, uuid, caseConverter | Notion, WordPress, Slack | Fix after import |
+| [#22360](/templates/rss-social-banner-publisher) | RSS-based Social Banner Publisher | slugify, hash, uuid | RSS, LinkedIn, X, Slack | Runs as published |
+| [#22361](/templates/github-pr-architecture-diagrams) | GitHub PR Architecture Diagrams | base64, hash, uuid, slugify | GitHub, Slack, Notion | Runs as published |
+| [#22363](/templates/payment-fraud-detection) | Payment Fraud & Deduplication | prettify, hash, uuid, slugify | Webhook, PostgreSQL, Slack | Runs as published |
 
 "Fix after import" means one or two parameters need changing before the workflow gives correct output. Each template page shows the exact fix.
 
@@ -119,12 +122,12 @@ Builds an SEO slug from the title, fingerprints the article HTML with SHA-256, a
 
 ---
 
-## ⏳ Submitted, waiting for review
+## ⏳ Submitted, waiting for community review
 
-- **#22360:** Auto-generate social media banners from RSS feeds with DevDeskApp, LinkedIn, X and Slack
-- **#22361:** Convert GitHub PR schemas into Mermaid architecture diagrams with DevDeskApp, Slack and Notion
-- **#22362:** Normalize CRM leads and validate JSON with DevDeskApp, PostgreSQL and Slack
-- **#22363:** Detect payment fraud and deduplicate webhooks with DevDeskApp, PostgreSQL and Slack
+- **Review GitHub pull requests with OpenAI, DevDeskApp, Mermaid and Slack**
+- **Redact PII and escalate urgent support tickets with DevDeskApp, PostgreSQL and Slack**
+- **Audit contractor invoices and calculate tax withholding with DevDeskApp, PostgreSQL and Slack**
+- **#22362:** Normalize CRM leads and sync PostgreSQL with DevDeskApp and Slack
 
 ---
 

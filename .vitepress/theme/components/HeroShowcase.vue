@@ -92,7 +92,7 @@ const tabs = [
             </div>
             <div class="metric-sep"></div>
             <div class="metric-box">
-              <span class="metric-number">7</span>
+              <span class="metric-number">10</span>
               <span class="metric-tag">n8n Templates</span>
             </div>
             <div class="metric-sep"></div>
