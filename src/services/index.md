@@ -9,13 +9,13 @@ description: 'Hire the official team behind n8n-nodes-devdeskapp to build produc
 
 Need robust, error-tolerant workflows for your company? We design, build, test, and maintain production-grade n8n automations tailored to your exact tech stack.
 
-<div style="margin: 2rem 0; padding: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.08)); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+<div style="margin: 2rem 0; padding: 1.5rem; background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); border-radius: 1rem; display: flex; flex-direction: column; gap: 1rem;">
   <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
     <div>
-      <h3 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #6366f1;">🚀 Ready to automate your workflow?</h3>
+      <h3 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: var(--vp-c-text-1);">🚀 Ready to automate your workflow?</h3>
       <p style="margin: 0.25rem 0 0 0; font-size: 0.95rem; opacity: 0.85;">Get a fixed-price quote and workflow architecture plan within 2 business days.</p>
     </div>
-    <a href="https://www.devdeskapp.com/n8n-automation-services" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #6366f1, #9333ea); color: #ffffff; font-weight: 700; border-radius: 0.75rem; text-decoration: none; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);">
+    <a href="https://www.devdeskapp.com/n8n-automation-services" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #6366f1; color: #ffffff; font-weight: 700; border-radius: 0.75rem; text-decoration: none;">
       <span>Request a Fixed Quote</span>
       <span>&rarr;</span>
     </a>
@@ -79,7 +79,7 @@ flowchart LR
 
 ---
 
-<div style="margin: 2.5rem 0; padding: 2rem; background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 1rem; text-align: center;">
+<div style="margin: 2.5rem 0; padding: 2rem; background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); border-radius: 1rem; text-align: center;">
   <h3 style="margin: 0 0 0.5rem 0; font-size: 1.35rem; font-weight: 700;">Ready to discuss your automation pipeline?</h3>
   <p style="margin: 0 0 1.5rem 0; opacity: 0.85; max-width: 600px; margin-left: auto; margin-right: auto;">
     Whether you need an automated lead router, an AI agent, or an enterprise webhook pipeline, let's build it together.
@@ -89,7 +89,7 @@ flowchart LR
       <span>Submit Project Request</span>
       <span>&rarr;</span>
     </a>
-    <a href="mailto:support@devdeskapp.com?subject=Custom%20n8n%20Automation%20Inquiry" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; background: transparent; border: 1px solid #6366f1; color: #6366f1; font-weight: 700; border-radius: 0.75rem; text-decoration: none;">
+    <a href="mailto:support@devdeskapp.com?subject=Custom%20n8n%20Automation%20Inquiry" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; background: transparent; border: 1px solid var(--vp-c-border); color: var(--vp-c-text-1); font-weight: 700; border-radius: 0.75rem; text-decoration: none;">
       <span>Email: support@devdeskapp.com</span>
     </a>
   </div>
